@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 const fillerWords = require('../../../utils/fillerwords')
+const Sentiment = require('sentiment')
+const sentiment = new Sentiment()
 
 const Speech = db.define('speech', {
   length: {
@@ -15,8 +17,11 @@ const Speech = db.define('speech', {
     type: Sequelize.TEXT,
     allowNull: false,
     validate: {
-      isEmpty: false
+      notEmpty: true
     }
+  },
+  fillerObj: {
+    type: Sequelize.TEXT
   },
   wpm: {
     //words per minute
@@ -24,6 +29,9 @@ const Speech = db.define('speech', {
   },
   numberFiller: {
     type: Sequelize.INTEGER
+  },
+  sentiment: {
+    type: Sequelize.TEXT
   }
 })
 
@@ -48,27 +56,36 @@ const fillerObj = {
 Speech.beforeCreate(speech => {
   let transcriptArr = speech.transcript.split(' ')
   speech.wpm = Math.round(transcriptArr.length / speech.length * 60)
-  let fillerCount = transcriptArr.reduce((accum, word, index) => {
+  let count = 0
+  let fillerIndices = transcriptArr.reduce((accum, word, index) => {
+    console.log('accume', accum)
     if (accum.hasOwnProperty(word)) {
       accum[word].push(index)
     } else if (word === 'i') {
       if (transcriptArr[index + 1] === 'mean') {
-        accum[word].push(index)
+        accum[word + ' ' + transcriptArr[index + 1]].push(index)
+        count++
       }
     } else if (word === 'you') {
       if (
         transcriptArr[index + 1] === 'know' ||
         transcriptArr[index + 1] === 'see'
       ) {
-        accum[word].push(index)
+        accum[word + ' ' + transcriptArr[index + 1]].push(index)
+        count++
       }
     } else if (word === 'come') {
       if (transcriptArr[index + 1] === 'on') {
-        accum[word].push(index)
+        accum[word + ' ' + transcriptArr[index + 1]].push(index)
+        count++
       }
     }
     return accum
   }, fillerObj)
+  speech.numberFiller = count
+  speech.fillerObj = JSON.stringify(fillerIndices)
+  let sentimentObj = sentiment.analyze(speech.transcript)
+  speech.sentiment = JSON.stringify(sentimentObj)
 })
 
 module.exports = Speech

@@ -19,5 +19,6 @@ User.hasMany(Speech)
 Speech.belongsTo(User)
 
 module.exports = {
-  User
+  User,
+  Speech
 }

@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Speech} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,7 +12,15 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
-  console.log(`seeded ${users.length} users`)
+  const speeches = await Promise.all([
+    Speech.create({
+      transcript:
+        'hello my name like is bob i am bob bob is very literally tired he really hates cats and talking about himself in the third person this is dumb super dumb cakes puppies happiness happy times i love my like family i want to die i mean like basically you know come on you dumb dumb whatever totally literally the coolest thing ive ever heard',
+      length: 20
+    })
+  ])
+
+  console.log(`seeded ${users.length} users and ${speeches.length} speeches`)
   console.log(`seeded successfully`)
 }
 
