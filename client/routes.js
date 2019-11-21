@@ -32,7 +32,7 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={WelcomePage} />
+            <Route path="/user" component={WelcomePage} />
             <Route path="/record" component={RecordingScreen} />
             <Route
               path="/user/speeches/:speechId/overview"
