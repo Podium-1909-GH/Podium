@@ -58,7 +58,6 @@ Speech.beforeCreate(speech => {
   speech.wpm = Math.round(transcriptArr.length / speech.length * 60)
   let count = 0
   let fillerIndices = transcriptArr.reduce((accum, word, index) => {
-    console.log('accume', accum)
     if (accum.hasOwnProperty(word)) {
       accum[word].push(index)
     } else if (word === 'i') {

@@ -10,40 +10,56 @@ class RecordingScreen extends React.Component {
       isTranscribing: false,
       startTime: '',
       endTime: '',
-      transcript: ''
+      transcript: '',
+      supported: true
     }
     this.handleStart = this.handleStart.bind(this)
     this.handleEnd = this.handleEnd.bind(this)
-  }
-
-  handleStart() {
-    let toggle = !this.state.isTranscribing
-    let now = new Date()
-    this.setState({...this.state, startTime: now, isTranscribing: toggle})
 
     window.SpeechRecognition =
       window.webkitSpeechRecognition || window.SpeechRecognition
-    if (!('SpeechRecognition' in window)) {
+    if ('SpeechRecognition' in window) {
+      this.recognition = new window.SpeechRecognition()
+      this.recognition.continuous = true
+      this.recognition.onresult = event => {
+        const speechToText = event.results[0][0].transcript
+        this.setState({...this.state, transcript: speechToText})
+        console.log(this.state)
+      }
+    } else {
       //speech recognition API NOT supported
-      //show error message
-      return
+      this.setState({...this.state, supported: false})
+      alert(
+        'This browser does not support speech recognition. Please use Chrome or FireFox'
+      )
+      
     }
+  }
 
-    const recognition = new window.SpeechRecognition()
-
-    recognition.onresult = event => {
-      const speechToText = event.results[0][0].transcript
-      this.setState({...this.state, transcript: speechToText})
-      console.log(speechToText)
+  handleStart() {
+    if (this.state.supported) {
+      let toggle = !this.state.isTranscribing
+      let now = new Date()
+      this.setState({...this.state, startTime: now, isTranscribing: toggle})
+      this.recognition.start() //will ask user for permission to access microphone
+    } else {
+      alert(
+        'This browser does not support speech recognition. Please use Chrome or FireFox'
+      )
     }
-
-    recognition.start() //will ask user for permission to access microphone
   }
 
   handleEnd() {
-    let toggle = !this.state.isTranscribing
-    let now = new Date()
-    this.setState({...this.state, endTime: now, isTranscribing: toggle})
+    if (this.state.supported) {
+      let now = new Date()
+      this.recognition.stop()
+      let toggle = !this.state.isTranscribing
+      this.setState({...this.state, endTime: now, isTranscribing: toggle})
+    } else {
+      alert(
+        'This browser does not support speech recognition. Please use Chrome or FireFox'
+      )
+    }
   }
 
   render() {
