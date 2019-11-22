@@ -4,8 +4,11 @@
  * having to figure out which file they belong to!
  */
 export {default as Navbar} from './navbar'
+export {default as Home} from './home'
 export {default as UserProfile} from './user-profile'
-export {Login, Signup} from './auth-form'
+export {default as LogIn} from './log-in-auth-form'
+export {default as SignUp} from './sign-up-auth-form'
+
 export {default as RecordingScreen} from './recording-screen'
 
 export {default as WelcomePage} from './welcome-page'

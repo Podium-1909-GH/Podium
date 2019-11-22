@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 const Sequelize = require('sequelize')
 const db = require('../db')
 const fillerWords = require('../../../utils/fillerwords')
