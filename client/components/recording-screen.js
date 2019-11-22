@@ -3,7 +3,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import {connect} from 'react-redux'
-import {postSpeech} from '../store/speech'
+import {postSpeech} from '../store/speeches'
 import SpeechOverview from './speech-overview'
 
 class RecordingScreen extends React.Component {
