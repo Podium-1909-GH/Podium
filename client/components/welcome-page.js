@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
+import {withRouter} from 'react-router-dom'
 
 const WelcomePage = props => {
   const firstName = props.user.firstName
@@ -12,10 +13,18 @@ const WelcomePage = props => {
         <h1>{`Welcome ${firstName}!`}</h1>
       </div>
       <div>
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => props.history.push('/record')}
+        >
           Record
         </Button>
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => props.history.push('/user/dashboard')}
+        >
           Check out your dashboard
         </Button>
       </div>
@@ -37,4 +46,4 @@ WelcomePage.propTypes = {
   firstName: PropTypes.string
 }
 
-export default connect(mapState)(WelcomePage)
+export default withRouter(connect(mapState)(WelcomePage))
