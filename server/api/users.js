@@ -1,17 +1,17 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Speech} = require('../db/models')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.post('/:userId/speeches', async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      // explicitly select only the id and email fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'email', 'firstName', 'lastName']
+    const speech = await Speech.create({
+      transcript: req.body.transcript,
+      length: req.body.length,
+      userId: req.params.userId
     })
-    res.json(users)
+    res.status(201).json(speech)
   } catch (err) {
+    console.error(err)
     next(err)
   }
 })
