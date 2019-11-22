@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {createdUser} from '../store'
-// import {Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 
 const SignUp = props => {
@@ -61,7 +60,6 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
-
       const firstName = evt.target.firstName.value
       const lastName = evt.target.lastName.value
       const email = evt.target.email.value
@@ -74,12 +72,9 @@ const mapDispatch = dispatch => {
 
 export default connect(mapSignup, mapDispatch)(SignUp)
 
-/**
- * PROP TYPES
- */
+/** PROP TYPES */
 SignUp.propTypes = {
   name: PropTypes.string.isRequired,
-  //displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 }

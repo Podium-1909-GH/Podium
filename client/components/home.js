@@ -1,10 +1,8 @@
 import React from 'react'
-// import { connect } from 'react-redux'
-// import Navbar from './navbar'
 
-/**
- * COMPONENT
- */
+/*** COMPONENT */
+
+//Place holder component for when user not yet login
 const Home = () => {
   return <div />
 }

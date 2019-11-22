@@ -54,9 +54,7 @@ const mapDispatch = dispatch => {
 
 export default connect(mapLogin, mapDispatch)(LogIn)
 
-/**
- * PROP TYPES
- */
+/** PROP TYPES */
 LogIn.propTypes = {
   name: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
