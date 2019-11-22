@@ -36,32 +36,31 @@ const Speech = db.define('speech', {
   }
 })
 
-const fillerObj = {
-  like: [],
-  'i mean': [],
-  well: [],
-  'you know': [],
-  whatever: [],
-  basically: [],
-  literally: [],
-  totally: [],
-  okay: [],
-  ok: [],
-  'you see': [],
-  clearly: [],
-  obviously: [],
-  'come on': [],
-  right: []
-}
-
 Speech.beforeCreate(speech => {
+  const fillerObj = {
+    like: [],
+    'i mean': [],
+    well: [],
+    'you know': [],
+    whatever: [],
+    basically: [],
+    literally: [],
+    totally: [],
+    okay: [],
+    ok: [],
+    'you see': [],
+    clearly: [],
+    obviously: [],
+    'come on': [],
+    right: []
+  }
   let transcriptArr = speech.transcript.split(' ')
   speech.wpm = Math.round(transcriptArr.length / speech.length * 60)
   let count = 0
   let fillerIndices = transcriptArr.reduce((accum, word, index) => {
-    console.log('accume', accum)
     if (accum.hasOwnProperty(word)) {
       accum[word].push(index)
+      count++
     } else if (word === 'i') {
       if (transcriptArr[index + 1] === 'mean') {
         accum[word + ' ' + transcriptArr[index + 1]].push(index)
