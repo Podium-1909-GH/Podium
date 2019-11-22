@@ -1,23 +1,26 @@
 import axios from 'axios'
-import history from '../history'
 
 //action types
-let POSTED_SPEECH = 'POSTED_SPEECH'
+const GOT_SPEECH = 'GOT_SPEECH'
 
 //initial state
-const initialState = []
+const initialState = {
+  length: 0,
+  transcript: '',
+  fillerObj: '{}',
+  wpm: 0,
+  numberFiller: 0,
+  sentiment: '{}'
+}
 
 //action creators
-const postedSpeech = speech => ({type: POSTED_SPEECH, speech})
+const gotSpeech = speech => ({type: GOT_SPEECH, speech})
 
 //thunk creators
-export const postSpeech = (transcript, length, userId) => async dispatch => {
+export const getSpeech = (userId, speechId) => async dispatch => {
   try {
-    const res = await axios.post(`/api/users/${userId}/speeches/`, {
-      transcript,
-      length
-    })
-    dispatch(postedSpeech(res.data))
+    const res = await axios.get(`/api/users/${userId}/speeches/${speechId}`)
+    dispatch(gotSpeech(res.data))
   } catch (err) {
     console.error(err)
   }
@@ -26,8 +29,8 @@ export const postSpeech = (transcript, length, userId) => async dispatch => {
 //reducer
 export default function(state = initialState, action) {
   switch (action.type) {
-    case POSTED_SPEECH:
-      return [...state, action.speech]
+    case GOT_SPEECH:
+      return action.speech
     default:
       return state
   }
