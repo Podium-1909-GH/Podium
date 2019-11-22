@@ -4,6 +4,7 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import {connect} from 'react-redux'
 import {postSpeech} from '../store/speech'
+import SpeechOverview from './speech-overview'
 
 class RecordingScreen extends React.Component {
   constructor() {
@@ -38,10 +39,6 @@ class RecordingScreen extends React.Component {
           let transcript = event.results[i][0].transcript
           if (event.results[i].isFinal) {
             this.finalTranscript += await transcript
-            console.log(
-              'isTranscribing right before if: ',
-              this.state.isTranscribing
-            )
             if (!this.state.isTranscribing) {
               this.setState({
                 ...this.state,
@@ -80,7 +77,6 @@ class RecordingScreen extends React.Component {
         startTime: now,
         isTranscribing: toggle
       })
-      console.log('isTranscribing on handleStart: ', this.state.isTranscribing)
       this.recognition.start() //will ask user for permission to access microphone
     } else {
       alert(
@@ -94,7 +90,6 @@ class RecordingScreen extends React.Component {
       let toggle = !this.state.isTranscribing
       let now = new Date()
       await this.setState({...this.state, isTranscribing: toggle, endTime: now})
-      console.log('isTranscribing on handleEnd: ', this.state.isTranscribing)
       this.recognition.stop()
     } else {
       alert(

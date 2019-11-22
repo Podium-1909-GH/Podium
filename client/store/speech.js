@@ -18,6 +18,7 @@ export const postSpeech = (transcript, length, userId) => async dispatch => {
       length
     })
     dispatch(postedSpeech(res.data))
+    history.push(`/user/speeches/${res.data.id}/overview`)
   } catch (err) {
     console.error(err)
   }
