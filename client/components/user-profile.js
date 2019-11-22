@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 /**
  * COMPONENT
  */
-export const UserHome = () => {
+export const UserProfile = () => {
   return <div />
 }
 
@@ -19,11 +19,11 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
+export default connect(mapState)(UserProfile)
 
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
+UserProfile.propTypes = {
   firstName: PropTypes.string
 }

@@ -3,13 +3,14 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
-  Login,
-  Signup,
+  LogIn,
+  SignUp,
   WelcomePage,
   RecordingScreen,
   SpeechOverview,
   UserProfile,
-  UserDashboard
+  UserDashboard,
+  Home
 } from './components'
 import {me} from './store'
 
@@ -27,12 +28,13 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={LogIn} />
+        <Route exact path="/signup" component={SignUp} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/user" component={WelcomePage} />
+            
             <Route path="/record" component={RecordingScreen} />
             <Route
               path="/user/speeches/:speechId/overview"
@@ -40,11 +42,12 @@ class Routes extends Component {
             />
             <Route path="/user/profile" component={UserProfile} />
             <Route path="/user/dashboard" component={UserDashboard} />
+            <Route path="/user" component={WelcomePage} />
             <Route component={WelcomePage} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={WelcomePage} />
       </Switch>
     )
   }
@@ -57,7 +60,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isSignUp: !!state.user.id
   }
 }
 
