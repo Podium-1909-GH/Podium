@@ -15,7 +15,7 @@ class RecordingScreen extends React.Component {
     }
     this.handleStart = this.handleStart.bind(this)
     this.handleEnd = this.handleEnd.bind(this)
-
+    this.finalTranscript = ''
     this.recognition = null
   }
 
@@ -25,16 +25,26 @@ class RecordingScreen extends React.Component {
     if ('SpeechRecognition' in window) {
       this.recognition = new window.SpeechRecognition()
       this.recognition.continuous = true
-      this.recognition.onresult = event => {
-        console.log('inside the onresult function!!!')
-        const speechToText = event.results[0][0].transcript
-        console.log(speechToText)
-        this.setState({...this.state, transcript: speechToText})
-        //console.log(this.state)
-        const length = Math.round(
-          (this.state.endTime - this.state.startTime) / 1000
-        )
-        //dispatch thunk
+      this.recognition.interimResults = true
+      this.recognition.onresult = async event => {
+        let interimTranscript = ''
+        for (
+          let i = event.resultIndex, len = event.results.length;
+          i < len;
+          i++
+        ) {
+          let transcript = event.results[i][0].transcript
+          if (event.results[i].isFinal) {
+            this.finalTranscript += await transcript
+            this.setState({...this.state, transcript: this.finalTranscript})
+            const length = Math.round(
+              (this.state.endTime - this.state.startTime) / 1000
+            )
+            //dispatch thunk
+          } else {
+            interimTranscript += transcript
+          }
+        }
       }
     } else {
       //NOTE: this is not yet working
@@ -52,7 +62,6 @@ class RecordingScreen extends React.Component {
       let toggle = !this.state.isTranscribing
       this.setState({...this.state, startTime: now, isTranscribing: toggle})
       this.recognition.start() //will ask user for permission to access microphone
-      console.log('started!!!')
     } else {
       alert(
         'This browser does not support speech recognition. Please use Chrome or FireFox'
@@ -60,13 +69,12 @@ class RecordingScreen extends React.Component {
     }
   }
 
-  handleEnd() {
+  async handleEnd() {
     if (this.state.supported) {
-      let now = new Date()
-      this.recognition.stop()
-      console.log('stopped!!!')
       let toggle = !this.state.isTranscribing
-      this.setState({...this.state, endTime: now, isTranscribing: toggle})
+      let now = new Date()
+      await this.setState({...this.state, isTranscribing: toggle, endTime: now})
+      this.recognition.stop()
     } else {
       alert(
         'This browser does not support speech recognition. Please use Chrome or FireFox'
