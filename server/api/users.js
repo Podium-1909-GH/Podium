@@ -9,7 +9,7 @@ router.post('/:userId/speeches', async (req, res, next) => {
       length: req.body.length,
       userId: req.params.userId
     })
-    res.status(201).send(speech)
+    res.status(201).json(speech)
   } catch (err) {
     console.error(err)
     next(err)

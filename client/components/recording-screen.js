@@ -2,6 +2,8 @@
 
 import React from 'react'
 import Button from '@material-ui/core/Button'
+import {connect} from 'react-redux'
+import {postSpeech} from '../store/speech'
 
 class RecordingScreen extends React.Component {
   constructor() {
@@ -36,11 +38,24 @@ class RecordingScreen extends React.Component {
           let transcript = event.results[i][0].transcript
           if (event.results[i].isFinal) {
             this.finalTranscript += await transcript
-            this.setState({...this.state, transcript: this.finalTranscript})
-            const length = Math.round(
-              (this.state.endTime - this.state.startTime) / 1000
+            console.log(
+              'isTranscribing right before if: ',
+              this.state.isTranscribing
             )
-            //dispatch thunk
+            if (!this.state.isTranscribing) {
+              this.setState({
+                ...this.state,
+                transcript: this.finalTranscript.toLowerCase()
+              })
+              const length = Math.round(
+                (this.state.endTime - this.state.startTime) / 1000
+              )
+              this.props.postSpeech(
+                this.state.transcript,
+                length,
+                this.props.userId
+              )
+            }
           } else {
             interimTranscript += transcript
           }
@@ -56,11 +71,16 @@ class RecordingScreen extends React.Component {
     }
   }
 
-  handleStart() {
+  async handleStart() {
     if (this.state.supported) {
       let now = new Date()
       let toggle = !this.state.isTranscribing
-      this.setState({...this.state, startTime: now, isTranscribing: toggle})
+      await this.setState({
+        ...this.state,
+        startTime: now,
+        isTranscribing: toggle
+      })
+      console.log('isTranscribing on handleStart: ', this.state.isTranscribing)
       this.recognition.start() //will ask user for permission to access microphone
     } else {
       alert(
@@ -74,6 +94,7 @@ class RecordingScreen extends React.Component {
       let toggle = !this.state.isTranscribing
       let now = new Date()
       await this.setState({...this.state, isTranscribing: toggle, endTime: now})
+      console.log('isTranscribing on handleEnd: ', this.state.isTranscribing)
       this.recognition.stop()
     } else {
       alert(
@@ -98,4 +119,14 @@ class RecordingScreen extends React.Component {
     )
   }
 }
-export default RecordingScreen
+
+const mapStateToProps = state => ({
+  userId: state.user.id
+})
+
+const mapDispatchToProps = dispatch => ({
+  postSpeech: (transcript, length, userId) =>
+    dispatch(postSpeech(transcript, length, userId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecordingScreen)
