@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField'
 const LogIn = props => {
   const {name, handleSubmit, error} = props
   return (
-    <div>
+    <div className="auth-form-container">
       <form className="auth-form" onSubmit={handleSubmit} name={name}>
         <div>
           <TextField
@@ -29,7 +29,7 @@ const LogIn = props => {
           />
         </div>
 
-        <div>
+        <div className="button">
           <Button variant="contained" color="primary" type="submit">
             {' '}
             Log In
@@ -37,9 +37,19 @@ const LogIn = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a id="auth-form-google" href="/auth/google">
+
+      <Button
+        id="auth-form-google"
+        href="/auth/google"
+        color="primary"
+        variant="outlined"
+      >
+        <img
+          id="g-img"
+          src="https://img.icons8.com/material/20/000000/google-logo--v1.png"
+        />
         Sign in with Google
-      </a>
+      </Button>
     </div>
   )
 }

@@ -48,7 +48,7 @@ const SignUp = props => {
           />
         </div>
 
-        <div>
+        <div className="button">
           <Button variant="contained" color="primary" type="submit">
             {' '}
             Sign Up
