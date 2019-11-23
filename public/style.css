@@ -15,7 +15,15 @@ nav a {
   margin: 1em;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#auth-form-google {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
 }

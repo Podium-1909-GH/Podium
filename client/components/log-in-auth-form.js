@@ -3,33 +3,43 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {login} from '../store'
 import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 
 const LogIn = props => {
   const {name, handleSubmit, error} = props
-
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form className="auth-form" onSubmit={handleSubmit} name={name}>
         <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+          <TextField
+            required
+            id="standard-required"
+            label="Email"
+            margin="normal"
+          />
         </div>
+
         <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+          <TextField
+            id="standard-password-input"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            margin="normal"
+          />
         </div>
+
         <div>
           <Button variant="contained" color="primary" type="submit">
+            {' '}
             Log In
           </Button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">Log In with Google</a>
+      <a id="auth-form-google" href="/auth/google">
+        Sign in with Google
+      </a>
     </div>
   )
 }
