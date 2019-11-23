@@ -48,7 +48,7 @@ const LogIn = props => {
       >
         <img
           id="g-img"
-          src="https://img.icons8.com/material/20/000000/google-logo--v1.png"
+          src="https://image.flaticon.com/teams/slug/google.jpg"
         />
         Sign in with Google
       </Button>
