@@ -15,6 +15,7 @@ const LogIn = props => {
             required
             id="standard-required"
             label="Email"
+            name="email"
             margin="normal"
           />
         </div>
@@ -23,6 +24,7 @@ const LogIn = props => {
           <TextField
             id="standard-password-input"
             label="Password"
+            name="password"
             type="password"
             autoComplete="current-password"
             margin="normal"

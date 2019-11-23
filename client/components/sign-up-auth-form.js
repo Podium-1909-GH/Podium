@@ -16,6 +16,7 @@ const SignUp = props => {
             required
             id="standard-required"
             label="First name"
+            name="firstName"
             margin="normal"
           />
         </div>
@@ -25,6 +26,7 @@ const SignUp = props => {
             required
             id="standard-required"
             label="Last name"
+            name="lastName"
             margin="normal"
           />
         </div>
@@ -34,6 +36,7 @@ const SignUp = props => {
             required
             id="standard-required"
             label="Email"
+            name="email"
             margin="normal"
           />
         </div>
@@ -42,6 +45,7 @@ const SignUp = props => {
           <TextField
             id="standard-password-input"
             label="Password"
+            name="password"
             type="password"
             autoComplete="current-password"
             margin="normal"
