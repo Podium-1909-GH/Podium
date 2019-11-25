@@ -70,3 +70,23 @@ nav a {
   width: 30px;
   height: 30px;
 }
+
+/* ------------------------
+    FOOTER
+------------------------ */
+#footer-container {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-wrap {
+  margin-left: 25%;
+}
+
+.footer-wrap ul,
+li {
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+}
