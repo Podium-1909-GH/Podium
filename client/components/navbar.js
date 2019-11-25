@@ -3,30 +3,32 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-
+import AppBar from '@material-ui/core/AppBar'
+import ToolBar from '@material-ui/core/Toolbar'
 const Navbar = ({handleClick, isLoggedIn, firstName}) => (
-  <div>
-    <h1 id="navWelcome">
-      <Link to="/">Podium</Link>
-    </h1>
+  <AppBar position="static">
+    <ToolBar id="navbar">
+      <h1 id="navWelcome">
+        <Link to="/">Podium</Link>
+      </h1>
 
-    <nav className="nav-container">
-      {isLoggedIn ? (
-        <div>
-          <Link to="/user">
-            <h4>{`Hello, ${firstName}`}</h4>
-          </Link>
-          <a onClick={handleClick}>Logout</a>
-        </div>
-      ) : (
-        <div>
-          <Link to="/login">Sign in</Link>
-          <Link to="/signup">Sign up</Link>
-        </div>
-      )}
-    </nav>
-    <hr />
-  </div>
+      <nav className="nav-container">
+        {isLoggedIn ? (
+          <div className="navLinks">
+            <Link to="/user">{`Hello, ${firstName}`}</Link>
+            <Link to="/record">Record</Link>
+            <Link to="/user/dashboard">Dashboard</Link>
+            <a onClick={handleClick}>Logout</a>
+          </div>
+        ) : (
+          <div className="navLinks">
+            <Link to="/login">Sign in</Link>
+            <Link to="/signup">Sign up</Link>
+          </div>
+        )}
+      </nav>
+    </ToolBar>
+  </AppBar>
 )
 
 /**
