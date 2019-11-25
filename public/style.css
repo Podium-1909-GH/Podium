@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  margin: 0px;
 }
 
 a {
@@ -7,7 +8,7 @@ a {
 }
 
 a:hover {
-  color: rgb(37, 199, 199);
+  text-decoration: underline;
 }
 
 label {
@@ -20,29 +21,26 @@ label {
 /* ------------------------
     NAV BAR
 ------------------------ */
-nav {
-  align-items: center;
-  background: rgb(225, 250, 247);
+
+#navbar {
   display: flex;
-  height: 40px;
-  padding: 10px;
-  border: 5px solid white;
+  justify-content: space-between;
+  color: black;
+  align-items: center;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
+#navbar a {
+  color: white;
 }
-
 #navWelcome {
   margin-left: 10px;
   font-family: 'Merriweather';
 }
-
-.nav-container {
-  width: 100%;
+.navLinks {
   display: flex;
-  justify-content: center;
+}
+.navLinks a {
+  margin: 0px 5px;
 }
 
 /* ------------------------

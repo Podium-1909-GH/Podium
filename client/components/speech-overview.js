@@ -13,7 +13,7 @@ class SpeechOverview extends React.Component {
 
   render() {
     const fillerObj = JSON.parse(this.props.speech.fillerObj)
-    const sentiment = JSON.parse(this.props.speech.sentiment)
+    const sentiment = this.props.speech.sentiment
     return (
       <div>
         <h1>Summary</h1>
@@ -31,11 +31,7 @@ class SpeechOverview extends React.Component {
             }
           })}
         </ul>
-        {/* <ul>your sentiment
-          {Object.keys(sentiment).map(key => {
-              return <li key={key}>{key}: {sentiment[key]}</li>
-          })}
-        </ul> */}
+        <p>{sentiment}</p>
       </div>
     )
   }
