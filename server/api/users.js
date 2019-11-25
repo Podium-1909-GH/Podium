@@ -35,3 +35,16 @@ router.get('/:userId/speeches/:speechId', async (req, res, next) => {
     next(err)
   }
 })
+
+router.put('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.update(req.body, {
+      where: {
+        id: req.params.userId
+      }
+    })
+    res.json(user[0])
+  } catch (err) {
+    console.error(err)
+  }
+})
