@@ -1,95 +1,115 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {createdUser} from '../store'
+import {updatedUser} from '../store'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 
-const UserProfile = props => {
-  const {name, handleSubmit, error} = props
+class UserProfile extends Component {
+  constructor() {
+    super()
+    this.state = {}
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
 
-  return (
-    <div>
-      <form className="auth-form" onSubmit={handleSubmit} name={name}>
+  handleSubmit(evt) {
+    evt.preventDefault()
+    const firstName = evt.target.firstName.value
+    const lastName = evt.target.lastName.value
+    const email = evt.target.email.value
+    const password = evt.target.password.value
+    const user = {firstName, lastName, email, password}
+    const userId = this.props.user.id
+    console.log('userId in mapdispatch', userId)
+    this.props.updatedUser(userId, user)
+  }
+
+  render() {
+    return (
+      <div>
         <div>
-          <TextField
-            required
-            id="standard-required"
-            label="First name"
-            name="firstName"
-            margin="normal"
-          />
+          <h1>Edit your profile</h1>
         </div>
-
         <div>
-          <TextField
-            required
-            id="standard-required"
-            label="Last name"
-            name="lastName"
-            margin="normal"
-          />
-        </div>
+          <form
+            className="auth-form"
+            onSubmit={this.handleSubmit}
+            name={this.props.name}
+          >
+            <div>
+              <TextField
+                required
+                id="standard-required"
+                label="First name"
+                name="firstName"
+                margin="normal"
+              />
+            </div>
 
-        <div>
-          <TextField
-            required
-            id="standard-required"
-            label="Email"
-            name="email"
-            type="email"
-            margin="normal"
-          />
-        </div>
+            <div>
+              <TextField
+                required
+                id="standard-required"
+                label="Last name"
+                name="lastName"
+                margin="normal"
+              />
+            </div>
 
-        <div>
-          <TextField
-            id="standard-password-input"
-            label="Password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            margin="normal"
-          />
-        </div>
+            <div>
+              <TextField
+                required
+                id="standard-required"
+                label="Email"
+                name="email"
+                type="email"
+                margin="normal"
+              />
+            </div>
 
-        <div className="button">
-          <Button variant="contained" color="primary" type="submit">
-            {' '}
-            Sign Up
-          </Button>
+            <div>
+              <TextField
+                id="standard-password-input"
+                label="Password"
+                name="password"
+                type="password"
+                margin="normal"
+              />
+            </div>
+
+            <div className="button">
+              <Button variant="contained" color="primary" type="submit">
+                {' '}
+                Save Changes
+              </Button>
+            </div>
+            {this.props.error &&
+              this.props.error.response && (
+                <div> {this.props.error.response.data} </div>
+              )}
+          </form>
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
-const mapSignup = state => {
+const mapState = state => {
   return {
-    name: 'signup',
+    name: 'update profile',
+    user: state.user,
     error: state.user.error
   }
 }
 
-const mapDispatch = dispatch => {
-  return {
-    handleSubmit(evt) {
-      evt.preventDefault()
-      const firstName = evt.target.firstName.value
-      const lastName = evt.target.lastName.value
-      const email = evt.target.email.value
-      const password = evt.target.password.value
-      const newUser = {firstName, lastName, email, password}
-      dispatch(createdUser(newUser))
-    }
-  }
-}
+const mapDispatch = dispatch => ({
+  updatedUser: (userId, user) => dispatch(updatedUser(userId, user))
+})
 
-export default connect(mapSignup, mapDispatch)(UserProfile)
+export default connect(mapState, mapDispatch)(UserProfile)
 
 /** PROP TYPES */
-SignUp.propTypes = {
+UserProfile.propTypes = {
   name: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object

@@ -20,7 +20,7 @@ const defaultUser = {}
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const createUser = newUser => ({type: CREATE_USER, newUser})
-const updateUser = user => ({type: UPDATE_USER, userId, user})
+const updateUser = user => ({type: UPDATE_USER, user})
 
 /**
  * THUNK CREATORS
@@ -78,9 +78,18 @@ export const createdUser = newUser => {
   }
 }
 
-// export const updatedUser = campusId => async dispatch => {
-
-// }
+export const updatedUser = (userId, user) => async dispatch => {
+  console.log('userId in thunk', userId)
+  console.log('user in thunk', user)
+  let res
+  try {
+    res = await axios.put(`/api/users/${userId}`, user)
+    console.log('Res.data from axios', res.data)
+    return dispatch(updateUser(res.data))
+  } catch (error) {
+    console.log('Profile update failed.')
+  }
+}
 
 /**
  * REDUCER
@@ -93,6 +102,8 @@ export default function(state = defaultUser, action) {
       return defaultUser
     case CREATE_USER:
       return {...action.newUser}
+    case UPDATE_USER:
+      return {...action.user}
     default:
       return state
   }
