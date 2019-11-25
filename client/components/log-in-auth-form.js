@@ -16,6 +16,7 @@ const LogIn = props => {
             id="standard-required"
             label="Email"
             name="email"
+            type="email"
             margin="normal"
           />
         </div>
