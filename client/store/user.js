@@ -7,6 +7,7 @@ import history from '../history'
 const GET_USER = 'GET_USER'
 const CREATE_USER = 'CREATE_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
 /**
  * INITIAL STATE
@@ -19,6 +20,7 @@ const defaultUser = {}
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const createUser = newUser => ({type: CREATE_USER, newUser})
+const updateUser = user => ({type: UPDATE_USER, userId, user})
 
 /**
  * THUNK CREATORS
@@ -75,6 +77,10 @@ export const createdUser = newUser => {
     }
   }
 }
+
+// export const updatedUser = campusId => async dispatch => {
+
+// }
 
 /**
  * REDUCER
