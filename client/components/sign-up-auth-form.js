@@ -3,43 +3,59 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {createdUser} from '../store'
 import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 
 const SignUp = props => {
   const {name, handleSubmit, error} = props
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form className="auth-form" onSubmit={handleSubmit} name={name}>
         <div>
-          <label htmlFor="firstName">
-            <small>First Name</small>
-          </label>
-          <input name="firstName" type="text" />
+          <TextField
+            required
+            id="standard-required"
+            label="First name"
+            name="firstName"
+            margin="normal"
+          />
         </div>
 
         <div>
-          <label htmlFor="lastName">
-            <small>Last Name</small>
-          </label>
-          <input name="lastName" type="text" />
+          <TextField
+            required
+            id="standard-required"
+            label="Last name"
+            name="lastName"
+            margin="normal"
+          />
         </div>
 
         <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+          <TextField
+            required
+            id="standard-required"
+            label="Email"
+            name="email"
+            type="email"
+            margin="normal"
+          />
         </div>
 
         <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+          <TextField
+            id="standard-password-input"
+            label="Password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            margin="normal"
+          />
         </div>
 
-        <div>
+        <div className="button">
           <Button variant="contained" color="primary" type="submit">
+            {' '}
             Sign Up
           </Button>
         </div>

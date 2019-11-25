@@ -3,33 +3,56 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {login} from '../store'
 import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 
 const LogIn = props => {
   const {name, handleSubmit, error} = props
-
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
+    <div className="auth-form-container">
+      <form className="auth-form" onSubmit={handleSubmit} name={name}>
         <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+          <TextField
+            required
+            id="standard-required"
+            label="Email"
+            name="email"
+            type="email"
+            margin="normal"
+          />
         </div>
+
         <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+          <TextField
+            id="standard-password-input"
+            label="Password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            margin="normal"
+          />
         </div>
-        <div>
+
+        <div className="button">
           <Button variant="contained" color="primary" type="submit">
+            {' '}
             Log In
           </Button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">Log In with Google</a>
+
+      <Button
+        id="auth-form-google"
+        href="/auth/google"
+        color="primary"
+        variant="outlined"
+      >
+        <img
+          id="g-img"
+          src="https://image.flaticon.com/teams/slug/google.jpg"
+        />
+        Sign in with Google
+      </Button>
     </div>
   )
 }
