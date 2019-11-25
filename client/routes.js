@@ -10,7 +10,8 @@ import {
   SpeechOverview,
   UserProfile,
   UserDashboard,
-  Home
+  Home,
+  AboutUs
 } from './components'
 import {me} from './store'
 
@@ -34,7 +35,7 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            
+
             <Route path="/record" component={RecordingScreen} />
             <Route
               path="/user/speeches/:speechId/overview"
@@ -43,6 +44,7 @@ class Routes extends Component {
             <Route path="/user/profile" component={UserProfile} />
             <Route path="/user/dashboard" component={UserDashboard} />
             <Route path="/user" component={WelcomePage} />
+            <Route path="/aboutus" component={AboutUs} />
             <Route component={WelcomePage} />
           </Switch>
         )}
