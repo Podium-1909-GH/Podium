@@ -1,9 +1,9 @@
 /* eslint-disable complexity */
 const Sequelize = require('sequelize')
 const db = require('../db')
-const fillerWords = require('../../../utils/fillerwords')
 const Sentiment = require('sentiment')
 const sentiment = new Sentiment()
+const Word = require('./word')
 
 const Speech = db.define('speech', {
   length: {
@@ -80,6 +80,7 @@ Speech.beforeCreate(speech => {
         count++
       }
     }
+    //if word === value, check for children
     return accum
   }, fillerObj)
   speech.numberFiller = count

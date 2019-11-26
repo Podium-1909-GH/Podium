@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Speech} = require('../server/db/models')
+const {User, Speech, Word} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -30,7 +30,74 @@ async function seed() {
     })
   ])
 
-  console.log(`seeded ${users.length} users and ${speeches.length} speeches`)
+  const words = await Promise.all([
+    Word.create({
+      value: 'like',
+      children: []
+    }),
+    Word.create({
+      value: 'i',
+      children: ['mean', 'guess']
+    }),
+    Word.create({
+      value: 'well',
+      children: []
+    }),
+    Word.create({
+      value: 'you',
+      children: ['know', 'see']
+    }),
+    Word.create({
+      value: 'whatever',
+      children: []
+    }),
+    Word.create({
+      value: 'basically',
+      children: []
+    }),
+    Word.create({
+      value: 'literally',
+      children: []
+    }),
+    Word.create({
+      value: 'totally',
+      children: []
+    }),
+    Word.create({
+      value: 'okay',
+      children: []
+    }),
+    Word.create({
+      value: 'clearly',
+      children: []
+    }),
+    Word.create({
+      value: 'obviously',
+      children: []
+    }),
+    Word.create({
+      value: 'right',
+      children: []
+    }),
+    Word.create({
+      value: 'so',
+      children: []
+    }),
+    Word.create({
+      value: 'blah',
+      children: []
+    }),
+    Word.create({
+      value: 'yeah',
+      children: []
+    })
+  ])
+
+  console.log(
+    `seeded ${users.length} users, ${speeches.length} speeches, and ${
+      words.length
+    } words`
+  )
   console.log(`seeded successfully`)
 }
 
