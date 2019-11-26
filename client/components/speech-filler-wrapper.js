@@ -13,11 +13,6 @@ class SpeechFillerWrapper extends Component {
     return false
   }
 
-  componentWillReceiveProps() {
-    // run as soon as new props become available before any updates
-    this.state.chart.update()
-  }
-
   render() {
     return <div ref="speechFiller" />
   }
