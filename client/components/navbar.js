@@ -18,6 +18,7 @@ const Navbar = ({handleClick, isLoggedIn, firstName}) => (
             <Link to="/user">{`Hello, ${firstName}`}</Link>
             <Link to="/record">Record</Link>
             <Link to="/user/dashboard">Dashboard</Link>
+            <Link to="/user/profile">Profile</Link>
             <a onClick={handleClick}>Logout</a>
           </div>
         ) : (

@@ -7,6 +7,7 @@ import history from '../history'
 const GET_USER = 'GET_USER'
 const CREATE_USER = 'CREATE_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
 /**
  * INITIAL STATE
@@ -19,6 +20,7 @@ const defaultUser = {}
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 const createUser = newUser => ({type: CREATE_USER, newUser})
+const updateUser = user => ({type: UPDATE_USER, user})
 
 /**
  * THUNK CREATORS
@@ -33,9 +35,12 @@ export const me = () => async dispatch => {
 }
 
 export const login = (email, password) => async dispatch => {
+  console.log('email in thunk', email)
+  console.log('password in thunk', password)
   let res
   try {
     res = await axios.post(`/auth/login`, {email, password})
+    console.log('RES DATA FROM AXIOS', res.data)
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
@@ -76,6 +81,25 @@ export const createdUser = newUser => {
   }
 }
 
+export const updatedUser = (userId, user) => async dispatch => {
+  console.log('userId in thunk', userId)
+  console.log('user in thunk', user)
+  let res
+  try {
+    res = await axios.put(`/api/users/${userId}`, user)
+    console.log('RES', res)
+    dispatch(updateUser(res.data))
+  } catch (error) {
+    console.log('Profile update failed.')
+  }
+  try {
+    dispatch(getUser(res.data))
+    history.push('/user/profile')
+  } catch (dispatchOrHistoryErr) {
+    console.error(dispatchOrHistoryErr)
+  }
+}
+
 /**
  * REDUCER
  */
@@ -87,6 +111,8 @@ export default function(state = defaultUser, action) {
       return defaultUser
     case CREATE_USER:
       return {...action.newUser}
+    case UPDATE_USER:
+      return {...action.user}
     default:
       return state
   }
