@@ -101,29 +101,48 @@ class RecordingScreen extends React.Component {
 
   render() {
     return (
-      <div className="recording-screen">
-        <h1>Practice</h1>
-        <h3>Start a new practice session and see how you're doing!</h3>
-        <div className="recording-buttons">
-          <Button
-            onClick={this.handleStart}
-            variant="outlined"
-            color="primary"
-            disabled={this.state.isTranscribing}
-          >
-            Start
-          </Button>
-          <Button
-            onClick={this.handleEnd}
-            variant="outlined"
-            color="secondary"
-            disabled={!this.state.isTranscribing}
-            m={10}
-          >
-            Stop!
-          </Button>
-        </div>
-      </div>
+      <Timer initialTime={0} startImmediately={false}>
+        {({start, stop}) => (
+          <div className="recording-screen">
+            <h1>Practice</h1>
+            <h3>Start a new practice session and see how you're doing!</h3>
+            <div className="recording-buttons">
+              <Button
+                onClick={() => {
+                  start()
+                  this.handleStart()
+                }}
+                variant="outlined"
+                color="primary"
+                disabled={this.state.isTranscribing}
+              >
+                Start
+              </Button>
+              <Button
+                onClick={() => {
+                  stop()
+                  this.handleEnd()
+                }}
+                variant="outlined"
+                color="secondary"
+                disabled={!this.state.isTranscribing}
+                m={10}
+              >
+                Stop!
+              </Button>
+            </div>
+            <div id="timer">
+              <Timer.Minutes
+                formatValue={value => (value < 10 ? `0${value}` : value)}
+              />{' '}
+              :{' '}
+              <Timer.Seconds
+                formatValue={value => (value < 10 ? `0${value}` : value)}
+              />
+            </div>
+          </div>
+        )}
+      </Timer>
     )
   }
 }

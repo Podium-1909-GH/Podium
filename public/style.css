@@ -97,6 +97,10 @@ h3 {
   display: flex;
   margin: 5px;
 }
+
+#timer {
+  font-size: 8em;
+}
 /* ------------------------
     ABOUT US
 ------------------------ */
