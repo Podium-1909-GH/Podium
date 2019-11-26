@@ -68,3 +68,28 @@ label {
   width: 30px;
   height: 30px;
 }
+
+/* ------------------------
+    Recording Screen
+------------------------ */
+
+.recording-screen {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.recording-screen h1,
+h3 {
+  margin-block-start: 0.4em;
+  margin-block-end: 0.4em;
+}
+
+.recording-buttons {
+  display: flex;
+}
+
+.recording-buttons button {
+  display: flex;
+  margin: 5px;
+}
