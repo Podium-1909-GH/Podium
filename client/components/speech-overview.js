@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getSpeech} from '../store/speech'
+import SpeechFillerWrapper from './speech-filler-wrapper'
 
 class SpeechOverview extends React.Component {
   //speech model: id, length, transcript, fillerObj, wpm, numberFiller, sentiment
@@ -13,25 +14,31 @@ class SpeechOverview extends React.Component {
 
   render() {
     const fillerObj = JSON.parse(this.props.speech.fillerObj)
+    console.log('FILLER OBJ', fillerObj)
     const sentiment = this.props.speech.sentiment
     return (
       <div>
-        <h1>Summary</h1>
-        <h3>your speech!</h3>
-        <p>{this.props.speech.transcript}</p>
-        <ul>
-          your filler words
-          {Object.keys(fillerObj).map(word => {
-            if (fillerObj[word].length > 0) {
-              return (
-                <li key={word}>
-                  {word}: {fillerObj[word].length}
-                </li>
-              )
-            }
-          })}
-        </ul>
-        <p>{sentiment}</p>
+        <div>
+          <h1>Summary</h1>
+          <h3>your speech!</h3>
+          <p>{this.props.speech.transcript}</p>
+          <ul>
+            your filler words
+            {Object.keys(fillerObj).map(word => {
+              if (fillerObj[word].length > 0) {
+                return (
+                  <li key={word}>
+                    {word}: {fillerObj[word].length}
+                  </li>
+                )
+              }
+            })}
+          </ul>
+          <p>{sentiment}</p>
+        </div>
+        <div>
+          <SpeechFillerWrapper fillerObj={fillerObj} />
+        </div>
       </div>
     )
   }
