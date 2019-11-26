@@ -3,6 +3,7 @@ import D3Chart from './speech-filler-d3'
 
 class SpeechFillerWrapper extends Component {
   componentDidMount() {
+    console.log('componentDidMount fillerObj', this.props.fillerObj)
     this.setState({
       chart: new D3Chart(this.refs.speechFiller, this.props.fillerObj)
     })

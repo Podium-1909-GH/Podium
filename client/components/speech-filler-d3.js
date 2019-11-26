@@ -18,12 +18,16 @@ export default class D3Chart {
 
     // GET DATA FROM FILLEROBJ
     // data is an arra of objs with 2 keys, word and count
+
+    console.log('FILLEROBJ', fillerObj)
+
     vis.data = Object.keys(fillerObj).reduce((accum, word) => {
       if (fillerObj[word].length > 0) {
         accum.push({word, count: fillerObj[word].length})
       }
       return accum
     }, [])
+    console.log('vis.data', vis.data)
 
     // obj with keys as words, and vals as count
     vis.dataObj = Object.keys(fillerObj).reduce((accum, word) => {
@@ -34,9 +38,12 @@ export default class D3Chart {
       }
       return accum
     }, {})
+    console.log('vis.dataObj', vis.dataObj)
 
     vis.dataWordsArr = Object.keys(vis.dataObj)
     const minCount = Math.min(...Object.values(vis.dataObj))
+    console.log('min', minCount)
+    console.log('max', maxCount)
     const maxCount = Math.max(...Object.values(vis.dataObj))
 
     // add x-axis label
@@ -75,7 +82,7 @@ export default class D3Chart {
 
     const x = d3
       .scaleBand()
-      .domain(vis.dataWordsArr.map(d => d))
+      .domain(vis.data.map(d => d.word))
       .range([0, WIDTH])
       .padding(0.4)
 

@@ -14,7 +14,7 @@ class SpeechOverview extends React.Component {
 
   render() {
     const fillerObj = JSON.parse(this.props.speech.fillerObj)
-    console.log('FILLER OBJ', fillerObj)
+    console.log('FILLER OBJ IN SPEECH OVERVIEW', fillerObj)
     const sentiment = this.props.speech.sentiment
     return (
       <div>
