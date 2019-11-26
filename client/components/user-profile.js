@@ -10,9 +10,7 @@ class UserProfile extends Component {
     super(props)
     this.state = {
       firstName: '',
-      lastName: '',
-      email: '',
-      password: ''
+      lastName: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -57,7 +55,7 @@ class UserProfile extends Component {
               <TextField
                 required
                 id="standard-required"
-                label={this.props.user.firstName}
+                defaultValue={this.props.user.firstName}
                 name="firstName"
                 margin="normal"
                 helperText="First Name"
@@ -70,38 +68,10 @@ class UserProfile extends Component {
               <TextField
                 required
                 id="standard-required"
-                label={this.props.user.lastName}
+                defaultValue={this.props.user.lastName}
                 name="lastName"
                 margin="normal"
                 helperText="Last Name"
-                onChange={this.handleChange}
-                value={this.state.name}
-              />
-            </div>
-
-            <div>
-              <TextField
-                required
-                id="standard-required"
-                label={this.props.user.email}
-                name="email"
-                type="email"
-                margin="normal"
-                helperText="Email"
-                onChange={this.handleChange}
-                value={this.state.name}
-              />
-            </div>
-
-            <div>
-              <TextField
-                required
-                id="standard-password-input"
-                label={this.props.user.password}
-                name="password"
-                type="password"
-                margin="normal"
-                helperText="Password"
                 onChange={this.handleChange}
                 value={this.state.name}
               />

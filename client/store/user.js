@@ -82,16 +82,19 @@ export const createdUser = newUser => {
 }
 
 export const updatedUser = (userId, user) => async dispatch => {
+  console.log('userId in thunk', userId)
+  console.log('user in thunk', user)
   let res
   try {
     res = await axios.put(`/api/users/${userId}`, user)
-    return dispatch(updateUser(res.data))
+    console.log('RES', res)
+    dispatch(updateUser(res.data))
   } catch (error) {
     console.log('Profile update failed.')
   }
   try {
     dispatch(getUser(res.data))
-    history.push('/user')
+    history.push('/user/profile')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
