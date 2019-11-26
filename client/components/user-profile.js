@@ -6,22 +6,39 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 
 class UserProfile extends Component {
-  constructor() {
-    super()
-    this.state = {}
+  constructor(props) {
+    super(props)
+    this.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   handleSubmit(evt) {
     evt.preventDefault()
-    const firstName = evt.target.firstName.value
-    const lastName = evt.target.lastName.value
-    const email = evt.target.email.value
-    const password = evt.target.password.value
-    const user = {firstName, lastName, email, password}
+    // const firstName = evt.target.firstName.value
+    // const lastName = evt.target.lastName.value
+    // const email = evt.target.email.value
+    // const password = evt.target.password.value
+    const user = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password
+    }
     const userId = this.props.user.id
-    console.log('userId in mapdispatch', userId)
     this.props.updatedUser(userId, user)
+    this.setState({})
   }
 
   render() {
@@ -40,9 +57,12 @@ class UserProfile extends Component {
               <TextField
                 required
                 id="standard-required"
-                label="First name"
+                label={this.props.user.firstName}
                 name="firstName"
                 margin="normal"
+                helperText="First Name"
+                onChange={this.handleChange}
+                value={this.state.name}
               />
             </div>
 
@@ -50,9 +70,12 @@ class UserProfile extends Component {
               <TextField
                 required
                 id="standard-required"
-                label="Last name"
+                label={this.props.user.lastName}
                 name="lastName"
                 margin="normal"
+                helperText="Last Name"
+                onChange={this.handleChange}
+                value={this.state.name}
               />
             </div>
 
@@ -60,20 +83,27 @@ class UserProfile extends Component {
               <TextField
                 required
                 id="standard-required"
-                label="Email"
+                label={this.props.user.email}
                 name="email"
                 type="email"
                 margin="normal"
+                helperText="Email"
+                onChange={this.handleChange}
+                value={this.state.name}
               />
             </div>
 
             <div>
               <TextField
+                required
                 id="standard-password-input"
-                label="Password"
+                label={this.props.user.password}
                 name="password"
                 type="password"
                 margin="normal"
+                helperText="Password"
+                onChange={this.handleChange}
+                value={this.state.name}
               />
             </div>
 
@@ -111,6 +141,5 @@ export default connect(mapState, mapDispatch)(UserProfile)
 /** PROP TYPES */
 UserProfile.propTypes = {
   name: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object
 }
