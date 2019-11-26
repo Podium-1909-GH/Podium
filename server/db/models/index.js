@@ -1,5 +1,6 @@
 const User = require('./user')
 const Speech = require('./speech')
+const Word = require('./word')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -17,8 +18,11 @@ const Speech = require('./speech')
 
 User.hasMany(Speech)
 Speech.belongsTo(User)
+Word.hasMany(User)
+User.belongsToMany(Word, {through: 'UserWord'})
 
 module.exports = {
   User,
-  Speech
+  Speech,
+  Word
 }
