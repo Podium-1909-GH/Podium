@@ -17,6 +17,12 @@ class SpeechOverview extends React.Component {
     return (
       <div>
         <h1>Summary</h1>
+        <div>
+          circles:
+          <div>wpm</div>
+          <div>total filler words</div>
+          <div>overall sentiment</div>
+        </div>
         <h3>your speech!</h3>
         <p>{this.props.speech.transcript}</p>
         <ul>
