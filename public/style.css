@@ -168,3 +168,11 @@ body,
 #app > div {
   height: 100%;
 }
+
+/* ------------------------
+    Data Overviews
+------------------------ */
+.data-overview {
+  display: flex;
+  flex-direction: column;
+}
