@@ -10,7 +10,8 @@ import {
   SpeechOverview,
   UserProfile,
   UserDashboard,
-  Home
+  Home,
+  AboutUs
 } from './components'
 import {me} from './store'
 
@@ -29,6 +30,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
+        <Route path="/aboutus" component={AboutUs} />
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/signup" component={SignUp} />
         {isLoggedIn && (
