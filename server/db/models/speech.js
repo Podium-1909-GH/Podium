@@ -36,65 +36,48 @@ const Speech = db.define('speech', {
   }
 })
 
-async function setFillerObj() {
-  const fillerObj = await Word.findAll({where: {isDefault: true}})
-  console.log('fillerObj: ', fillerObj)
-  const reduced = fillerObj.reduce((accum, word) => {
-    accum[word.value] = []
+async function getFillerWords() {
+  const defaultFillers = await Word.findAll({where: {isDefault: true}})
+  const reducedObj = defaultFillers.reduce((accum, word) => {
+    if (word.children.length > 0) {
+      word.children.forEach(child => {
+        accum[word.value + ' ' + child] = []
+      })
+    } else {
+      accum[word.value] = []
+    }
     return accum
   }, {})
-  console.log('reduced: ', reduced)
-  return reduced
+
+  const wordChildren = defaultFillers.reduce((accum, word) => {
+    accum[word.value] = word.children
+    return accum
+  }, {})
+  return [reducedObj, wordChildren]
 }
 
 Speech.beforeCreate(async speech => {
-  // const fillerObj = {
-  //   like: [],
-  //   'i mean': [],
-  //   well: [],
-  //   'you know': [],
-  //   whatever: [],
-  //   basically: [],
-  //   literally: [],
-  //   totally: [],
-  //   okay: [],
-  //   ok: [],
-  //   'you see': [],
-  //   clearly: [],
-  //   obviously: [],
-  //   'come on': [],
-  //   right: []
-  // }
-  const fillerObj = await setFillerObj()
-  console.log('fillerObj after function call: ', fillerObj)
+  const fillerWordsArr = await getFillerWords()
+  const fillerObj = fillerWordsArr[0]
+  const fillerWordsChildren = fillerWordsArr[1]
 
   let transcriptArr = speech.transcript.split(' ')
   speech.wpm = Math.round(transcriptArr.length / speech.length * 60)
   let count = 0
   let fillerIndices = transcriptArr.reduce((accum, word, index) => {
-    if (accum.hasOwnProperty(word)) {
-      accum[word].push(index)
-      count++
-    } else if (word === 'i') {
-      if (transcriptArr[index + 1] === 'mean') {
-        accum[word + ' ' + transcriptArr[index + 1]].push(index)
-        count++
-      }
-    } else if (word === 'you') {
-      if (
-        transcriptArr[index + 1] === 'know' ||
-        transcriptArr[index + 1] === 'see'
-      ) {
-        accum[word + ' ' + transcriptArr[index + 1]].push(index)
-        count++
-      }
-    } else if (word === 'come') {
-      if (transcriptArr[index + 1] === 'on') {
-        accum[word + ' ' + transcriptArr[index + 1]].push(index)
+    if (fillerWordsChildren.hasOwnProperty(word)) {
+      if (fillerWordsChildren[word].length > 0) {
+        fillerWordsChildren[word].forEach(child => {
+          if (transcriptArr[index + 1] === child) {
+            accum[word + ' ' + child].push(index)
+            count++
+          }
+        })
+      } else {
+        accum[word].push(index)
         count++
       }
     }
-    //if word === value, check for children
     return accum
   }, fillerObj)
   speech.numberFiller = count
