@@ -19,7 +19,19 @@ class DashboardWpmWrapper extends Component {
   }
 
   render() {
-    return <div ref="dashWpm" />
+    const aveWpm = Math.round(
+      this.speeches.reduce((accum, speech) => accum + speech.wpm, 0) /
+        this.speeches.length
+    )
+    return (
+      <div style={{display: 'flex'}}>
+        <div ref="dashWpm" />
+        <p>
+          Your Average Speed is {aveWpm}words per minute! That's as fast as a
+          real person
+        </p>
+      </div>
+    )
   }
 }
 

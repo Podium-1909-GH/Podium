@@ -24,7 +24,7 @@ export default class D3Chart {
       .attr('x', WIDTH / 2)
       .attr('y', HEIGHT + 50)
       .attr('text-anchor', 'middle')
-      .text("The world's tallest men")
+      .text('Your last 10 sessions')
 
     // add y-axis label
     vis.svg
@@ -32,7 +32,7 @@ export default class D3Chart {
       .attr('x', -(HEIGHT / 2))
       .attr('y', -50)
       .attr('text-anchor', 'middle')
-      .text('Height in cm')
+      .text('Words per Minute')
       .attr('transform', 'rotate(-90)')
 
     // want to define x and y axis once originally
@@ -47,15 +47,6 @@ export default class D3Chart {
     // load two different data sets at once
     vis.data = speeches
 
-    vis.draw()
-    // once load data, our graph gets updated by update method every 1000 ms
-  }
-
-  // update method gets called every time we update our data
-  draw() {
-    const vis = this
-
-    // for updating chart based on dropdown menu
     vis.xLabel.text(`Your words per minute`)
 
     // d3.max loops through data array and finds max height
@@ -74,11 +65,9 @@ export default class D3Chart {
     const x = d3
       .scaleLinear()
       // domain takes an array with 2 elems, min and max input units
-      .domain([minX * 0.95, maxX])
+      .domain([minX, maxX])
       // range takes arr of 2 elems, min and max outputs in pixels
       .range([0, WIDTH])
-      .padding(0.4) // put height as min to get y axis to start at bottom left
-    // console.log(y(272)) pass in 272 cm, returns 500 pixels
 
     // updates x axis, passing in x scale
     const xAxisCall = d3.axisBottom(x)
@@ -95,7 +84,7 @@ export default class D3Chart {
       .duration(500)
       .call(yAxisCall)
 
-    vis
+    vis.svg
       .append('path')
       .datum(vis.data)
       .attr('fill', 'none')
@@ -112,8 +101,33 @@ export default class D3Chart {
             return y(d.wpm)
           })
       )
+    let Tooltip = d3
+      .select(element)
+      .append('div')
+      .style('opacity', 0)
+      .attr('class', 'tooltip')
+      .style('background-color', 'white')
+      .style('border', 'solid')
+      .style('border-width', '2px')
+      .style('border-radius', '5px')
+      .style('padding', '5px')
+
+    let mouseover = function(d) {
+      Tooltip.style('opacity', 1)
+    }
+    let mousemove = function(d) {
+      Tooltip.html(
+        'Speech Length: ' + d.length + ' seconds Date: ' + d.createdAt
+      )
+        .style('left', d3.mouse(this)[0] + 70 + 'px')
+        .style('top', d3.mouse(this)[1] + 'px')
+    }
+    let mouseleave = function(d) {
+      Tooltip.style('opacity', 0)
+    }
+
     // Add the points
-    vis
+    vis.svg
       .append('g')
       .selectAll('dot')
       .data(vis.data)
@@ -127,5 +141,14 @@ export default class D3Chart {
       })
       .attr('r', 5)
       .attr('fill', '#69b3a2')
+      .on('mouseover', mouseover)
+      .on('mousemove', mousemove)
+      .on('mouseleave', mouseleave)
+
+    // once load data, our graph gets updated by update method every 1000 ms
   }
+
+  // update method gets called every time we update our data
+
+  // for updating chart based on dropdown menu
 }

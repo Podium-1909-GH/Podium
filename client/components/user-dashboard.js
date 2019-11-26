@@ -18,14 +18,12 @@ class UserDashboard extends React.Component {
       speech.index = index + 1
       return speech
     })
-    console.log(speechMap)
     if (speechMap.length > 10) {
-      let mostRecent10 = speechMap.slice(speechMap - 10)
+      let mostRecent10 = speechMap.slice(speechMap.length - 10)
       this.setState({mostRecentSpeeches: mostRecent10})
     } else {
       this.setState({mostRecentSpeeches: speechMap})
     }
-    console.log(this.state)
   }
   render() {
     return (
