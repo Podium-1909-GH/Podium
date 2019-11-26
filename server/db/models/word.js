@@ -12,6 +12,10 @@ const Word = db.define('word', {
   children: {
     type: Sequelize.ARRAY(Sequelize.STRING),
     allowNull: false
+  },
+  isDefault: {
+    type: Sequelize.BOOLEAN,
+    default: false
   }
 })
 

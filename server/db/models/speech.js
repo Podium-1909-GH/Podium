@@ -36,24 +36,38 @@ const Speech = db.define('speech', {
   }
 })
 
-Speech.beforeCreate(speech => {
-  const fillerObj = {
-    like: [],
-    'i mean': [],
-    well: [],
-    'you know': [],
-    whatever: [],
-    basically: [],
-    literally: [],
-    totally: [],
-    okay: [],
-    ok: [],
-    'you see': [],
-    clearly: [],
-    obviously: [],
-    'come on': [],
-    right: []
-  }
+async function setFillerObj() {
+  const fillerObj = await Word.findAll({where: {isDefault: true}})
+  console.log('fillerObj: ', fillerObj)
+  const reduced = fillerObj.reduce((accum, word) => {
+    accum[word.value] = []
+    return accum
+  }, {})
+  console.log('reduced: ', reduced)
+  return reduced
+}
+
+Speech.beforeCreate(async speech => {
+  // const fillerObj = {
+  //   like: [],
+  //   'i mean': [],
+  //   well: [],
+  //   'you know': [],
+  //   whatever: [],
+  //   basically: [],
+  //   literally: [],
+  //   totally: [],
+  //   okay: [],
+  //   ok: [],
+  //   'you see': [],
+  //   clearly: [],
+  //   obviously: [],
+  //   'come on': [],
+  //   right: []
+  // }
+  const fillerObj = await setFillerObj()
+  console.log('fillerObj after function call: ', fillerObj)
+
   let transcriptArr = speech.transcript.split(' ')
   speech.wpm = Math.round(transcriptArr.length / speech.length * 60)
   let count = 0
