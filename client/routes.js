@@ -10,8 +10,7 @@ import {
   SpeechOverview,
   UserProfile,
   UserDashboard,
-  Home,
-  AboutUs
+  Home
 } from './components'
 import {me} from './store'
 
@@ -44,7 +43,6 @@ class Routes extends Component {
             <Route path="/user/profile" component={UserProfile} />
             <Route path="/user/dashboard" component={UserDashboard} />
             <Route path="/user" component={WelcomePage} />
-            <Route path="/aboutus" component={AboutUs} />
             <Route component={WelcomePage} />
           </Switch>
         )}
