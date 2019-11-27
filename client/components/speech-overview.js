@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getSpeech} from '../store/speech'
+import SpeechSentimentWrapper from './speech-sentiment-wrapper'
 
 class SpeechOverview extends React.Component {
   //speech model: id, length, transcript, fillerObj, wpm, numberFiller, sentiment
@@ -32,6 +33,9 @@ class SpeechOverview extends React.Component {
           })}
         </ul>
         <p>{sentiment}</p>
+        <div>
+          <SpeechSentimentWrapper sentiment={sentiment} />
+        </div>
       </div>
     )
   }
