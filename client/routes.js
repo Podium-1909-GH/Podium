@@ -9,11 +9,13 @@ import {
   RecordingScreen,
   SpeechOverview,
   UserProfile,
+  // UserProfileEdit,
   UserDashboard,
   Home,
   AboutUs
 } from './components'
 import {me} from './store'
+import UserProfileEdit from './components/user-profile-edit'
 
 /**
  * COMPONENT
@@ -43,6 +45,7 @@ class Routes extends Component {
               component={SpeechOverview}
             />
             <Route path="/user/profile" component={UserProfile} />
+            <Route path="/user/profile/edit" component={UserProfileEdit} />
             <Route path="/user/dashboard" component={UserDashboard} />
             <Route path="/user" component={WelcomePage} />
             <Route component={WelcomePage} />
