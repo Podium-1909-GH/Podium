@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getSpeech} from '../store/speech'
+import D3BubblesWrapper from './overview-info-bubbles-wrapper'
 
 class SpeechOverview extends React.Component {
   //speech model: id, length, transcript, fillerObj, wpm, numberFiller, sentiment
@@ -17,12 +18,7 @@ class SpeechOverview extends React.Component {
     return (
       <div>
         <h1>Summary</h1>
-        <div>
-          circles:
-          <div>wpm</div>
-          <div>total filler words</div>
-          <div>overall sentiment</div>
-        </div>
+        <D3BubblesWrapper speech={this.props.speech} />
         <h3>your speech!</h3>
         <p>{this.props.speech.transcript}</p>
         <ul>
