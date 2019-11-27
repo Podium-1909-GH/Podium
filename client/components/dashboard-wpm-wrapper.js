@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import DashBoardWpmD3 from './dashboard-wpm-d3'
 import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 
 class DashboardWpmWrapper extends Component {
   // important to put in component did mount because we're changing something that already loaded to screen
@@ -28,10 +29,12 @@ class DashboardWpmWrapper extends Component {
       <Paper className="dashboard-item" elevation={4}>
         <Paper ref="dashWpm" elevation={3} />
         <Paper elevation={3}>
-          <p>
+          <Typography variant="h5">Words Per Minute</Typography>
+          <hr />
+          <Typography variant="body1" component="p">
             Your Average Speed is {aveWpm} words per minute! That's as fast as a
             real person
-          </p>
+          </Typography>
         </Paper>
       </Paper>
     )

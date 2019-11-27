@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import {getSpeeches} from '../store/speeches'
 import DashboardWpmWrapper from './dashboard-wpm-wrapper'
+import Typography from '@material-ui/core/Typography'
 
 class UserDashboard extends React.Component {
   constructor(props) {
@@ -28,18 +29,20 @@ class UserDashboard extends React.Component {
   render() {
     return (
       <div className="data-overview">
-        <h2>Dashboard</h2>
+        <Typography variant="h3">
+          Dashboard <hr />
+        </Typography>
         {this.state.mostRecentSpeeches.length === 0 ? (
-          <h4>
+          <Typography variant="h5">
             Hmm... it doesn't look like you have any speeches. Click{' '}
             <Link to="/record">Here</Link> to get started!
-          </h4>
+          </Typography>
         ) : (
           <React.Fragment>
-            <h4>
+            <Typography variant="h5">
               A summary of your last {this.state.mostRecentSpeeches.length}{' '}
               speeches
-            </h4>
+            </Typography>
             <DashboardWpmWrapper speeches={this.state.mostRecentSpeeches} />
           </React.Fragment>
         )}

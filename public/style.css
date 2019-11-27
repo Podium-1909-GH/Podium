@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: Roboto, sans-serif;
   margin: 0px;
 }
 
@@ -25,7 +25,9 @@ label {
 /* ------------------------
     NAV BAR
 ------------------------ */
-
+#nav-outer-container {
+  margin-bottom: 10px;
+}
 #navbar {
   display: flex;
   justify-content: space-between;
@@ -175,6 +177,8 @@ body,
 .data-overview {
   display: flex;
   flex-direction: column;
+  text-align: center;
+  align-items: center;
 }
 /* ------------------------
    Dashboard Item

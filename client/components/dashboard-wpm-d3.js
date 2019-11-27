@@ -2,7 +2,7 @@ import * as d3 from 'd3'
 import {formatSeconds} from '../../utils'
 
 const MARGIN = {TOP: 10, BOTTOM: 50, LEFT: 70, RIGHT: 10}
-const WIDTH = 700 - MARGIN.LEFT - MARGIN.RIGHT
+const WIDTH = 650 - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
 
 export default class D3Chart {
@@ -70,7 +70,11 @@ export default class D3Chart {
       .range([0, WIDTH])
 
     // updates x axis, passing in x scale
-    const xAxisCall = d3.axisBottom(x).tickValues(ticks)
+    let tickFormat = d3.format('d')
+    const xAxisCall = d3
+      .axisBottom(x)
+      .tickValues(ticks)
+      .tickFormat(d => tickFormat(d))
     // to call or recalculate axis, need to use call method
     vis.xAxisGroup
       .transition()
