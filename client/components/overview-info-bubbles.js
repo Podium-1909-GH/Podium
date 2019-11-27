@@ -11,9 +11,23 @@ export default class D3Bubbles {
       .append('svg')
       .attr('width', 200)
       .attr('height', 200)
+
+    //make the circle
+    vis.svg
       .append('circle')
       .attr('cx', 100)
       .attr('cy', 100)
       .attr('r', 60)
+      .attr('fill', 'grey')
+
+    //add text
+    vis.svg
+      .append('text')
+      .attr('x', 50)
+      .attr('y', 50)
+      .attr('text-anchor', 'middle')
+      .text('wpm')
+      .attr('font-size', '20px')
+      .attr('fill', 'black')
   }
 }
