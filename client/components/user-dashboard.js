@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import {getSpeeches} from '../store/speeches'
 import DashboardWpmWrapper from './dashboard-wpm-wrapper'
+import DashboardFillerWrapper from './dashboard-filler-wrapper'
 import Typography from '@material-ui/core/Typography'
 
 class UserDashboard extends React.Component {
@@ -44,6 +45,7 @@ class UserDashboard extends React.Component {
               speeches
             </Typography>
             <DashboardWpmWrapper speeches={this.state.mostRecentSpeeches} />
+            <DashboardFillerWrapper speeches={this.state.mostRecentSpeeches} />
           </React.Fragment>
         )}
       </div>
