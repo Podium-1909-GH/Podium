@@ -6,7 +6,7 @@ import {logout} from '../store'
 import AppBar from '@material-ui/core/AppBar'
 import ToolBar from '@material-ui/core/Toolbar'
 const Navbar = ({handleClick, isLoggedIn, firstName}) => (
-  <AppBar position="static">
+  <AppBar position="static" id="nav-outer-container">
     <ToolBar id="navbar">
       <h1 id="navWelcome">
         <Link to="/">Podium</Link>
@@ -18,6 +18,7 @@ const Navbar = ({handleClick, isLoggedIn, firstName}) => (
             <Link to="/user">{`Hello, ${firstName}`}</Link>
             <Link to="/record">Record</Link>
             <Link to="/user/dashboard">Dashboard</Link>
+            <Link to="/user/profile">Profile</Link>
             <a onClick={handleClick}>Logout</a>
           </div>
         ) : (
