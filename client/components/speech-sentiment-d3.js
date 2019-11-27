@@ -1,60 +1,82 @@
-// import React from 'react';
-// import * as d3 from 'd3';
+import * as d3 from 'd3'
 
-// class D3SpeechSentimentChart extends React.Component {
-//   constructor(element, sentimentObj) {
-//     const svg = d3.select(element)
-//      .append("svg")
-//     const width = svg.attr("width")
-//     const height = svg.attr("height")
-//     const radius = Math.min(width, height) / 2;
+const MARGIN = {TOP: 10, BOTTOM: 50, LEFT: 70, RIGHT: 10}
+const WIDTH = 650 - MARGIN.LEFT - MARGIN.RIGHT
+const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
+export default class D3SpeechSentimentChart {
+  constructor(element, sentiment) {
+    const vis = this
 
-//     const g = svg.append("g")
-//       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+    vis.svg = d3
+      .select(element)
+      .append('svg')
+      .attr('width')
+      .attr('height')
+      .append('g')
+      .attr('transform', 'translate(' + WIDTH / 2 + ',' + HEIGHT / 2 + ')')
 
-//     const color = d3.scaleOrdinal(['#4daf4a', '#377eb8', '#ff7f00', '#984ea3', '#e41a1c']);
+    vis.radius = Math.min(WIDTH, HEIGHT) / 2
+    vis.color = d3.scaleOrdinal([
+      '#4daf4a',
+      '#377eb8',
+      '#ff7f00',
+      '#984ea3',
+      '#e41a1c'
+    ])
 
-//     var pie = d3.pie().value(function (d) {
-//       return d.percent;
-//     });
+    // load two different data sets at once
+    vis.data = sentiment
 
-//     var path = d3.arc()
-//       .outerRadius(radius - 10)
-//       .innerRadius(0);
+    vis.pie = d3.pie().value(function(d) {
+      return d.percent
+    })
 
-//     var label = d3.arc()
-//       .outerRadius(radius)
-//       .innerRadius(radius - 80);
+    vis.path = d3
+      .arc()
+      .outerRadius(vis.radius - 10)
+      .innerRadius(0)
 
-//     d3.csv("browseruse.csv", function (error, data) {
-//       if (error) {
-//         throw error;
-//       }
-//       var arc = g.selectAll(".arc")
-//         .data(pie(data))
-//         .enter().append("g")
-//         .attr("class", "arc");
+    vis.label = d3
+      .arc()
+      .outerRadius(vis.radius)
+      .innerRadius(vis.radius - 80)
 
-//       arc.append("path")
-//         .attr("d", path)
-//         .attr("fill", function (d) { return color(d.data.browser); });
+    d3.csv('browseruse.csv', function(error, data) {
+      if (error) {
+        throw error
+      }
+      var arc = g
+        .selectAll('.arc')
+        .data(vis.pie(data))
+        .enter()
+        .append('g')
+        .attr('class', 'arc')
 
-//       console.log(arc)
+      arc
+        .append('path')
+        // eslint-disable-next-line no-undef
+        .attr('d', path)
+        .attr('fill', function(d) {
+          return vis.color(d.data.browser)
+        })
 
-//       arc.append("text")
-//         .attr("transform", function (d) {
-//           return "translate(" + label.centroid(d) + ")";
-//         })
-//         .text(function (d) { return d.data.browser; });
-//     });
+      console.log(arc)
 
-//     svg.append("g")
-//       .attr("transform", "translate(" + (width / 2 - 120) + "," + 20 + ")")
-//       .append("text")
-//       .text("Browser use statistics - Jan 2017")
-//       .attr("class", "title")
-//   }
+      arc
+        .append('text')
+        .attr('transform', function(d) {
+          return 'translate(' + vis.label.centroid(d) + ')'
+        })
+        .text(function(d) {
+          return d.data.browser
+        })
+    })
 
-// };
-
-// export default D3SpeechSentimentChart
+    vis.svg
+      .append('g')
+      .attr('transform', 'translate(' + (WIDTH / 2 - 120) + ',' + 20 + ')')
+      .append('text')
+      .text('Browser use statistics - Jan 2017')
+      .attr('class', 'title')
+  }
+}

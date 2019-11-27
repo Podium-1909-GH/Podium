@@ -8,7 +8,6 @@ class SpeechOverview extends React.Component {
   componentDidMount() {
     const userId = this.props.userId
     const speechId = this.props.match.params.speechId
-
     this.props.getSpeech(userId, speechId)
   }
 
@@ -34,7 +33,7 @@ class SpeechOverview extends React.Component {
         </ul>
         <p>{sentiment}</p>
         <div>
-          <SpeechSentimentWrapper sentiment={sentiment} />
+          <SpeechSentimentWrapper {...sentiment} />
         </div>
       </div>
     )
