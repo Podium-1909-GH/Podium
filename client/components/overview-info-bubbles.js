@@ -1,33 +1,89 @@
 import * as d3 from 'd3'
 import history from '../history'
 
+const svgWidth = 800
+const svgHeight = 300
+const radius = 80
+
 export default class D3Bubbles {
   // put things that only need to be called once in constructor
-  constructor(element, speeches) {
+  constructor(element, speech) {
+    console.log('speech: ', speech)
     const vis = this
     // the visualization instance, calling it vis to define what this is
     vis.svg = d3
       .select(element)
       .append('svg')
-      .attr('width', 200)
-      .attr('height', 200)
+      .attr('width', svgWidth)
+      .attr('height', svgHeight)
 
     //make the circle
     vis.svg
       .append('circle')
-      .attr('cx', 100)
-      .attr('cy', 100)
-      .attr('r', 60)
+      .attr('cx', svgWidth / 6)
+      .attr('cy', svgHeight / 2)
+      .attr('r', radius)
       .attr('fill', 'grey')
-
     //add text
     vis.svg
       .append('text')
-      .attr('x', 50)
-      .attr('y', 50)
+      .attr('x', svgWidth / 6)
+      .attr('y', svgHeight / 2)
       .attr('text-anchor', 'middle')
-      .text('wpm')
+      .text(`${speech.wpm}`)
+      .attr('font-size', '50px')
+      .attr('fill', 'white')
+    //add text label
+    vis.svg
+      .append('text')
+      .attr('x', svgWidth / 6)
+      .attr('y', svgHeight / 2 + radius / 4)
+      .attr('text-anchor', 'middle')
+      .text(`words per minute`)
+      .attr('font-size', '15px')
+      .attr('fill', 'white')
+
+    //make the circle
+    vis.svg
+      .append('circle')
+      .attr('cx', svgWidth / 2)
+      .attr('cy', svgHeight / 2)
+      .attr('r', 80)
+      .attr('fill', 'grey')
+    //add text
+    vis.svg
+      .append('text')
+      .attr('x', svgWidth / 2)
+      .attr('y', svgHeight / 2)
+      .attr('text-anchor', 'middle')
+      .text(`${speech.numberFiller}`)
+      .attr('font-size', '50px')
+      .attr('fill', 'white')
+    //add text label
+    vis.svg
+      .append('text')
+      .attr('x', svgWidth / 2)
+      .attr('y', svgHeight / 2 + radius / 4)
+      .attr('text-anchor', 'middle')
+      .text(`filler words`)
+      .attr('font-size', '15px')
+      .attr('fill', 'white')
+
+    //make the circle
+    vis.svg
+      .append('circle')
+      .attr('cx', svgWidth * 5 / 6)
+      .attr('cy', svgHeight / 2)
+      .attr('r', 80)
+      .attr('fill', 'grey')
+    //add text
+    vis.svg
+      .append('text')
+      .attr('x', svgWidth * 5 / 6)
+      .attr('y', svgHeight / 2)
+      .attr('text-anchor', 'middle')
+      .text('sentiment')
       .attr('font-size', '20px')
-      .attr('fill', 'black')
+      .attr('fill', 'white')
   }
 }

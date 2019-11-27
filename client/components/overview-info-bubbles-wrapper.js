@@ -9,10 +9,12 @@ class D3BubblesWrapper extends Component {
     super(props)
     this.speech = this.props.speech
   }
-  componentDidMount() {
-    this.setState({
-      chart: new D3Bubbles(this.refs.bubbles, this.speech)
-    })
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.speech) {
+      // eslint-disable-next-line no-new
+      new D3Bubbles(this.refs.bubbles, nextProps.speech)
+    }
   }
 
   shouldComponentUpdate() {
@@ -24,12 +26,6 @@ class D3BubblesWrapper extends Component {
     return (
       <Paper className="dashboard-item" elevation={4}>
         <div ref="bubbles" />
-        <div>
-          circles:
-          <div>wpm</div>
-          <div>total filler words</div>
-          <div>overall sentiment</div>
-        </div>
       </Paper>
     )
   }
