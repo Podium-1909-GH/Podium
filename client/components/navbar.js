@@ -6,7 +6,7 @@ import {logout} from '../store'
 import AppBar from '@material-ui/core/AppBar'
 import ToolBar from '@material-ui/core/Toolbar'
 const Navbar = ({handleClick, isLoggedIn, firstName}) => (
-  <AppBar position="static">
+  <AppBar position="static" id="nav-outer-container">
     <ToolBar id="navbar">
       <h1 id="navWelcome">
         <Link to="/">Podium</Link>

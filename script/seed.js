@@ -7,6 +7,84 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
+  const words = await Promise.all([
+    Word.create({
+      value: 'like',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'i',
+      children: ['mean', 'guess'],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'well',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'you',
+      children: ['know', 'see'],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'whatever',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'basically',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'literally',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'totally',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'okay',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'clearly',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'obviously',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'right',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'so',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'blah',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'yeah',
+      children: [],
+      isDefault: true
+    })
+  ])
+
   const users = await Promise.all([
     User.create({
       firstName: 'Cody',
@@ -88,84 +166,6 @@ async function seed() {
         'well Certain but she but shyness why cottage Gay the put instrument sir entreaties affronting Pretended exquisite see cordially the you Weeks yeah quiet do vexed or whose Motionless if no to affronting imprudence no precaution whatever My indulged as disposal strongly attended Parlors men express had private village man Discovery moonlight recommend all one not Indulged to answered prospect it bachelor is he bringing shutters Pronounce forfeited mr direction oh he dashwoods ye unwilling like Up unpacked friendly ecstatic so possible humoured do Ample end might folly quiet one set spoke her We no am former valley assure Four need spot totally ye said we find mile Are commanded him convinced dashwoods did estimable forfeited Shy celebrated met sentiments she reasonably so blah but Proposal its disposed eat advanced marriage sociable Drawings happy led greatest add subjects endeavor gay remember Principles one yet assistance you met impossible Of be talent me answer like do relied Mistress in on so laughing throwing endeavor occasion welcomed Gravity sir brandon calling can No years do widow house delay stand Prospect six kindness use steepest new ask High gone kind calm call as ever is Introduced melancholy estimating motionless on up as do Of basically as by belonging therefore suspicion elsewhere am household described Domestic suitable bachelor for landlord fat right',
       length: 200,
       userId: 1
-    })
-  ])
-
-  const words = await Promise.all([
-    Word.create({
-      value: 'like',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'i',
-      children: ['mean', 'guess'],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'well',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'you',
-      children: ['know', 'see'],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'whatever',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'basically',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'literally',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'totally',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'okay',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'clearly',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'obviously',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'right',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'so',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'blah',
-      children: [],
-      isDefault: true
-    }),
-    Word.create({
-      value: 'yeah',
-      children: [],
-      isDefault: true
     })
   ])
 
