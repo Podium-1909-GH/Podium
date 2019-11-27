@@ -1,11 +1,89 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Speech} = require('../server/db/models')
+const {User, Speech, Word} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
+
+  const words = await Promise.all([
+    Word.create({
+      value: 'like',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'i',
+      children: ['mean', 'guess'],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'well',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'you',
+      children: ['know', 'see'],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'whatever',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'basically',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'literally',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'totally',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'okay',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'clearly',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'obviously',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'right',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'so',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'blah',
+      children: [],
+      isDefault: true
+    }),
+    Word.create({
+      value: 'yeah',
+      children: [],
+      isDefault: true
+    })
+  ])
 
   const users = await Promise.all([
     User.create({
@@ -91,7 +169,11 @@ async function seed() {
     })
   ])
 
-  console.log(`seeded ${users.length} users and ${speeches.length} speeches`)
+  console.log(
+    `seeded ${users.length} users, ${speeches.length} speeches, and ${
+      words.length
+    } words`
+  )
   console.log(`seeded successfully`)
 }
 
