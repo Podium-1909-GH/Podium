@@ -1,4 +1,5 @@
 import * as d3 from 'd3'
+import history from '../history'
 import {formatSeconds} from '../../utils'
 
 const MARGIN = {TOP: 10, BOTTOM: 50, LEFT: 70, RIGHT: 10}
@@ -130,7 +131,8 @@ export default class D3Chart {
     }
     let mousemove = function(d) {
       vis.Tooltip.html(
-        format(d3.isoParse(d.createdAt)) + '<br>' + formatSeconds(d.length)
+        `
+        ${format(d3.isoParse(d.createdAt))}<br>${formatSeconds(d.length)}`
       )
         .style('left', event.pageX + 10 + 'px')
         .style('top', event.pageY + 'px')
@@ -164,6 +166,7 @@ export default class D3Chart {
       .on('mouseover', mouseover)
       .on('mousemove', mousemove)
       .on('mouseleave', mouseleave)
+      .on('click', d => history.push(`/user/speeches/${d.id}/overview`))
 
     // once load data, our graph gets updated by update method every 1000 ms
   }

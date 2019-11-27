@@ -30,7 +30,7 @@ class UserDashboard extends React.Component {
     return (
       <div className="data-overview">
         <Typography variant="h3">
-          Dashboard <hr />
+          {this.props.userName}'s Dashboard <hr />
         </Typography>
         {this.state.mostRecentSpeeches.length === 0 ? (
           <Typography variant="h5">
@@ -52,7 +52,8 @@ class UserDashboard extends React.Component {
 }
 const MapStateToProps = state => ({
   speeches: state.speeches,
-  userId: state.user.id
+  userId: state.user.id,
+  userName: state.user.firstName
 })
 const MapDispatchToProps = dispatch => ({
   getSpeeches: id => dispatch(getSpeeches(id))
@@ -63,5 +64,6 @@ export default connect(MapStateToProps, MapDispatchToProps)(UserDashboard)
  * PROP TYPES
  */
 UserDashboard.propTypes = {
-  userId: PropTypes.number.isRequired
+  userId: PropTypes.number.isRequired,
+  userName: PropTypes.string.isRequired
 }

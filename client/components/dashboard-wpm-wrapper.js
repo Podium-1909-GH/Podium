@@ -27,13 +27,13 @@ class DashboardWpmWrapper extends Component {
     )
     return (
       <Paper className="dashboard-item" elevation={4}>
-        <Paper ref="dashWpm" elevation={3} />
-        <Paper elevation={3}>
+        <div ref="dashWpm" />
+        <Paper elevation={2}>
           <Typography variant="h5">Words Per Minute</Typography>
           <hr />
           <Typography variant="body1" component="p">
-            Your Average Speed is {aveWpm} words per minute! That's as fast as a
-            real person
+            Your Average Speed is {aveWpm} words per minute for your last{' '}
+            {this.speeches.length} speeches! That's as fast as a real person!
           </Typography>
         </Paper>
       </Paper>
