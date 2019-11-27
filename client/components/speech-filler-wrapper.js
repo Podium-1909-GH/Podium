@@ -3,18 +3,18 @@ import D3Chart from './speech-filler-d3'
 
 class SpeechFillerWrapper extends Component {
   componentDidMount() {
-    console.log('componentDidMount fillerObj', this.props.fillerObj)
     this.setState({
       chart: new D3Chart(this.refs.speechFiller, this.props.fillerObj)
     })
+    console.log('component did mount in SPEECH WRAPPER')
   }
 
   shouldComponentUpdate() {
-    // should not react re-render when something changes, we'll manually update
-    return false
+    return true
   }
 
   render() {
+    console.log('RENDER IN SPEECH WRAPPER')
     return <div ref="speechFiller" />
   }
 }

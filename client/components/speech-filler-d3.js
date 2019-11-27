@@ -18,8 +18,7 @@ export default class D3Chart {
 
     // GET DATA FROM FILLEROBJ
     // data is an arra of objs with 2 keys, word and count
-
-    console.log('FILLEROBJ', fillerObj)
+    console.log('fillerObj in D3', fillerObj)
 
     vis.data = Object.keys(fillerObj).reduce((accum, word) => {
       if (fillerObj[word].length > 0) {
@@ -27,7 +26,7 @@ export default class D3Chart {
       }
       return accum
     }, [])
-    console.log('vis.data', vis.data)
+    // console.log('vis.data', vis.data)
 
     // obj with keys as words, and vals as count
     vis.dataObj = Object.keys(fillerObj).reduce((accum, word) => {
@@ -38,15 +37,20 @@ export default class D3Chart {
       }
       return accum
     }, {})
-    console.log('vis.dataObj', vis.dataObj)
+    // console.log('vis.dataObj', vis.dataObj)
 
-    vis.dataWordsArr = Object.keys(vis.dataObj)
-    const minCount = Math.min(...Object.values(vis.dataObj))
+    // const dataWordsArr = Object.keys(vis.dataObj)
+    const dataCountArr = Object.values(vis.dataObj)
+    // console.log('dataCountArr*****', dataCountArr)
+
+    // const minCount = Math.min(...Object.values(vis.dataObj))
+    const minCount = Math.min(...dataCountArr)
     console.log('min', minCount)
-    console.log('max', maxCount)
-    const maxCount = Math.max(...Object.values(vis.dataObj))
 
-    // add x-axis label
+    // const maxCount = Math.max(...Object.values(vis.dataObj))
+    const maxCount = Math.max(...dataCountArr)
+    console.log('max', maxCount)
+
     vis.xLabel = vis.svg
       .append('text')
       .attr('x', WIDTH / 2)
@@ -54,7 +58,6 @@ export default class D3Chart {
       .attr('text-anchor', 'middle')
       .text('Filler Words')
 
-    // add y-axis label
     vis.svg
       .append('text')
       .attr('x', -(HEIGHT / 2))
@@ -63,22 +66,16 @@ export default class D3Chart {
       .text('Total number of times used')
       .attr('transform', 'rotate(-90)')
 
-    // want to define x and y axis once originally
     vis.xAxisGroup = vis.svg
       .append('g')
       .attr('transform', `translate(0, ${HEIGHT})`)
-    // append empty group for axis gen to be called on to get both axes to show
-    // use transform attr and translate attr to put x axis on bottom instead of top
 
     vis.yAxisGroup = vis.svg.append('g')
 
     const y = d3
       .scaleLinear()
-      // domain takes an array with 2 elems, min and max input units
       .domain([minCount * 0.95, maxCount])
-      // range takes arr of 2 elems, min and max outputs in pixels
-      .range([HEIGHT, 0]) // put height as min to get y axis to start at bottom left
-    // console.log(y(272)) pass in 272 cm, returns 500 pixels
+      .range([HEIGHT, 0])
 
     const x = d3
       .scaleBand()
@@ -86,15 +83,13 @@ export default class D3Chart {
       .range([0, WIDTH])
       .padding(0.4)
 
-    // updates x axis, passing in x scale
     const xAxisCall = d3.axisBottom(x)
-    // to call or recalculate axis, need to use call method
+
     vis.xAxisGroup
       .transition()
       .duration(500)
       .call(xAxisCall)
 
-    // updates y axis
     const yAxisCall = d3.axisLeft(y)
     vis.yAxisGroup
       .transition()
@@ -111,7 +106,5 @@ export default class D3Chart {
       .attr('width', x.bandwidth)
       .attr('height', d => HEIGHT - y(d.count))
       .attr('fill', 'grey')
-
-    console.log('RECTS', rects)
   }
 }

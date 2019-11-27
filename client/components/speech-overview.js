@@ -6,16 +6,20 @@ import SpeechFillerWrapper from './speech-filler-wrapper'
 class SpeechOverview extends React.Component {
   //speech model: id, length, transcript, fillerObj, wpm, numberFiller, sentiment
   componentDidMount() {
+    console.log('component did mount in OVERVIEW')
     const userId = this.props.userId
     const speechId = this.props.match.params.speechId
-
     this.props.getSpeech(userId, speechId)
   }
 
   render() {
+    console.log('*** render in OVERVIEW ***')
+
     const fillerObj = JSON.parse(this.props.speech.fillerObj)
-    console.log('FILLER OBJ IN SPEECH OVERVIEW', fillerObj)
+    console.log('~~~fillerObj in OVERVIEW~~~', fillerObj)
+
     const sentiment = this.props.speech.sentiment
+
     return (
       <div>
         <div>
