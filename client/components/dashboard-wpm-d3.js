@@ -25,7 +25,7 @@ export default class D3Chart {
       .attr('x', WIDTH / 2)
       .attr('y', HEIGHT + 45)
       .attr('text-anchor', 'middle')
-      .text('Your last 10 sessions')
+      .text(`Your last ${speeches.length} sessions`)
 
     // add y-axis label
     vis.svg
@@ -61,6 +61,7 @@ export default class D3Chart {
 
     const maxX = d3.max(vis.data, d => d.index)
     const minX = d3.min(vis.data, d => d.index)
+    let ticks = speeches.map(speech => speech.index)
     const x = d3
       .scaleLinear()
       // domain takes an array with 2 elems, min and max input units
@@ -69,7 +70,7 @@ export default class D3Chart {
       .range([0, WIDTH])
 
     // updates x axis, passing in x scale
-    const xAxisCall = d3.axisBottom(x).ticks(speeches.length)
+    const xAxisCall = d3.axisBottom(x).tickValues(ticks)
     // to call or recalculate axis, need to use call method
     vis.xAxisGroup
       .transition()
