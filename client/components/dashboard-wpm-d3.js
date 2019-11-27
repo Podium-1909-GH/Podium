@@ -1,7 +1,9 @@
 import * as d3 from 'd3'
+import history from '../history'
+import {formatSeconds} from '../../utils'
 
 const MARGIN = {TOP: 10, BOTTOM: 50, LEFT: 70, RIGHT: 10}
-const WIDTH = 700 - MARGIN.LEFT - MARGIN.RIGHT
+const WIDTH = 650 - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
 
 export default class D3Chart {
@@ -22,9 +24,9 @@ export default class D3Chart {
     vis.xLabel = vis.svg
       .append('text')
       .attr('x', WIDTH / 2)
-      .attr('y', HEIGHT + 50)
+      .attr('y', HEIGHT + 45)
       .attr('text-anchor', 'middle')
-      .text('Your last 10 sessions')
+      .text(`Your last ${speeches.length} sessions`)
 
     // add y-axis label
     vis.svg
@@ -47,8 +49,6 @@ export default class D3Chart {
     // load two different data sets at once
     vis.data = speeches
 
-    vis.xLabel.text(`Your words per minute`)
-
     // d3.max loops through data array and finds max height
     const maxY = d3.max(vis.data, d => d.wpm)
     const minY = d3.min(vis.data, d => d.wpm)
@@ -62,6 +62,7 @@ export default class D3Chart {
 
     const maxX = d3.max(vis.data, d => d.index)
     const minX = d3.min(vis.data, d => d.index)
+    let ticks = speeches.map(speech => speech.index)
     const x = d3
       .scaleLinear()
       // domain takes an array with 2 elems, min and max input units
@@ -70,7 +71,11 @@ export default class D3Chart {
       .range([0, WIDTH])
 
     // updates x axis, passing in x scale
-    const xAxisCall = d3.axisBottom(x)
+    let tickFormat = d3.format('d')
+    const xAxisCall = d3
+      .axisBottom(x)
+      .tickValues(ticks)
+      .tickFormat(d => tickFormat(d))
     // to call or recalculate axis, need to use call method
     vis.xAxisGroup
       .transition()
@@ -83,6 +88,20 @@ export default class D3Chart {
       .transition()
       .duration(500)
       .call(yAxisCall)
+    vis.Tooltip = d3
+      .select(element)
+      .append('div')
+      .style('opacity', 0)
+      .attr('class', 'tooltip')
+      .style('background-color', 'white')
+      .style('border', 'solid')
+      .style('border-width', '2px')
+      .style('border-radius', '3px')
+      .style('width', 'fit-content')
+      .style('text-align', 'center')
+      .style('padding', '5px')
+      .style('font-size', '80%')
+      .style('position', 'absolute')
 
     vis.svg
       .append('path')
@@ -101,29 +120,30 @@ export default class D3Chart {
             return y(d.wpm)
           })
       )
-    let Tooltip = d3
-      .select(element)
-      .append('div')
-      .style('opacity', 0)
-      .attr('class', 'tooltip')
-      .style('background-color', 'white')
-      .style('border', 'solid')
-      .style('border-width', '2px')
-      .style('border-radius', '5px')
-      .style('padding', '5px')
 
+    let format = d3.timeFormat('%b %e')
     let mouseover = function(d) {
-      Tooltip.style('opacity', 1)
+      vis.Tooltip.style('opacity', 1)
+      d3
+        .select(this)
+        .style('stroke', 'black')
+        .style('opacity', 1)
     }
     let mousemove = function(d) {
-      Tooltip.html(
-        'Speech Length: ' + d.length + ' seconds Date: ' + d.createdAt
+      vis.Tooltip.html(
+        `
+        ${format(d3.isoParse(d.createdAt))}<br>${formatSeconds(d.length)}`
       )
-        .style('left', d3.mouse(this)[0] + 70 + 'px')
-        .style('top', d3.mouse(this)[1] + 'px')
+        .style('left', event.pageX + 10 + 'px')
+        .style('top', event.pageY + 'px')
     }
+
     let mouseleave = function(d) {
-      Tooltip.style('opacity', 0)
+      vis.Tooltip.style('opacity', 0)
+      d3
+        .select(this)
+        .style('stroke', 'none')
+        .style('opacity', 0.8)
     }
 
     // Add the points
@@ -141,9 +161,12 @@ export default class D3Chart {
       })
       .attr('r', 5)
       .attr('fill', '#69b3a2')
+      .style('stroke-width', 2)
+      .style('stroke', 'none')
       .on('mouseover', mouseover)
       .on('mousemove', mousemove)
       .on('mouseleave', mouseleave)
+      .on('click', d => history.push(`/user/speeches/${d.id}/overview`))
 
     // once load data, our graph gets updated by update method every 1000 ms
   }

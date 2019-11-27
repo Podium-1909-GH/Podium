@@ -47,7 +47,7 @@ export const login = (email, password) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
-    history.push('/user')
+    history.push('/user/dashboard')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
@@ -74,7 +74,7 @@ export const createdUser = newUser => {
     }
     try {
       dispatch(getUser(res.data))
-      history.push('/user')
+      history.push('/user/dashboard')
     } catch (dispatchOrHistoryErr) {
       console.error(dispatchOrHistoryErr)
     }
