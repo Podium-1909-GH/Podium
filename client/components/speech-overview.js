@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 class SpeechOverview extends React.Component {
   //speech model: id, length, transcript, fillerObj, wpm, numberFiller, sentiment
-  async componentDidMount() {
+  componentDidMount() {
     const userId = this.props.userId
     const speechId = this.props.match.params.speechId
     this.props.getSpeech(userId, speechId)
@@ -37,7 +37,10 @@ class SpeechOverview extends React.Component {
           <p>{JSON.stringify(sentiment)}</p>
         </div>
         <div>
-          <SpeechFillerWrapper fillerObj={fillerObj} />
+          <SpeechFillerWrapper
+            fillerObj={fillerObj}
+            speech={this.props.speech}
+          />
         </div>
       </div>
     )
