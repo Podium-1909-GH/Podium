@@ -34,7 +34,7 @@ export default class D3Chart {
       .attr('x', -(HEIGHT / 2))
       .attr('y', -50)
       .attr('text-anchor', 'middle')
-      .text('Words Per Minute')
+      .text('% Filler Words')
       .attr('transform', 'rotate(-90)')
 
     // want to define x and y axis once originally
@@ -45,13 +45,19 @@ export default class D3Chart {
     // use transform attr and translate attr to put x axis on bottom instead of top
 
     vis.yAxisGroup = vis.svg.append('g')
+    speeches = speeches.map(speech => {
+      speech.percentFiller = Math.round(
+        100 * (speech.numberFiller / speech.transcript.split(' ').length)
+      )
+      return speech
+    })
 
     // load two different data sets at once
     vis.data = speeches
 
     // d3.max loops through data array and finds max height
-    const maxY = d3.max(vis.data, d => d.wpm)
-    const minY = d3.min(vis.data, d => d.wpm)
+    const maxY = d3.max(vis.data, d => d.percentFiller)
+    const minY = d3.min(vis.data, d => d.percentFiller)
     const y = d3
       .scaleLinear()
       // domain takes an array with 2 elems, min and max input units
@@ -117,7 +123,7 @@ export default class D3Chart {
             return x(d.index)
           })
           .y(function(d) {
-            return y(d.wpm)
+            return y(d.percentFiller)
           })
       )
 
@@ -157,7 +163,7 @@ export default class D3Chart {
         return x(d.index)
       })
       .attr('cy', function(d) {
-        return y(d.wpm)
+        return y(d.percentFiller)
       })
       .attr('r', 5)
       .attr('fill', '#69b3a2')
