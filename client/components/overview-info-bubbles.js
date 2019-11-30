@@ -10,6 +10,16 @@ export default class D3Bubbles {
   constructor(element, speech) {
     console.log('speech: ', speech)
     const vis = this
+    let sentiment = ''
+    const sentimentParsed = JSON.parse(speech.sentiment)
+    if (sentimentParsed.comparative > 0.01) {
+      sentiment = 'positive'
+    } else if (sentimentParsed.comparative < -0.01) {
+      sentiment = 'negative'
+    } else {
+      sentiment = 'neutral'
+    }
+
     // the visualization instance, calling it vis to define what this is
     vis.svg = d3
       .select(element)
@@ -82,8 +92,17 @@ export default class D3Bubbles {
       .attr('x', svgWidth * 5 / 6)
       .attr('y', svgHeight / 2)
       .attr('text-anchor', 'middle')
-      .text('sentiment')
-      .attr('font-size', '20px')
+      .text(`${sentiment}`)
+      .attr('font-size', '40px')
+      .attr('fill', 'white')
+    //add text label
+    vis.svg
+      .append('text')
+      .attr('x', svgWidth * 5 / 6)
+      .attr('y', svgHeight / 2 + radius / 4)
+      .attr('text-anchor', 'middle')
+      .text(`sentiment`)
+      .attr('font-size', '15px')
       .attr('fill', 'white')
   }
 }
