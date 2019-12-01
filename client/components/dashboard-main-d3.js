@@ -20,8 +20,13 @@ export default class DashBoardMainD3 {
     vis.data = speeches
     console.log('speeches in D3', vis.data)
 
-    const maxCount = speech.length / 60
-    const yAxisMinHeight = maxCount < 1 ? 1 : maxCount
+    const lengths = []
+    for (let i = 0; i < speeches.length; i++) {
+      lengths.push(speeches[i].length)
+    }
+
+    const maxLength = Math.max(...lengths) / 60
+    const yAxisMinHeight = maxLength < 1 ? 1 : Math.round(maxLength)
 
     vis.xLabel = vis.svg
       .append('text')
@@ -83,9 +88,9 @@ export default class DashBoardMainD3 {
       .enter()
       .append('rect')
       .attr('x', d => x(d.index))
-      .attr('y', d => y(d.length))
+      .attr('y', d => y(d.length / 60))
       .attr('width', x.bandwidth)
-      .attr('height', d => HEIGHT - y(d.length))
+      .attr('height', d => HEIGHT - y(d.length / 60))
       .attr('fill', 'grey')
   }
 }
