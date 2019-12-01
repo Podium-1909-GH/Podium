@@ -2,13 +2,9 @@
 import React, {Component} from 'react'
 import D3SpeechSentimentChart from './speech-sentiment-d3'
 
-export default class SpeechSentimentWrapper extends Component {
-  constructor(props) {
-    super(props)
-    this.sentiment = this.props.sentiment
-  }
-
+class SpeechSentimentWrapper extends Component {
   componentWillReceiveProps(nextProps) {
+    console.log('HEREERERERE')
     if (nextProps.sentiment) {
       new D3SpeechSentimentChart(
         this.refs.speechSentimentPieChart,
@@ -21,3 +17,5 @@ export default class SpeechSentimentWrapper extends Component {
     return <div ref="speechSentimentPieChart" />
   }
 }
+
+export default SpeechSentimentWrapper

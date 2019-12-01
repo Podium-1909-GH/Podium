@@ -35,7 +35,7 @@ class SpeechOverview extends React.Component {
               }
             })}
           </ul>
-          <SpeechSentimentWrapper {...sentiment} />
+          <SpeechSentimentWrapper sentiment={sentiment} />
         </div>
         <div>
           <SpeechFillerWrapper fillerObj={fillerObj} />

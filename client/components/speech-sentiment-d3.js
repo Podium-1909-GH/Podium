@@ -1,82 +1,79 @@
 import * as d3 from 'd3'
 
-const MARGIN = {TOP: 10, BOTTOM: 50, LEFT: 70, RIGHT: 10}
-const WIDTH = 650 - MARGIN.LEFT - MARGIN.RIGHT
-const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
+const MARGIN = {TOP: 20, BOTTOM: 20, LEFT: 200, RIGHT: 70}
+const RADIUS = 150
+const WIDTH = 650
+const HEIGHT = 650
 export default class D3SpeechSentimentChart {
   constructor(element, sentiment) {
+    console.log(sentiment)
     const vis = this
 
+    //Create SVG canvas
     vis.svg = d3
       .select(element)
       .append('svg')
-      .attr('width')
-      .attr('height')
+      .attr('width', WIDTH + RADIUS + MARGIN.LEFT + MARGIN.RIGHT)
+      .attr('height', HEIGHT + RADIUS + MARGIN.TOP + MARGIN.BOTTOM)
       .append('g')
-      .attr('transform', 'translate(' + WIDTH / 2 + ',' + HEIGHT / 2 + ')')
+      .attr(
+        'transform',
+        `translate(${RADIUS + MARGIN.LEFT}, ${RADIUS + MARGIN.TOP})`
+      )
 
-    vis.radius = Math.min(WIDTH, HEIGHT) / 2
-    vis.color = d3.scaleOrdinal([
-      '#4daf4a',
-      '#377eb8',
-      '#ff7f00',
-      '#984ea3',
-      '#e41a1c'
-    ])
-
-    // load two different data sets at once
-    vis.data = sentiment
-
-    vis.pie = d3.pie().value(function(d) {
-      return d.percent
+    //Create pie generator getting startAngle and endAngle
+    const pieGenerator = d3.pie().value(function(d) {
+      return d.count
     })
 
-    vis.path = d3
+    // Create an arc generator with configuration
+    const arcGenerator = d3
       .arc()
-      .outerRadius(vis.radius - 10)
       .innerRadius(0)
+      .outerRadius(RADIUS)
 
-    vis.label = d3
-      .arc()
-      .outerRadius(vis.radius)
-      .innerRadius(vis.radius - 80)
-
-    d3.csv('browseruse.csv', function(error, data) {
-      if (error) {
-        throw error
+    let sentimentData = [
+      {name: 'Positive', count: sentiment.positive.length},
+      {name: 'Negative', count: sentiment.negative.length},
+      {
+        name: 'Neutral',
+        count:
+          sentiment.tokens.length -
+          sentiment.positive.length -
+          sentiment.negative.length
       }
-      var arc = g
-        .selectAll('.arc')
-        .data(vis.pie(data))
-        .enter()
-        .append('g')
-        .attr('class', 'arc')
+    ]
 
-      arc
-        .append('path')
-        // eslint-disable-next-line no-undef
-        .attr('d', path)
-        .attr('fill', function(d) {
-          return vis.color(d.data.browser)
-        })
+    const filterSentimentData = sentimentData.filter(data => data.count > 0)
 
-      console.log(arc)
+    const myColor = d3.scaleOrdinal(['#2ca02c', '#ff7f0e', '#c7c7c7'])
 
-      arc
-        .append('text')
-        .attr('transform', function(d) {
-          return 'translate(' + vis.label.centroid(d) + ')'
-        })
-        .text(function(d) {
-          return d.data.browser
-        })
-    })
+    const arcData = pieGenerator(filterSentimentData)
 
+    // Create a path element and set its d attribute
     vis.svg
-      .append('g')
-      .attr('transform', 'translate(' + (WIDTH / 2 - 120) + ',' + 20 + ')')
+      .selectAll('path')
+      .data(arcData)
+      .enter()
+      .append('path')
+      .attr('d', arcGenerator)
+      .attr('fill', (d, i) => myColor(i))
+
+    // Labels
+    d3
+      .select('g')
+      .selectAll('text')
+      .data(arcData)
+      .enter()
       .append('text')
-      .text('Browser use statistics - Jan 2017')
-      .attr('class', 'title')
+      .each(function(d) {
+        var centroid = arcGenerator.centroid(d)
+        d3
+          .select(this)
+          .attr('x', centroid[0])
+          .attr('y', centroid[1])
+          .attr('dy', '0.33em')
+          .text(d.data.name)
+      })
   }
 }
