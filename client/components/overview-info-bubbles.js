@@ -33,7 +33,7 @@ export default class D3Bubbles {
       .attr('cx', svgWidth / 6)
       .attr('cy', svgHeight / 2)
       .attr('r', radius)
-      .attr('fill', 'grey')
+      .attr('fill', '#11C3D0')
     //add text
     vis.svg
       .append('text')
@@ -59,7 +59,7 @@ export default class D3Bubbles {
       .attr('cx', svgWidth / 2)
       .attr('cy', svgHeight / 2)
       .attr('r', 80)
-      .attr('fill', 'grey')
+      .attr('fill', '#4652B1')
     //add text
     vis.svg
       .append('text')
@@ -85,7 +85,7 @@ export default class D3Bubbles {
       .attr('cx', svgWidth * 5 / 6)
       .attr('cy', svgHeight / 2)
       .attr('r', 80)
-      .attr('fill', 'grey')
+      .attr('fill', '#F29831')
     //add text
     vis.svg
       .append('text')
