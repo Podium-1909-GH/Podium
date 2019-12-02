@@ -13,7 +13,6 @@ router.get('/:wpm', async (req, res, next) => {
         max: {[Op.gt]: pace}
       }
     })
-    console.log(wpm)
     res.status(200).json(wpm)
   } catch (err) {
     console.error(err)
