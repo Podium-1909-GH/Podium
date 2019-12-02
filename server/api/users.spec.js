@@ -11,22 +11,27 @@ describe('User routes', () => {
     return db.sync({force: true})
   })
 
-  describe('/api/users/', () => {
+  describe('/api/users/', async () => {
     const codysEmail = 'cody@puppybook.com'
-
+    let user = {
+      email: codysEmail,
+      firstName: 'Cody',
+      lastName: 'Pug',
+      password: '123'
+    }
     beforeEach(() => {
-      return User.create({
-        email: codysEmail
-      })
+      return User.create(user)
     })
-
-    it('GET /api/users', async () => {
+    await request
+      .post('/auth/login')
+      .send({email: 'cody@email.com', password: '123'})
+    it('GET /api/users/:userId', async () => {
       const res = await request(app)
-        .get('/api/users')
+        .get('/api/users/1')
         .expect(200)
 
-      expect(res.body).to.be.an('array')
-      expect(res.body[0].email).to.be.equal(codysEmail)
+      expect(res.body).to.be.an('object')
+      expect(res.body.email).to.be.equal(codysEmail)
     })
   }) // end describe('/api/users')
 }) // end describe('User routes')
