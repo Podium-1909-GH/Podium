@@ -1,8 +1,10 @@
 import * as d3 from 'd3'
+import history from '../history'
+import {formatSeconds} from '../../utils'
 
 // ATTEMPT 2:
 
-const MARGIN = {TOP: 10, BOTTOM: 60, LEFT: 70, RIGHT: 10}
+const MARGIN = {TOP: 10, BOTTOM: 10, LEFT: 10, RIGHT: 10}
 const WIDTH = 650 - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
 
@@ -50,6 +52,44 @@ export default class DashBoardMainD3 {
         // eslint-disable-next-line no-shadow
         .call(g => g.select('.domain').remove())
 
+    vis.Tooltip = d3
+      .select(element)
+      .append('div')
+      .style('opacity', 0)
+      .attr('class', 'tooltip')
+      .style('background-color', 'white')
+      .style('border', 'solid')
+      .style('border-width', '2px')
+      .style('border-radius', '3px')
+      .style('width', 'fit-content')
+      .style('text-align', 'center')
+      .style('padding', '5px')
+      .style('font-size', '80%')
+      .style('position', 'absolute')
+
+    let format = d3.timeFormat('%b %e')
+    let mouseover = function(d) {
+      vis.Tooltip.style('opacity', 1)
+      d3.select(this).style('stroke', 'black')
+      // .style('opacity', 1)
+    }
+    let mousemove = function(d) {
+      vis.Tooltip.html(
+        `
+          ${format(d3.isoParse(d.createdAt))}<br>${formatSeconds(
+          d.length
+        )}<br>${d.transcript.split(' ').length} words`
+      )
+        .style('left', event.pageX + 10 + 'px')
+        .style('top', event.pageY + 'px')
+    }
+
+    let mouseleave = function(d) {
+      vis.Tooltip.style('opacity', 0)
+      d3.select(this).style('stroke', 'none')
+      // .style('opacity', 1)
+    }
+
     vis.svg = d3
       .select(element)
       .append('svg')
@@ -70,16 +110,20 @@ export default class DashBoardMainD3 {
       .attr('y', d => y(d.length / 60))
       .attr('height', d => y(0) - y(d.length / 60))
       .attr('width', x.bandwidth())
+      .on('mouseover', mouseover)
+      .on('mousemove', mousemove)
+      .on('mouseleave', mouseleave)
+      .on('click', d => history.push(`/user/speeches/${d.id}/overview`))
 
     vis.svg
       .append('g')
       .attr('class', 'x-axis')
       .call(xAxis)
 
-    vis.svg
-      .append('g')
-      .attr('class', 'y-axis')
-      .call(yAxis)
+    // vis.svg
+    //   .append('g')
+    //   .attr('class', 'y-axis')
+    //   .call(yAxis)
 
     function zoom(svg) {
       const extent = [
@@ -110,26 +154,26 @@ export default class DashBoardMainD3 {
       }
     }
 
-    vis.svg
-      .append('text')
-      .attr('x', WIDTH / 2)
-      .attr('y', HEIGHT + 50)
-      .attr('text-anchor', 'middle')
-      .text('Your sessions')
+    // vis.svg
+    //   .append('text')
+    //   .attr('x', WIDTH / 2)
+    //   .attr('y', HEIGHT + 50)
+    //   .attr('text-anchor', 'middle')
+    // .text('Your sessions')
 
-    vis.svg
-      .append('text')
-      .attr('x', -(HEIGHT / 2))
-      .attr('y', -50)
-      .attr('text-anchor', 'middle')
-      .text('Total Minutes')
-      .attr('transform', 'rotate(-90)')
+    // vis.svg
+    //   .append('text')
+    //   .attr('x', -(HEIGHT / 2))
+    //   .attr('y', -50)
+    //   .attr('text-anchor', 'middle')
+    //   .text('Total Minutes')
+    //   .attr('transform', 'rotate(-90)')
 
-    vis.xAxisGroup = vis.svg
-      .append('g')
-      .attr('transform', `translate(0, ${HEIGHT})`)
+    // vis.xAxisGroup = vis.svg
+    //   .append('g')
+    //   .attr('transform', `translate(0, ${HEIGHT})`)
 
-    vis.yAxisGroup = vis.svg.append('g')
+    // vis.yAxisGroup = vis.svg.append('g')
   }
 }
 
