@@ -46,7 +46,6 @@ class UserDashboard extends React.Component {
           </Typography>
         ) : (
           <React.Fragment>
-            <Typography variant="h5">All of your speeches</Typography>
             <DashboardMainWrapper speeches={this.state.speeches} />
             <hr />
             <Typography variant="h5">
