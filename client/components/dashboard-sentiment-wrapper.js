@@ -4,6 +4,11 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
 class DashboardSentimentWrapper extends Component {
+  constructor(props) {
+    super(props)
+    this.speeches = [...this.props.speeches]
+  }
+
   componentDidMount() {
     this.setState({
       chart: new D3SentimentChart(this.refs.dashSentiment, this.aveSentiment)
@@ -15,21 +20,20 @@ class DashboardSentimentWrapper extends Component {
 
   render() {
     // need each speech sentiment to be a JSON instead of string
-    let {speeches} = this.props
 
-    speeches.forEach(speech => {
+    this.speeches.forEach(speech => {
       speech.sentiment = JSON.parse(speech.sentiment)
     })
 
-    const positiveCount = speeches.reduce(
+    const positiveCount = this.speeches.reduce(
       (accum, speech) => accum + speech.sentiment.positive.length,
       0
     )
-    const negativeCount = speeches.reduce(
+    const negativeCount = this.speeches.reduce(
       (accum, speech) => accum + speech.sentiment.negative.length,
       0
     )
-    const totalTokens = speeches.reduce(
+    const totalTokens = this.speeches.reduce(
       (accum, speech) => accum + speech.sentiment.tokens.length,
       0
     )

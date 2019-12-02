@@ -1,6 +1,7 @@
 body {
   font-family: Roboto, sans-serif;
-  margin: 10px;
+  margin: 0px;
+  background-color: #f6f9fe;
 }
 
 a {
@@ -211,6 +212,7 @@ li {
 .dashboard-item-text {
   text-align: justify;
 }
+
 /* ------------------------
    Error Page
 ------------------------ */
