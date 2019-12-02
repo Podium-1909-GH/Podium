@@ -72,7 +72,7 @@ export default class D3SentimentChart {
       })
 
     vis.svg
-      .selectAll('.arc') // example from https://bl.ocks.org/farazshuja/e2cb52828c080ba85da5458e2304a61f?fbclid=IwAR1We_VcLDjFBre6Fv60rT3OtHIEVdmTttkh7KG0ZHRrfzLBIcHIgV1QUYQ
+      .selectAll('.arc')
       .data(arcData)
       .enter()
       .append('text')
