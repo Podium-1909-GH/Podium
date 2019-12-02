@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 import history from '../history'
-import {formatSeconds} from '../../utils'
+import {formatSeconds} from '../utils'
 
 const MARGIN = {TOP: 10, BOTTOM: 50, LEFT: 70, RIGHT: 10}
 const WIDTH = 650 - MARGIN.LEFT - MARGIN.RIGHT
@@ -64,7 +64,6 @@ export default class D3Chart {
       .domain([0, maxY])
       // range takes arr of 2 elems, min and max outputs in pixels
       .range([HEIGHT, 0]) // put height as min to get y axis to start at bottom left
-    // console.log(y(272)) pass in 272 cm, returns 500 pixels
 
     const maxX = d3.max(vis.data, d => d.index)
     const minX = d3.min(vis.data, d => d.index)
