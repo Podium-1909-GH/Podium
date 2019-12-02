@@ -61,11 +61,15 @@ class DashboardFillerWrapper extends Component {
         <Paper elevation={2}>
           <Typography variant="h5">Filler Word Ratios</Typography>
           <hr />
-          <Typography variant="body1" component="div">
+          <Typography
+            variant="body1"
+            component="div"
+            className="dashboard-item-text"
+          >
             On average {this.percentFiller}% of your words for your last{' '}
             {this.speeches.length} speeches were filler words!
             <ol>
-              Top fillers
+              <span>Top fillers</span>
               {this.totalFillerCount.map((entry, index) => (
                 <li key={index}>{entry[0]}</li>
               ))}

@@ -43,7 +43,11 @@ class DashboardWpmWrapper extends Component {
         <Paper elevation={2}>
           <Typography variant="h5">Words Per Minute</Typography>
           <hr />
-          <Typography variant="body1" component="p">
+          <Typography
+            variant="body1"
+            component="p"
+            className="dashboard-item-text"
+          >
             Your Average Speed is {this.aveWpm} words per minute for your last{' '}
             {this.speeches.length} speeches! That's considered "{
               this.state.wpm.title
