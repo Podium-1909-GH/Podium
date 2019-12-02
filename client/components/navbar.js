@@ -5,32 +5,68 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import AppBar from '@material-ui/core/AppBar'
 import ToolBar from '@material-ui/core/Toolbar'
-const Navbar = ({handleClick, isLoggedIn, firstName}) => (
-  <AppBar position="static" id="nav-outer-container">
-    <ToolBar id="navbar">
-      <h1 id="navWelcome">
-        <Link to="/">Podium</Link>
-      </h1>
+import Button from '@material-ui/core/Button'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+const Navbar = ({handleClick, isLoggedIn, firstName}) => {
+  const [anchorEl, setAnchorEl] = React.useState(null)
 
-      <nav className="nav-container">
-        {isLoggedIn ? (
-          <div className="navLinks">
-            <Link to="/user">{`Hello, ${firstName}`}</Link>
-            <Link to="/record">Record</Link>
-            <Link to="/user/dashboard">Dashboard</Link>
-            <Link to="/user/profile">Profile</Link>
-            <a onClick={handleClick}>Logout</a>
-          </div>
-        ) : (
-          <div className="navLinks">
-            <Link to="/login">Sign in</Link>
-            <Link to="/signup">Sign up</Link>
-          </div>
-        )}
-      </nav>
-    </ToolBar>
-  </AppBar>
-)
+  const handleDropdown = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+  return (
+    <AppBar position="static" id="nav-outer-container">
+      <ToolBar id="navbar">
+        <h1 id="navWelcome">
+          <Link to="/">Podium</Link>
+        </h1>
+
+        <nav className="nav-container">
+          {isLoggedIn ? (
+            <div className="navLinks">
+              <Link to="/record">Record</Link>
+              <Link to="/user/dashboard">Dashboard</Link>
+              <div>
+                <a
+                  href="#"
+                  aria-controls="nav-menu"
+                  aria-haspopup="true"
+                  onClick={handleDropdown}
+                >
+                  {`Hello, ${firstName}`}
+                </a>
+                <Menu
+                  id="nav-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                  className="nav-menu-links"
+                >
+                  <MenuItem onClick={handleClose}>
+                    <Link to="/user/profile">Profile</Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <a onClick={handleClick}>Logout</a>
+                  </MenuItem>
+                </Menu>
+              </div>
+            </div>
+          ) : (
+            <div className="navLinks">
+              <Link to="/login">Sign in</Link>
+              <Link to="/signup">Sign up</Link>
+            </div>
+          )}
+        </nav>
+      </ToolBar>
+    </AppBar>
+  )
+}
 
 /**
  * CONTAINER
