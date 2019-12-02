@@ -1,6 +1,5 @@
 import * as d3 from 'd3'
-import history from '../history'
-import {formatSeconds} from '../../utils'
+import {formatSeconds} from '../utils'
 
 const MARGIN = {TOP: 10, BOTTOM: 50, LEFT: 70, RIGHT: 10}
 const WIDTH = 650 - MARGIN.LEFT - MARGIN.RIGHT
@@ -8,8 +7,9 @@ const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
 
 export default class D3Chart {
   // put things that only need to be called once in constructor
-  constructor(element, speeches) {
+  constructor(element, speech, wpmInfo) {
     const vis = this
+    console.log('d3 speech', speech)
     // the visualization instance, calling it vis to define what this is
     vis.svg = d3
       .select(element)
@@ -20,13 +20,13 @@ export default class D3Chart {
       // add 10 pixel margin on left and top
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
 
-    // add x-axis label
-    vis.xLabel = vis.svg
-      .append('text')
-      .attr('x', WIDTH / 2)
-      .attr('y', HEIGHT + 45)
-      .attr('text-anchor', 'middle')
-      .text(`Your last ${speeches.length} sessions`)
+    // // add x-axis label
+    // vis.xLabel = vis.svg
+    //   .append('text')
+    //   .attr('x', WIDTH / 2)
+    //   .attr('y', HEIGHT + 45)
+    //   .attr('text-anchor', 'middle')
+    //   .text(`Your last ${speeches.length} sessions`)
 
     // add y-axis label
     vis.svg
@@ -47,34 +47,29 @@ export default class D3Chart {
     vis.yAxisGroup = vis.svg.append('g')
 
     // load two different data sets at once
-    vis.data = speeches
+    vis.data = speech
 
     // d3.max loops through data array and finds max height
-    const maxY = d3.max(vis.data, d => d.wpm)
-    const minY = d3.min(vis.data, d => d.wpm)
+
     const y = d3
       .scaleLinear()
       // domain takes an array with 2 elems, min and max input units
-      .domain([minY * 0.95, maxY])
+      .domain([0, 100])
       // range takes arr of 2 elems, min and max outputs in pixels
-      .range([HEIGHT, 0]) // put height as min to get y axis to start at bottom left
+      .range([HEIGHT, 0])
+    // put height as min to get y axis to start at bottom left
+    // console.log(y(272)) pass in 272 cm, returns 500 pixels
 
-    const maxX = d3.max(vis.data, d => d.index)
-    const minX = d3.min(vis.data, d => d.index)
-    let ticks = speeches.map(speech => speech.index)
     const x = d3
       .scaleLinear()
       // domain takes an array with 2 elems, min and max input units
-      .domain([minX, maxX])
+      .domain([0, 600])
       // range takes arr of 2 elems, min and max outputs in pixels
       .range([0, WIDTH])
 
     // updates x axis, passing in x scale
     let tickFormat = d3.format('d')
-    const xAxisCall = d3
-      .axisBottom(x)
-      .tickValues(ticks)
-      .tickFormat(d => tickFormat(d))
+    const xAxisCall = d3.axisBottom(x).tickFormat(d => tickFormat(d))
     // to call or recalculate axis, need to use call method
     vis.xAxisGroup
       .transition()
@@ -82,11 +77,12 @@ export default class D3Chart {
       .call(xAxisCall)
 
     // updates y axis
-    const yAxisCall = d3.axisLeft(y)
+    const yAxisCall = d3.axisLeft(y).ticks(0)
     vis.yAxisGroup
       .transition()
       .duration(500)
       .call(yAxisCall)
+
     vis.Tooltip = d3
       .select(element)
       .append('div')
@@ -101,24 +97,6 @@ export default class D3Chart {
       .style('padding', '5px')
       .style('font-size', '80%')
       .style('position', 'absolute')
-
-    vis.svg
-      .append('path')
-      .datum(vis.data)
-      .attr('fill', 'none')
-      .attr('stroke', '#69b3a2')
-      .attr('stroke-width', 1.5)
-      .attr(
-        'd',
-        d3
-          .line()
-          .x(function(d) {
-            return x(d.index)
-          })
-          .y(function(d) {
-            return y(d.wpm)
-          })
-      )
 
     let format = d3.timeFormat('%b %e')
     let mouseover = function(d) {
@@ -149,28 +127,22 @@ export default class D3Chart {
     vis.svg
       .append('g')
       .selectAll('dot')
-      .data(vis.data)
+      .data([vis.data])
       .enter()
       .append('circle')
       .attr('cx', function(d) {
-        return x(d.index)
+        console.log('d', d)
+        return x(d.wpm)
       })
       .attr('cy', function(d) {
-        return y(d.wpm)
+        return y(50)
       })
       .attr('r', 5)
       .attr('fill', '#69b3a2')
-      .style('stroke-width', 2)
+      .style('stroke-width', 3)
       .style('stroke', 'none')
       .on('mouseover', mouseover)
       .on('mousemove', mousemove)
       .on('mouseleave', mouseleave)
-      .on('click', d => history.push(`/user/speeches/${d.id}/overview`))
-
-    // once load data, our graph gets updated by update method every 1000 ms
   }
-
-  // update method gets called every time we update our data
-
-  // for updating chart based on dropdown menu
 }
