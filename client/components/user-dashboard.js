@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import {getSpeeches} from '../store/speeches'
 import DashboardWpmWrapper from './dashboard-wpm-wrapper'
 import DashboardFillerWrapper from './dashboard-filler-wrapper'
+import DashboardInfoBubblesWrapper from './dashboard-info-bubbles-wrapper'
 import DashboardMainWrapper from './dashboard-main-wrapper'
 import DashboardSentimentWrapper from './dashboard-sentiment-wrapper'
 import Typography from '@material-ui/core/Typography'
@@ -52,6 +53,9 @@ class UserDashboard extends React.Component {
               A summary of your last {this.state.mostRecentSpeeches.length}{' '}
               speeches
             </Typography>
+            <DashboardInfoBubblesWrapper
+              speeches={this.state.mostRecentSpeeches}
+            />
             <DashboardSentimentWrapper
               speeches={this.state.mostRecentSpeeches}
             />
