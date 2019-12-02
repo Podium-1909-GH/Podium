@@ -9,7 +9,7 @@ import {UserProfile} from './user-profile'
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
-describe('UserProfile', () => {
+xdescribe('UserProfile', () => {
   let userProfile
 
   beforeEach(() => {
