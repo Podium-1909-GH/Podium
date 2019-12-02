@@ -44,12 +44,11 @@ class Routes extends Component {
             />
             <Route path="/user/profile" component={UserProfile} />
             <Route path="/user/dashboard" component={UserDashboard} />
-            <Route path="/user" component={WelcomePage} />
-            <Route component={WelcomePage} />
+            <Route component={Home} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={WelcomePage} />
+        <Route component={Home} />
       </Switch>
     )
   }

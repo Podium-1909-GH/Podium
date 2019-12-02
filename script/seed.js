@@ -1,11 +1,63 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Speech, Word} = require('../server/db/models')
+const {User, Speech, Word, WPM} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
+
+  const wpms = await Promise.all([
+    WPM.create({
+      min: 0,
+      max: 115,
+      title: 'Slow',
+      description:
+        'A slower delivery puts more weight behind each word you say. It lets your audience have the time to truly take in the words you are saying and comprehend your message. Martin Luther King Jr. delivered "I have a dream" at 92 wpm. Steve Jobs dropped his pace to 94 wpm when unveiling the original iPhone back in 2007.'
+    }),
+    WPM.create({
+      min: 115,
+      max: 150,
+      title: 'Conversational',
+      description:
+        "The average pace for most English speakers. This is a comfortable range for most people to speak at. It's easy to maintain for the speaker and easy to understand for the listener!"
+    }),
+    WPM.create({
+      min: 150,
+      max: 161,
+      title: 'Podcast Pace',
+      description:
+        'Most podcasters try to speak between 150 and 160 wpm. The majority of audiobooks also fall in this range. It is a pace where your audience can pick up your words clearly, without feeling too slow.'
+    }),
+    WPM.create({
+      min: 161,
+      max: 200,
+      title: 'Fast Conversational',
+      description:
+        'This range still falls inside the realm of everyday speech, but speaking faster than 160 words per minute can add a feeling of urgency to your words.'
+    }),
+    WPM.create({
+      min: 200,
+      max: 250,
+      title: 'Fast',
+      description:
+        "Sports Commentaters have to speak quickly to ensure their listeners know what is happening when it's happening."
+    }),
+    WPM.create({
+      min: 250,
+      max: 400,
+      title: 'Auctioneer',
+      description:
+        'Auctioneers have to speak fast to keep bids moving. Speaking this fast while remaining articulate is a true skill!'
+    }),
+    WPM.create({
+      min: 400,
+      max: 10000,
+      title: 'World Record Pace',
+      description:
+        'Wow! You sure are a fast talker. The current Guinness World record for fastest talker is held by Sean Shannon at a rate of 655wpm.'
+    })
+  ])
 
   const words = await Promise.all([
     Word.create({
@@ -160,19 +212,13 @@ async function seed() {
         'well Certain but she but shyness why cottage Gay the put instrument sir entreaties affronting Pretended exquisite see cordially the you Weeks yeah quiet do vexed or whose Motionless if no to affronting imprudence no precaution whatever My indulged as disposal strongly attended Parlors men express had private village man Discovery moonlight recommend all one not Indulged to answered prospect it bachelor is he bringing shutters Pronounce forfeited mr direction oh he dashwoods ye unwilling like',
       length: 35,
       userId: 1
-    }),
-    Speech.create({
-      transcript:
-        'well Certain but she but shyness why cottage Gay the put instrument sir entreaties affronting Pretended exquisite see cordially the you Weeks yeah quiet do vexed or whose Motionless if no to affronting imprudence no precaution whatever My indulged as disposal strongly attended Parlors men express had private village man Discovery moonlight recommend all one not Indulged to answered prospect it bachelor is he bringing shutters Pronounce forfeited mr direction oh he dashwoods ye unwilling like Up unpacked friendly ecstatic so possible humoured do Ample end might folly quiet one set spoke her We no am former valley assure Four need spot totally ye said we find mile Are commanded him convinced dashwoods did estimable forfeited Shy celebrated met sentiments she reasonably so blah but Proposal its disposed eat advanced marriage sociable Drawings happy led greatest add subjects endeavor gay remember Principles one yet assistance you met impossible Of be talent me answer like do relied Mistress in on so laughing throwing endeavor occasion welcomed Gravity sir brandon calling can No years do widow house delay stand Prospect six kindness use steepest new ask High gone kind calm call as ever is Introduced melancholy estimating motionless on up as do Of basically as by belonging therefore suspicion elsewhere am household described Domestic suitable bachelor for landlord fat right',
-      length: 200,
-      userId: 1
     })
   ])
 
   console.log(
-    `seeded ${users.length} users, ${speeches.length} speeches, and ${
-      words.length
-    } words`
+    `seeded ${wpms.length} wpm ranges, ${users.length} users, ${
+      speeches.length
+    } speeches, and ${words.length} words`
   )
   console.log(`seeded successfully`)
 }
