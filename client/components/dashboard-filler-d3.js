@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 import history from '../history'
-import {formatSeconds} from '../../utils'
+import {formatSeconds} from '../utils'
 
 const MARGIN = {TOP: 10, BOTTOM: 50, LEFT: 70, RIGHT: 10}
 const WIDTH = 650 - MARGIN.LEFT - MARGIN.RIGHT

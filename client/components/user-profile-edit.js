@@ -9,8 +9,8 @@ class UserProfileEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      firstName: '',
-      lastName: ''
+      firstName: this.props.user.firstName,
+      lastName: this.props.user.lastName
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
