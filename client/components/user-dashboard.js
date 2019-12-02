@@ -28,14 +28,12 @@ class UserDashboard extends React.Component {
       let mostRecent10 = speechMap.slice(speechMap.length - 10)
       this.setState({mostRecentSpeeches: mostRecent10})
       this.setState({speeches: speechMap})
-      console.log('ComponentDidMount speeches', this.state.speeches)
     } else {
       this.setState({mostRecentSpeeches: speechMap})
     }
   }
 
   render() {
-    console.log('~ render in user Dashboard ~')
     return (
       <div className="data-overview">
         <Typography variant="h3">
@@ -49,7 +47,7 @@ class UserDashboard extends React.Component {
         ) : (
           <React.Fragment>
             <Typography variant="h5">All of your speeches</Typography>
-            <DashboardMainWrapper speeches={this.state.speeches} />
+            <DashboardMainWrapper />
             <hr />
             <Typography variant="h5">
               A summary of your last {this.state.mostRecentSpeeches.length}{' '}
