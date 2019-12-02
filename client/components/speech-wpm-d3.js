@@ -56,7 +56,8 @@ export default class D3Chart {
       // domain takes an array with 2 elems, min and max input units
       .domain([0, 100])
       // range takes arr of 2 elems, min and max outputs in pixels
-      .range([HEIGHT, 0]) // put height as min to get y axis to start at bottom left
+      .range([HEIGHT, 0])
+    // put height as min to get y axis to start at bottom left
     // console.log(y(272)) pass in 272 cm, returns 500 pixels
 
     const x = d3
@@ -81,6 +82,7 @@ export default class D3Chart {
       .transition()
       .duration(500)
       .call(yAxisCall)
+
     vis.Tooltip = d3
       .select(element)
       .append('div')
@@ -142,11 +144,5 @@ export default class D3Chart {
       .on('mouseover', mouseover)
       .on('mousemove', mousemove)
       .on('mouseleave', mouseleave)
-
-    // once load data, our graph gets updated by update method every 1000 ms
   }
-
-  // update method gets called every time we update our data
-
-  // for updating chart based on dropdown menu
 }
