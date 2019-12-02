@@ -7,18 +7,18 @@ const app = require('../index')
 const User = db.model('user')
 
 describe('User routes', () => {
+  const codysEmail = 'cody@puppybook.com'
+  let user = {
+    email: codysEmail,
+    firstName: 'Cody',
+    lastName: 'Pug',
+    password: '123'
+  }
   beforeEach(() => {
     return db.sync({force: true})
   })
 
   describe('/api/users/', async () => {
-    const codysEmail = 'cody@puppybook.com'
-    let user = {
-      email: codysEmail,
-      firstName: 'Cody',
-      lastName: 'Pug',
-      password: '123'
-    }
     beforeEach(() => {
       return User.create(user)
     })
