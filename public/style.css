@@ -243,6 +243,13 @@ li {
   flex-direction: row;
 }
 
+.tile-icon {
+  height: 100px;
+  width: 100px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 .about-tile {
   display: flex;
   flex-direction: column;

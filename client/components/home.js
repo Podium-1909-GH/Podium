@@ -15,13 +15,13 @@ const Home = () => {
       <div className="about-tiles">
         <Paper className="about-paper" elevation={4}>
           <div className="about-tile">
-            <div>icon</div>
+            <img className="tile-icon" src="2color-graph.png" />
             <div>set goals and track your progress</div>
           </div>
         </Paper>
         <Paper className="about-paper" elevation={4}>
           <div className="about-tile">
-            <div>icon</div>
+            <img className="tile-icon" src="pace.png" />
             <div>
               learn about your habits and compare to well known speakers
             </div>
@@ -29,7 +29,7 @@ const Home = () => {
         </Paper>
         <Paper className="about-paper" elevation={4}>
           <div className="about-tile">
-            <div>icon</div>
+            <img className="tile-icon" src="speech.png" />
             <div>pace, filler words, and sentiment</div>
           </div>
         </Paper>
