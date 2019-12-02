@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getSpeech} from '../store/speech'
+import SpeechSentimentWrapper from './speech-sentiment-wrapper'
 import SpeechFillerWrapper from './speech-filler-wrapper'
 import PropTypes from 'prop-types'
 
@@ -14,7 +15,7 @@ class SpeechOverview extends React.Component {
 
   render() {
     let fillerObj = JSON.parse(this.props.speech.fillerObj)
-    let sentiment = this.props.speech.sentiment
+    let sentiment = JSON.parse(this.props.speech.sentiment)
 
     return (
       <div>
@@ -34,8 +35,9 @@ class SpeechOverview extends React.Component {
               }
             })}
           </ul>
-          <p>{JSON.stringify(sentiment)}</p>
+          <SpeechSentimentWrapper sentiment={sentiment} />
         </div>
+        <br />
         <div>
           <SpeechFillerWrapper
             fillerObj={fillerObj}

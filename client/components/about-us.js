@@ -50,7 +50,11 @@ const AboutUs = () => {
           <a href="https://github.com/linadinh2602">
             <img className="icon" src={github} />
           </a>
-          <p>Description:</p>
+          <p>
+            I thrive on challenge and constantly set goals for myself, so I have
+            something to strive toward. I'm always looking for an opportunity to
+            do better and achieve greatness.
+          </p>
         </div>
       </div>
 
