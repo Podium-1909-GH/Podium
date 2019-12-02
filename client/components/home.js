@@ -21,7 +21,7 @@ const Home = () => {
         </Paper>
         <Paper className="about-paper" elevation={4}>
           <div className="about-tile">
-            <img className="tile-icon" src="pace.png" />
+            <img className="tile-icon" src="pace3.png" />
             <div>
               learn about your habits and compare to well known speakers
             </div>
