@@ -43,7 +43,10 @@ class SpeechOverview extends React.Component {
           <D3BubblesWrapper speech={this.props.speech} />
         </div>
         <div>
-          <SpeechFillerWrapper fillerObj={fillerObj} />
+          <SpeechFillerWrapper
+            fillerObj={fillerObj}
+            speech={this.props.speech}
+          />
         </div>
       </div>
     )

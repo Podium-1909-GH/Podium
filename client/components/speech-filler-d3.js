@@ -16,19 +16,13 @@ export default class D3Chart {
       .append('g')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
 
-    // GET DATA FROM FILLEROBJ
-    // data is an arra of objs with 2 keys, word and count
-    console.log('fillerObj in D3', fillerObj)
-
     vis.data = Object.keys(fillerObj).reduce((accum, word) => {
       if (fillerObj[word].length > 0) {
         accum.push({word, count: fillerObj[word].length})
       }
       return accum
     }, [])
-    // console.log('vis.data', vis.data)
 
-    // obj with keys as words, and vals as count
     vis.dataObj = Object.keys(fillerObj).reduce((accum, word) => {
       if (fillerObj[word].length > 0) {
         if (!accum[word]) {
@@ -37,19 +31,10 @@ export default class D3Chart {
       }
       return accum
     }, {})
-    // console.log('vis.dataObj', vis.dataObj)
 
-    // const dataWordsArr = Object.keys(vis.dataObj)
     const dataCountArr = Object.values(vis.dataObj)
-    // console.log('dataCountArr*****', dataCountArr)
-
-    // const minCount = Math.min(...Object.values(vis.dataObj))
-    const minCount = Math.min(...dataCountArr)
-    console.log('min', minCount)
-
-    // const maxCount = Math.max(...Object.values(vis.dataObj))
     const maxCount = Math.max(...dataCountArr)
-    console.log('max', maxCount)
+    const yAxisMinHeight = maxCount < 3 ? 3 : maxCount
 
     vis.xLabel = vis.svg
       .append('text')
@@ -63,7 +48,7 @@ export default class D3Chart {
       .attr('x', -(HEIGHT / 2))
       .attr('y', -50)
       .attr('text-anchor', 'middle')
-      .text('Total number of times used')
+      .text('Total Number of Times Used')
       .attr('transform', 'rotate(-90)')
 
     vis.xAxisGroup = vis.svg
@@ -74,7 +59,8 @@ export default class D3Chart {
 
     const y = d3
       .scaleLinear()
-      .domain([minCount * 0.95, maxCount])
+      // .domain([minCount * 0.95, maxCount])
+      .domain([0, yAxisMinHeight])
       .range([HEIGHT, 0])
 
     const x = d3
@@ -90,7 +76,16 @@ export default class D3Chart {
       .duration(500)
       .call(xAxisCall)
 
-    const yAxisCall = d3.axisLeft(y)
+    let ticks = []
+    for (let i = 0; i <= yAxisMinHeight; i++) {
+      ticks.push(i)
+    }
+
+    const yAxisCall = d3
+      .axisLeft(y)
+      .tickValues(ticks)
+      .tickFormat(d3.format('d'))
+
     vis.yAxisGroup
       .transition()
       .duration(500)
