@@ -48,6 +48,9 @@ label {
 .navLinks a {
   margin: 0px 5px;
 }
+.nav-menu-links a {
+  color: black;
+}
 
 /* ------------------------
     AUTH FORM
