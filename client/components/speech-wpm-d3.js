@@ -77,7 +77,7 @@ export default class D3Chart {
       .call(xAxisCall)
 
     // updates y axis
-    const yAxisCall = d3.axisLeft(y)
+    const yAxisCall = d3.axisLeft(y).ticks(0)
     vis.yAxisGroup
       .transition()
       .duration(500)

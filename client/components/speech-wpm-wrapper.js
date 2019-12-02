@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 /* eslint-disable react/no-string-refs */
 import React, {Component} from 'react'
 import D3Chart from './speech-wpm-d3'
@@ -16,14 +17,19 @@ class SpeechFillerWrapper extends Component {
     }
     this.speech = this.props.speech
   }
-  async componentDidMount() {
-    const {data} = await axios.get(`/api/wpm/${this.speech.wpm}`)
-    console.log(this.state, data, 'speech', this.speech)
+  async refresh(speech) {
+    const {data} = await axios.get(`/api/wpm/${speech.wpm}`)
+    console.log(this.state, data, 'speech', speech)
     this.setState({
-      wpmInfo: data,
-      chart: new D3Chart(this.refs.speechWPM, this.speech)
+      wpmInfo: data
     })
-    console.log(this.state, 'speech:', this.speech)
+    console.log(this.state, 'speech:', speech)
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.speech) {
+      this.refresh(nextProps.speech)
+      new D3Chart(this.refs.speechWPM, nextProps.speech, this.state.wpmInfo)
+    }
   }
 
   render() {
