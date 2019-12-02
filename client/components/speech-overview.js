@@ -4,7 +4,6 @@ import {getSpeech} from '../store/speech'
 import SpeechFillerWrapper from './speech-filler-wrapper'
 import SpeechWPMWrapper from './speech-wpm-wrapper'
 import PropTypes from 'prop-types'
-import axios from 'axios'
 
 class SpeechOverview extends React.Component {
   //speech model: id, length, transcript, fillerObj, wpm, numberFiller, sentiment
@@ -17,7 +16,6 @@ class SpeechOverview extends React.Component {
   render() {
     let fillerObj = JSON.parse(this.props.speech.fillerObj)
     let sentiment = this.props.speech.sentiment
-    console.log('RENDERING state: ', this.wpm)
     return (
       <div>
         <div>

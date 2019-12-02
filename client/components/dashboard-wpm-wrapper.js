@@ -22,12 +22,10 @@ class DashboardWpmWrapper extends Component {
   }
   async componentDidMount() {
     const {data} = await axios.get(`/api/wpm/${this.aveWpm}`)
-    console.log(this.state, data)
     await this.setState({
       wpm: data,
       chart: new DashBoardWpmD3(this.refs.dashWpm, this.speeches)
     })
-    console.log(this.state)
   }
 
   // shouldComponentUpdate() {
@@ -36,7 +34,6 @@ class DashboardWpmWrapper extends Component {
   // }
 
   render() {
-    console.log(this.state.wpm)
     return (
       <Paper className="dashboard-item" elevation={4}>
         <div ref="dashWpm" />

@@ -18,12 +18,12 @@ class SpeechFillerWrapper extends Component {
   }
   async componentDidMount() {
     const {data} = await axios.get(`/api/wpm/${this.speech.wpm}`)
-    console.log(this.state, data)
+    console.log(this.state, data, 'speech', this.speech)
     this.setState({
       wpmInfo: data,
       chart: new D3Chart(this.refs.speechWPM, this.speech)
     })
-    console.log(this.state)
+    console.log(this.state, 'speech:', this.speech)
   }
 
   render() {

@@ -125,12 +125,12 @@ export default class D3Chart {
     vis.svg
       .append('g')
       .selectAll('dot')
-      .data(speech)
+      .data([vis.data])
       .enter()
       .append('circle')
       .attr('cx', function(d) {
         console.log('d', d)
-        return x(100)
+        return x(d.wpm)
       })
       .attr('cy', function(d) {
         return y(50)

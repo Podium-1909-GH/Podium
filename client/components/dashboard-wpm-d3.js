@@ -58,7 +58,6 @@ export default class D3Chart {
       .domain([minY * 0.95, maxY])
       // range takes arr of 2 elems, min and max outputs in pixels
       .range([HEIGHT, 0]) // put height as min to get y axis to start at bottom left
-    // console.log(y(272)) pass in 272 cm, returns 500 pixels
 
     const maxX = d3.max(vis.data, d => d.index)
     const minX = d3.min(vis.data, d => d.index)
