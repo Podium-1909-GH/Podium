@@ -59,7 +59,10 @@ export default class DashBoardMainD3 {
     let format = d3.timeFormat('%b %e')
     let mouseover = function(d) {
       vis.Tooltip.style('opacity', 1)
-      d3.select(this).style('stroke', 'black')
+      d3
+        .select(this)
+        .style('stroke', 'black')
+        .style('opacity', 0.8)
     }
     let mousemove = function(d) {
       vis.Tooltip.html(
@@ -74,7 +77,10 @@ export default class DashBoardMainD3 {
 
     let mouseleave = function(d) {
       vis.Tooltip.style('opacity', 0)
-      d3.select(this).style('stroke', 'none')
+      d3
+        .select(this)
+        .style('stroke', 'none')
+        .style('opacity', 1)
     }
 
     vis.svg = d3
