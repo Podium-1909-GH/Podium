@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getSpeech} from '../store/speech'
+import D3BubblesWrapper from './overview-info-bubbles-wrapper'
 import SpeechSentimentWrapper from './speech-sentiment-wrapper'
 import SpeechFillerWrapper from './speech-filler-wrapper'
 import SpeechWPMWrapper from './speech-wpm-wrapper'
@@ -36,12 +37,15 @@ class SpeechOverview extends React.Component {
               }
             })}
           </ul>
+          <D3BubblesWrapper speech={this.props.speech} />
           <SpeechSentimentWrapper sentiment={sentiment} />
         </div>
         <br />
         <div>
-          <SpeechFillerWrapper fillerObj={fillerObj} />
-          <SpeechWPMWrapper speech={this.props.speech} />
+          <SpeechFillerWrapper
+            fillerObj={fillerObj}
+            speech={this.props.speech}
+          />
         </div>
       </div>
     )

@@ -28,10 +28,10 @@ class DashboardWpmWrapper extends Component {
     })
   }
 
-  // shouldComponentUpdate() {
-  //   // should not react re-render when something changes, we'll manually update
-  //   return true
-  // }
+  shouldComponentUpdate() {
+    // should not react re-render when something changes, we'll manually update
+    return true
+  }
 
   render() {
     return (

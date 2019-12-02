@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import {getSpeeches} from '../store/speeches'
 import DashboardWpmWrapper from './dashboard-wpm-wrapper'
 import DashboardFillerWrapper from './dashboard-filler-wrapper'
+import DashboardInfoBubblesWrapper from './dashboard-info-bubbles-wrapper'
+import DashboardMainWrapper from './dashboard-main-wrapper'
 import DashboardSentimentWrapper from './dashboard-sentiment-wrapper'
 import Typography from '@material-ui/core/Typography'
 
@@ -12,7 +14,8 @@ class UserDashboard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      mostRecentSpeeches: []
+      mostRecentSpeeches: [],
+      speeches: []
     }
   }
   async componentDidMount() {
@@ -24,11 +27,15 @@ class UserDashboard extends React.Component {
     if (speechMap.length > 10) {
       let mostRecent10 = speechMap.slice(speechMap.length - 10)
       this.setState({mostRecentSpeeches: mostRecent10})
+      this.setState({speeches: speechMap})
+      console.log('ComponentDidMount speeches', this.state.speeches)
     } else {
       this.setState({mostRecentSpeeches: speechMap})
     }
   }
+
   render() {
+    console.log('~ render in user Dashboard ~')
     return (
       <div className="data-overview">
         <Typography variant="h3">
@@ -41,10 +48,16 @@ class UserDashboard extends React.Component {
           </Typography>
         ) : (
           <React.Fragment>
+            <Typography variant="h5">All of your speeches</Typography>
+            <DashboardMainWrapper speeches={this.state.speeches} />
+            <hr />
             <Typography variant="h5">
               A summary of your last {this.state.mostRecentSpeeches.length}{' '}
               speeches
             </Typography>
+            <DashboardInfoBubblesWrapper
+              speeches={this.state.mostRecentSpeeches}
+            />
             <DashboardSentimentWrapper
               speeches={this.state.mostRecentSpeeches}
             />
