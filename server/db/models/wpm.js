@@ -21,14 +21,4 @@ const WPM = db.define('wpm', {
   }
 })
 
-// WPM.getWPMInfo = function (pace) {
-//   const wpmInfo = WPM.findOne({
-//     where:{
-//       min: {[Op.lte]:pace},
-//       max: {[Op.gt]:pace}
-//   }})
-//   console.log(wpmInfo)
-//   return wpmInfo
-// }
-
 module.exports = WPM
