@@ -12,7 +12,8 @@ import {
   // UserProfileEdit,
   UserDashboard,
   Home,
-  AboutUs
+  AboutUs,
+  ErrorPage
 } from './components'
 import {me} from './store'
 import UserProfileEdit from './components/user-profile-edit'
@@ -52,6 +53,7 @@ class Routes extends Component {
         )}
         {/* Displays our Login component as a fallback */}
         <Route component={Home} />
+        <Route path="*" component={ErrorPage} />
       </Switch>
     )
   }

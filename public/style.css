@@ -1,6 +1,6 @@
 body {
   font-family: Roboto, sans-serif;
-  margin: 0px;
+  margin: 10px;
 }
 
 a {
@@ -183,6 +183,7 @@ body,
   text-align: center;
   align-items: center;
 }
+
 /* ------------------------
    Dashboard Item
 ------------------------ */
@@ -209,4 +210,23 @@ li {
 }
 .dashboard-item-text {
   text-align: justify;
+}
+/* ------------------------
+   Error Page
+------------------------ */
+.error-page {
+  display: flex;
+  font-size: 12px;
+}
+
+.error-page h2 {
+  margin-top: 8em;
+  margin-right: 4em;
+}
+
+.error-img {
+  width: 50%;
+  height: 100%;
+  margin-left: 4em;
+  padding: 4em;
 }

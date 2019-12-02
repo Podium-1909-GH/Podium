@@ -1,6 +1,8 @@
 /* eslint-disable no-new */
 import React, {Component} from 'react'
 import D3SentimentChart from './speech-sentiment-d3'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 
 class SpeechSentimentWrapper extends Component {
   componentWillReceiveProps(nextProps) {
@@ -28,7 +30,16 @@ class SpeechSentimentWrapper extends Component {
   }
 
   render() {
-    return <div ref="speechSentimentPieChart" />
+    return (
+      <Paper className="dashboard-item" elevation={4}>
+        <div ref="speechSentimentPieChart" />
+        <Paper elevation={2}>
+          <Typography variant="h5">Sentiment Ratios</Typography>
+          <hr />
+          <Typography variant="body1" component="div" />
+        </Paper>
+      </Paper>
+    )
   }
 }
 
