@@ -7,7 +7,7 @@ class DashboardInfoBubblesWrapper extends Component {
   // important to put in component did mount because we're changing something that already loaded to screen
   constructor(props) {
     super(props)
-    this.speeches = this.props.speeches
+    this.speeches = [...this.props.speeches]
   }
 
   componentDidMount() {

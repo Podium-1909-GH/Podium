@@ -2,12 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getSpeech} from '../store/speech'
 import D3BubblesWrapper from './overview-info-bubbles-wrapper'
+import SpeechSentimentWrapper from './speech-sentiment-wrapper'
 import SpeechFillerWrapper from './speech-filler-wrapper'
 import PropTypes from 'prop-types'
 
 class SpeechOverview extends React.Component {
   //speech model: id, length, transcript, fillerObj, wpm, numberFiller, sentiment
-  async componentDidMount() {
+  componentDidMount() {
     const userId = this.props.userId
     const speechId = this.props.match.params.speechId
     this.props.getSpeech(userId, speechId)
@@ -15,7 +16,7 @@ class SpeechOverview extends React.Component {
 
   render() {
     let fillerObj = JSON.parse(this.props.speech.fillerObj)
-    let sentiment = this.props.speech.sentiment
+    let sentiment = JSON.parse(this.props.speech.sentiment)
 
     return (
       <div>
@@ -35,8 +36,9 @@ class SpeechOverview extends React.Component {
               }
             })}
           </ul>
-          <p>{JSON.stringify(sentiment)}</p>
+          <SpeechSentimentWrapper sentiment={sentiment} />
         </div>
+        <br />
         <div>
           <D3BubblesWrapper speech={this.props.speech} />
         </div>

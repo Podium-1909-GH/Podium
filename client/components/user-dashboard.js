@@ -6,6 +6,7 @@ import {getSpeeches} from '../store/speeches'
 import DashboardWpmWrapper from './dashboard-wpm-wrapper'
 import DashboardFillerWrapper from './dashboard-filler-wrapper'
 import DashboardInfoBubblesWrapper from './dashboard-info-bubbles-wrapper'
+import DashboardSentimentWrapper from './dashboard-sentiment-wrapper'
 import Typography from '@material-ui/core/Typography'
 
 class UserDashboard extends React.Component {
@@ -46,6 +47,9 @@ class UserDashboard extends React.Component {
               speeches
             </Typography>
             <DashboardInfoBubblesWrapper
+              speeches={this.state.mostRecentSpeeches}
+            />
+            <DashboardSentimentWrapper
               speeches={this.state.mostRecentSpeeches}
             />
             <DashboardWpmWrapper speeches={this.state.mostRecentSpeeches} />

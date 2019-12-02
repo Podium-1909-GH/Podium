@@ -18,7 +18,8 @@ export default class DashboardBubbles {
     let totalWpm = 0
     let totalFillerPercent = 0
     speeches.forEach(speech => {
-      totalComparative += JSON.parse(speech.sentiment).comparative
+      //totalComparative += JSON.parse(speech.sentiment).comparative
+      totalComparative += speech.sentiment.comparative
       totalWpm += speech.wpm
       numSpeeches += 1
       totalFillerPercent += Math.round(
