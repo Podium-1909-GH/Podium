@@ -95,7 +95,7 @@ export default class DashBoardMainD3 {
     vis.svg
       .append('svg')
       .attr('class', 'bars')
-      .attr('fill', 'steelblue')
+      .attr('fill', '#4652B1')
       .selectAll('rect')
       .data(data)
       .join('rect')
