@@ -41,7 +41,6 @@ class DashboardFillerWrapper extends Component {
     this.totalFillerCount.sort(sortByCount)
     if (this.totalFillerCount.length > 5) {
       this.totalFillerCount = this.totalFillerCount.slice(0, 5)
-      console.log(this.totalFillerCount.length)
     }
   }
   componentDidMount() {
