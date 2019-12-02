@@ -19,11 +19,9 @@ class SpeechFillerWrapper extends Component {
   }
   async refresh(speech) {
     const {data} = await axios.get(`/api/wpm/${speech.wpm}`)
-    console.log(this.state, data, 'speech', speech)
     this.setState({
       wpmInfo: data
     })
-    console.log(this.state, 'speech:', speech)
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.speech) {
