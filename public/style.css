@@ -191,8 +191,22 @@ body,
   margin: 15px;
   padding: 10px;
 }
+.dashboard-item ol,
+li {
+  list-style-position: inside;
+  text-align: center;
+}
+.dashboard-item ol > span {
+  text-decoration: underline;
+}
+.dashboard-item ol > li {
+  text-decoration: none;
+}
 
 .dashboard-item > * {
   margin: 10px;
   padding: 10px;
+}
+.dashboard-item-text {
+  text-align: justify;
 }

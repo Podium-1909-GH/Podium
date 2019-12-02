@@ -37,7 +37,7 @@ router.get('/:userId/speeches', isMe, async (req, res, next) => {
 router.get('/:userId/speeches/:speechId', isMe, async (req, res, next) => {
   try {
     const speech = await Speech.findByPk(req.params.speechId)
-    res.status(200).send(speech)
+    res.status(200).json(speech)
   } catch (err) {
     console.error(err)
     next(err)
