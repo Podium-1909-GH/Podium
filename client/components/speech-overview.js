@@ -2,11 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getSpeech} from '../store/speech'
 import SpeechFillerWrapper from './speech-filler-wrapper'
+import SpeechWPMWrapper from './speech-wpm-wrapper'
 import PropTypes from 'prop-types'
+import axios from 'axios'
 
 class SpeechOverview extends React.Component {
   //speech model: id, length, transcript, fillerObj, wpm, numberFiller, sentiment
-  async componentDidMount() {
+  componentDidMount() {
     const userId = this.props.userId
     const speechId = this.props.match.params.speechId
     this.props.getSpeech(userId, speechId)
@@ -15,7 +17,7 @@ class SpeechOverview extends React.Component {
   render() {
     let fillerObj = JSON.parse(this.props.speech.fillerObj)
     let sentiment = this.props.speech.sentiment
-
+    console.log('RENDERING state: ', this.wpm)
     return (
       <div>
         <div>
@@ -38,6 +40,7 @@ class SpeechOverview extends React.Component {
         </div>
         <div>
           <SpeechFillerWrapper fillerObj={fillerObj} />
+          <SpeechWPMWrapper speech={this.props.speech} />
         </div>
       </div>
     )
