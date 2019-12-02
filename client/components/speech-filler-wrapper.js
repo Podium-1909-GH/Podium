@@ -13,9 +13,10 @@ class SpeechFillerWrapper extends Component {
   }
 
   render() {
-    
     let totalWordsCount = this.props.speech.transcript.split(' ').length
-    let percentFiller = Math.round(this.props.speech.numberFiller / totalWordsCount * 100)
+    let percentFiller = Math.round(
+      this.props.speech.numberFiller / totalWordsCount * 100
+    )
 
     return (
       <Paper className="dashboard-item" elevation={4}>
