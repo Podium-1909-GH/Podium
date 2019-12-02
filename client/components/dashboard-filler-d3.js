@@ -61,7 +61,7 @@ export default class D3Chart {
     const y = d3
       .scaleLinear()
       // domain takes an array with 2 elems, min and max input units
-      .domain([minY * 0.95, maxY])
+      .domain([0, maxY])
       // range takes arr of 2 elems, min and max outputs in pixels
       .range([HEIGHT, 0]) // put height as min to get y axis to start at bottom left
     // console.log(y(272)) pass in 272 cm, returns 500 pixels
@@ -138,7 +138,9 @@ export default class D3Chart {
     let mousemove = function(d) {
       vis.Tooltip.html(
         `
-        ${format(d3.isoParse(d.createdAt))}<br>${formatSeconds(d.length)}`
+        ${format(d3.isoParse(d.createdAt))}<br>${formatSeconds(d.length)}<br>${
+          d.transcript.split(' ').length
+        } words`
       )
         .style('left', event.pageX + 10 + 'px')
         .style('top', event.pageY + 'px')
