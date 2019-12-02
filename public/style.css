@@ -211,3 +211,31 @@ li {
 .dashboard-item-text {
   text-align: justify;
 }
+
+/* ------------------------
+   About Podium / Home Page
+------------------------ */
+
+.about {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+
+.about-tiles {
+  display: flex;
+  flex-direction: row;
+}
+
+.about-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-paper {
+  height: 250px;
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+}
