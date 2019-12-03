@@ -2,9 +2,9 @@ import * as d3 from 'd3'
 import history from '../history'
 import {formatSeconds} from '../utils'
 
-const MARGIN = {TOP: 10, BOTTOM: 10, LEFT: 10, RIGHT: 10}
-const WIDTH = 650 - MARGIN.LEFT - MARGIN.RIGHT
-const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
+const MARGIN = {TOP: 10, BOTTOM: 30, LEFT: 0, RIGHT: 35}
+const WIDTH = 800 - MARGIN.LEFT - MARGIN.RIGHT
+const HEIGHT = 300 - MARGIN.TOP - MARGIN.BOTTOM
 
 export default class DashBoardMainD3 {
   constructor(element, speeches) {
@@ -96,6 +96,7 @@ export default class DashBoardMainD3 {
       .append('g')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
       .call(zoom)
+    // .attr('transform', `translate(10, 10) scale(1)`)
 
     vis.svg
       .append('svg')
@@ -118,6 +119,12 @@ export default class DashBoardMainD3 {
       .attr('class', 'x-axis')
       .call(xAxis)
 
+    vis.svg
+      .append('text')
+      .attr('x', WIDTH / 2)
+      .attr('y', HEIGHT + 20)
+      .attr('text-anchor', 'middle')
+
     function zoom(svg) {
       const extent = [
         [MARGIN.LEFT, MARGIN.TOP],
@@ -130,9 +137,10 @@ export default class DashBoardMainD3 {
           .scaleExtent([1, 3])
           .translateExtent(extent)
           .extent(extent)
-          .on('zoom', zoomed)
+          .on('zoom', zoomed) // zoom listener
       )
 
+      // zoom event original
       function zoomed() {
         x.range(
           [MARGIN.LEFT, WIDTH - MARGIN.RIGHT].map(d =>
