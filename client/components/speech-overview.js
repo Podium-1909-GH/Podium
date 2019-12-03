@@ -4,6 +4,7 @@ import {getSpeech} from '../store/speech'
 import D3BubblesWrapper from './overview-info-bubbles-wrapper'
 import SpeechSentimentWrapper from './speech-sentiment-wrapper'
 import SpeechFillerWrapper from './speech-filler-wrapper'
+import SpeechWPMWrapper from './speech-wpm-wrapper'
 import PropTypes from 'prop-types'
 
 class SpeechOverview extends React.Component {
@@ -36,15 +37,16 @@ class SpeechOverview extends React.Component {
               }
             })}
           </ul>
-          <D3BubblesWrapper speech={this.props.speech} />
-          <SpeechSentimentWrapper sentiment={sentiment} />
         </div>
         <br />
         <div>
+          <D3BubblesWrapper speech={this.props.speech} />
+          <SpeechSentimentWrapper sentiment={sentiment} />
           <SpeechFillerWrapper
             fillerObj={fillerObj}
             speech={this.props.speech}
           />
+          <SpeechWPMWrapper speech={this.props.speech} />
         </div>
       </div>
     )

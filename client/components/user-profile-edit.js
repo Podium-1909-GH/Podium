@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {updatedUser} from '../store'
 import Button from '@material-ui/core/Button'
@@ -10,8 +9,8 @@ class UserProfileEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      firstName: '',
-      lastName: ''
+      firstName: this.props.user.firstName,
+      lastName: this.props.user.lastName
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -25,10 +24,6 @@ class UserProfileEdit extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    // const firstName = evt.target.firstName.value
-    // const lastName = evt.target.lastName.value
-    // const email = evt.target.email.value
-    // const password = evt.target.password.value
     const user = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -44,11 +39,11 @@ class UserProfileEdit extends Component {
     return (
       <div>
         <div>
-          <h1>Edit your profile</h1>
+          <h1 className="user-profile-form">Edit your profile</h1>
         </div>
         <div>
           <form
-            className="auth-form"
+            className="user-profile-form"
             onSubmit={this.handleSubmit}
             name={this.props.name}
           >
@@ -81,7 +76,7 @@ class UserProfileEdit extends Component {
             <div className="button">
               <Button variant="contained" color="primary" type="submit">
                 {' '}
-                Save Changes
+                Update
               </Button>
             </div>
             {this.props.error &&
@@ -107,7 +102,7 @@ const mapDispatch = dispatch => ({
   updatedUser: (userId, user) => dispatch(updatedUser(userId, user))
 })
 
-export default withRouter(connect(mapState, mapDispatch))(UserProfileEdit)
+export default connect(mapState, mapDispatch)(UserProfileEdit)
 
 /** PROP TYPES */
 UserProfileEdit.propTypes = {

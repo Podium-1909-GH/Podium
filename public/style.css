@@ -80,6 +80,22 @@ label {
 }
 
 /* ------------------------
+    USER PROFILE
+------------------------ */
+.user-profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ------------------------
     Recording Screen
 ------------------------ */
 

@@ -5,18 +5,16 @@ import PropTypes from 'prop-types'
 import {
   LogIn,
   SignUp,
-  WelcomePage,
   RecordingScreen,
   SpeechOverview,
   UserProfile,
-  // UserProfileEdit,
+  UserProfileEdit,
   UserDashboard,
   Home,
   AboutUs,
   ErrorPage
 } from './components'
 import {me} from './store'
-import UserProfileEdit from './components/user-profile-edit'
 
 /**
  * COMPONENT
@@ -45,8 +43,12 @@ class Routes extends Component {
               path="/user/speeches/:speechId/overview"
               component={SpeechOverview}
             />
-            <Route path="/user/profile" component={UserProfile} />
-            <Route path="/user/profile/edit" component={UserProfileEdit} />
+            <Route exact path="/user/profile" component={UserProfile} />
+            <Route
+              exact
+              path="/user/profile/edit"
+              component={UserProfileEdit}
+            />
             <Route path="/user/dashboard" component={UserDashboard} />
             <Route component={ErrorPage} />
           </Switch>
