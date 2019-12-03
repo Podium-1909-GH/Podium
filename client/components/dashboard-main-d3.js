@@ -90,6 +90,7 @@ export default class DashBoardMainD3 {
       .attr('height', HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
       .append('g')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
+      // .attr('transform', `translate(10, 10) scale(1.)`)
       .call(zoom)
 
     vis.svg
@@ -118,7 +119,7 @@ export default class DashBoardMainD3 {
         [MARGIN.LEFT, MARGIN.TOP],
         [WIDTH - MARGIN.RIGHT, HEIGHT - MARGIN.TOP]
       ]
-
+      // zoom listener
       svg.call(
         d3
           .zoom()
