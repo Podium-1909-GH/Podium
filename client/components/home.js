@@ -15,7 +15,7 @@ const Home = () => {
       <div className="about-tiles">
         <Paper className="about-paper" elevation={4}>
           <div className="about-tile">
-            <img className="tile-icon" src="2color-graph.png" />
+            <img className="tile-icon" src="chart.png" />
             <div>set goals and track your progress</div>
           </div>
         </Paper>
