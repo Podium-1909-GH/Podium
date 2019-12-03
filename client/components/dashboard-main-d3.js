@@ -47,8 +47,10 @@ export default class DashBoardMainD3 {
       .style('opacity', 0)
       .attr('class', 'tooltip')
       .style('background-color', 'white')
+      .style('color', '#4652B1')
       .style('border', 'solid')
-      .style('border-width', '2px')
+      .style('border-color', '#4652B1')
+      .style('border-width', '3px')
       .style('border-radius', '3px')
       .style('width', 'fit-content')
       .style('text-align', 'center')
@@ -61,8 +63,11 @@ export default class DashBoardMainD3 {
       vis.Tooltip.style('opacity', 1)
       d3
         .select(this)
-        .style('stroke', 'black')
-        .style('opacity', 0.8)
+        .style('fill-opacity', 0.8)
+        .style('stroke-width', 3)
+        .style('stroke-linejoin', 'round')
+        .style('stroke', '#4652B1')
+        .style('stroke-opacity', 1)
     }
     let mousemove = function(d) {
       vis.Tooltip.html(
@@ -80,7 +85,7 @@ export default class DashBoardMainD3 {
       d3
         .select(this)
         .style('stroke', 'none')
-        .style('opacity', 1)
+        .style('fill-opacity', 1)
     }
 
     vis.svg = d3
