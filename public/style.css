@@ -251,12 +251,13 @@ li {
 }
 
 .about-tagline {
-  font-weight: 600;
+  font-weight: 700;
   font-size: x-large;
+  font-family: 'Merriweather';
   margin-bottom: 3%;
 }
 
-.about-text {
+.about-title {
   display: flex;
   font-size: large;
   flex-direction: column;
@@ -270,7 +271,8 @@ li {
 
 .about-titles {
   font-size: x-large;
-  font-weight: 500;
+  font-weight: 600;
+  font-family: 'Merriweather';
   margin: 3%;
 }
 
@@ -279,6 +281,10 @@ li {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.about-text {
+  text-align: center;
 }
 
 .tile-icon {
@@ -305,12 +311,32 @@ li {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.team-avatar {
-  height: 100px;
-  width: 100px;
+.team-card {
+  width: 200px;
   margin: 10px;
+}
+
+.team-img {
+  height: 200px;
+  width: 200px;
+}
+
+.team-member {
+  font-size: large;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.tech-card {
+  margin: 10px;
+}
+
+.tech-img {
+  height: 150px;
+  width: 150px;
 }
 
 /* ------------------------
