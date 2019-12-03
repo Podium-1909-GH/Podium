@@ -6,17 +6,26 @@ const Home = () => {
   return (
     <div className="about">
       <div className="about-header">
-        <div>
-          practice a speech, talk, or presentation and receive immediate
-          feedback
+        <div className="about-text">
+          <div className="about-tagline">Bolded tag line</div>
+          <div>short description of what the product is</div>
         </div>
-        <div>image</div>
+        <img className="about-image" src="podium-graphic-v2.png" />
       </div>
       <div className="about-tiles">
         <Paper className="about-paper" elevation={4}>
           <div className="about-tile">
             <img className="tile-icon" src="chart.png" />
             <div>set goals and track your progress</div>
+          </div>
+        </Paper>
+        <Paper className="about-paper" elevation={4}>
+          <div className="about-tile">
+            <img className="tile-icon" src="like.png" />
+            <div>
+              practice a speech, talk, or presentation and receive immediate
+              feedback
+            </div>
           </div>
         </Paper>
         <Paper className="about-paper" elevation={4}>
@@ -34,6 +43,8 @@ const Home = () => {
           </div>
         </Paper>
       </div>
+      <div>meet the team</div>
+      <div>about the tech</div>
     </div>
   )
 }
