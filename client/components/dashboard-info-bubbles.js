@@ -50,7 +50,8 @@ export default class DashboardBubbles {
       .attr('cx', svgWidth / 6)
       .attr('cy', svgHeight / 2)
       .attr('r', radius)
-      .attr('fill', '#11C3D0')
+      .attr('fill', '#E445A8')
+
     //add text
     vis.svg
       .append('text')
@@ -76,7 +77,7 @@ export default class DashboardBubbles {
       .attr('cx', svgWidth / 2)
       .attr('cy', svgHeight / 2)
       .attr('r', 80)
-      .attr('fill', '#4652B1')
+      .attr('fill', '#11C3D0')
     //add text
     vis.svg
       .append('text')
