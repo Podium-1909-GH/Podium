@@ -6,6 +6,8 @@ import SpeechSentimentWrapper from './speech-sentiment-wrapper'
 import SpeechFillerWrapper from './speech-filler-wrapper'
 import SpeechWPMWrapper from './speech-wpm-wrapper'
 import PropTypes from 'prop-types'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
 
 class SpeechOverview extends React.Component {
   //speech model: id, length, transcript, fillerObj, wpm, numberFiller, sentiment
@@ -22,21 +24,7 @@ class SpeechOverview extends React.Component {
     return (
       <div>
         <div>
-          <h1>Summary</h1>
-          <h3>your speech!</h3>
-          <p>{this.props.speech.transcript}</p>
-          <ul>
-            your filler words
-            {Object.keys(fillerObj).map(word => {
-              if (fillerObj[word].length > 0) {
-                return (
-                  <li key={word}>
-                    {word}: {fillerObj[word].length}
-                  </li>
-                )
-              }
-            })}
-          </ul>
+          <Typography variant="h3">Summary</Typography>
         </div>
         <br />
         <div>
@@ -49,6 +37,13 @@ class SpeechOverview extends React.Component {
             speech={this.props.speech}
           />
           <SpeechWPMWrapper speech={this.props.speech} />
+          <Paper className="speech-transcript">
+            <Typography variant="h5">Transcript</Typography>
+            <hr />
+            <Typography variant="body1">
+              {this.props.speech.transcript}
+            </Typography>
+          </Paper>
         </div>
       </div>
     )
