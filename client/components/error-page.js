@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
 const ErrorPage = () => {
   return (
@@ -12,9 +11,6 @@ const ErrorPage = () => {
         <h2>
           Sorry, but we couldn't find that page.
           <p>Please try another request.</p>
-          <Link to="/">
-            <button type="button">Go Back Home</button>
-          </Link>
         </h2>
       </div>
     </div>
