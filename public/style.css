@@ -2,6 +2,7 @@ body {
   font-family: Roboto, sans-serif;
   margin: 0px;
   background-color: #f6f9fe;
+  min-width: 900px;
 }
 
 a {
@@ -11,7 +12,14 @@ a {
 a:hover {
   text-decoration: underline;
 }
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
+  color: #4652b1;
+}
 label {
   display: block;
 }
@@ -205,6 +213,7 @@ body,
    Dashboard Item
 ------------------------ */
 .dashboard-item {
+  width: 870px;
   display: flex;
   margin: 15px;
   padding: 10px;
