@@ -161,14 +161,6 @@ const Home = () => {
           </CardActionArea>
         </Card>
         <Card className="tech-card" elevation={4}>
-          <CardActionArea
-            href="https://material-ui.com/getting-started/installation/"
-            target="_blank"
-          >
-            <CardMedia className="tech-img" image="material-ui.png" />
-          </CardActionArea>
-        </Card>
-        <Card className="tech-card" elevation={4}>
           <CardActionArea href="https://github.com/d3/d3/wiki" target="_blank">
             <CardMedia className="tech-img" image="d3.png" />
           </CardActionArea>
@@ -180,10 +172,23 @@ const Home = () => {
         </Card>
         <Card className="tech-card" elevation={4}>
           <CardActionArea
-            href="hhttps://sequelize.org/master/manual/getting-started.html"
+            href="https://sequelize.org/master/manual/getting-started.html"
             target="_blank"
           >
             <CardMedia className="tech-img" image="sequelize.png" />
+          </CardActionArea>
+        </Card>
+        <Card className="tech-card" elevation={4}>
+          <CardActionArea href="https://nodejs.org/en/about/" target="_blank">
+            <CardMedia className="tech-img" image="node.svg" />
+          </CardActionArea>
+        </Card>
+        <Card className="tech-card" elevation={4}>
+          <CardActionArea
+            href="https://material-ui.com/getting-started/installation/"
+            target="_blank"
+          >
+            <CardMedia className="tech-img" image="material-ui.png" />
           </CardActionArea>
         </Card>
       </div>
