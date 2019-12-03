@@ -100,6 +100,6 @@ export default class D3Chart {
       .attr('y', d => y(d.count))
       .attr('width', x.bandwidth)
       .attr('height', d => HEIGHT - y(d.count))
-      .attr('fill', 'grey')
+      .attr('fill', '#4652B1')
   }
 }
