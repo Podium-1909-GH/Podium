@@ -5,7 +5,7 @@ const ErrorPage = () => {
     <div className="error-page">
       <img
         className="error-img"
-        src="https://blog.thomasnet.com/hs-fs/hubfs/shutterstock_774749455.jpg?width=1200&name=shutterstock_774749455.jpg"
+        src="https://www.roadrunnerfinancial.com/wp-content/uploads/2019/04/404_error_ill-552x480.png"
       />
       <div>
         <h2>

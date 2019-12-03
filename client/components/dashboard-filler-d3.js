@@ -2,8 +2,8 @@ import * as d3 from 'd3'
 import history from '../history'
 import {formatSeconds} from '../utils'
 
-const MARGIN = {TOP: 10, BOTTOM: 50, LEFT: 70, RIGHT: 10}
-const WIDTH = 650 - MARGIN.LEFT - MARGIN.RIGHT
+const MARGIN = {TOP: 10, BOTTOM: 45, LEFT: 45, RIGHT: 10}
+const WIDTH = 620 - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
 
 export default class D3Chart {
@@ -24,7 +24,7 @@ export default class D3Chart {
     vis.xLabel = vis.svg
       .append('text')
       .attr('x', WIDTH / 2)
-      .attr('y', HEIGHT + 45)
+      .attr('y', HEIGHT + 30)
       .attr('text-anchor', 'middle')
       .text(`Your last ${speeches.length} sessions`)
 
@@ -32,7 +32,7 @@ export default class D3Chart {
     vis.svg
       .append('text')
       .attr('x', -(HEIGHT / 2))
-      .attr('y', -50)
+      .attr('y', -30)
       .attr('text-anchor', 'middle')
       .text('% Filler Words')
       .attr('transform', 'rotate(-90)')
@@ -99,8 +99,10 @@ export default class D3Chart {
       .style('opacity', 0)
       .attr('class', 'tooltip')
       .style('background-color', 'white')
+      .style('color', '#4652B1')
       .style('border', 'solid')
-      .style('border-width', '2px')
+      .style('border-color', '#4652B1')
+      .style('border-width', '3px')
       .style('border-radius', '3px')
       .style('width', 'fit-content')
       .style('text-align', 'center')
@@ -112,8 +114,8 @@ export default class D3Chart {
       .append('path')
       .datum(vis.data)
       .attr('fill', 'none')
-      .attr('stroke', '#69b3a2')
-      .attr('stroke-width', 1.5)
+      .attr('stroke', '#11C3D0')
+      .attr('stroke-width', 2)
       .attr(
         'd',
         d3
@@ -131,7 +133,8 @@ export default class D3Chart {
       vis.Tooltip.style('opacity', 1)
       d3
         .select(this)
-        .style('stroke', 'black')
+        .attr('r', 7)
+        .style('stroke', '#4652B1')
         .style('opacity', 1)
     }
     let mousemove = function(d) {
@@ -149,6 +152,7 @@ export default class D3Chart {
       vis.Tooltip.style('opacity', 0)
       d3
         .select(this)
+        .attr('r', 5)
         .style('stroke', 'none')
         .style('opacity', 0.8)
     }
@@ -167,8 +171,8 @@ export default class D3Chart {
         return y(d.percentFiller)
       })
       .attr('r', 5)
-      .attr('fill', '#69b3a2')
-      .style('stroke-width', 2)
+      .attr('fill', '#11C3D0')
+      .style('stroke-width', 3)
       .style('stroke', 'none')
       .on('mouseover', mouseover)
       .on('mousemove', mousemove)

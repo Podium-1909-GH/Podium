@@ -2,9 +2,9 @@ import * as d3 from 'd3'
 import history from '../history'
 import {formatSeconds} from '../utils'
 
-const MARGIN = {TOP: 10, BOTTOM: 10, LEFT: 10, RIGHT: 10}
-const WIDTH = 650 - MARGIN.LEFT - MARGIN.RIGHT
-const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
+const MARGIN = {TOP: 10, BOTTOM: 30, LEFT: 0, RIGHT: 35}
+const WIDTH = 800 - MARGIN.LEFT - MARGIN.RIGHT
+const HEIGHT = 300 - MARGIN.TOP - MARGIN.BOTTOM
 
 export default class DashBoardMainD3 {
   constructor(element, speeches) {
@@ -47,8 +47,10 @@ export default class DashBoardMainD3 {
       .style('opacity', 0)
       .attr('class', 'tooltip')
       .style('background-color', 'white')
+      .style('color', '#4652B1')
       .style('border', 'solid')
-      .style('border-width', '2px')
+      .style('border-color', '#4652B1')
+      .style('border-width', '3px')
       .style('border-radius', '3px')
       .style('width', 'fit-content')
       .style('text-align', 'center')
@@ -61,8 +63,11 @@ export default class DashBoardMainD3 {
       vis.Tooltip.style('opacity', 1)
       d3
         .select(this)
-        .style('stroke', 'black')
-        .style('opacity', 0.8)
+        .style('fill-opacity', 0.8)
+        .style('stroke-width', 3)
+        .style('stroke-linejoin', 'round')
+        .style('stroke', '#4652B1')
+        .style('stroke-opacity', 1)
     }
     let mousemove = function(d) {
       vis.Tooltip.html(
@@ -80,7 +85,7 @@ export default class DashBoardMainD3 {
       d3
         .select(this)
         .style('stroke', 'none')
-        .style('opacity', 1)
+        .style('fill-opacity', 1)
     }
 
     vis.svg = d3
@@ -91,6 +96,7 @@ export default class DashBoardMainD3 {
       .append('g')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
       .call(zoom)
+    // .attr('transform', `translate(10, 10) scale(1)`)
 
     vis.svg
       .append('svg')
@@ -113,6 +119,12 @@ export default class DashBoardMainD3 {
       .attr('class', 'x-axis')
       .call(xAxis)
 
+    vis.svg
+      .append('text')
+      .attr('x', WIDTH / 2)
+      .attr('y', HEIGHT + 20)
+      .attr('text-anchor', 'middle')
+
     function zoom(svg) {
       const extent = [
         [MARGIN.LEFT, MARGIN.TOP],
@@ -125,9 +137,10 @@ export default class DashBoardMainD3 {
           .scaleExtent([1, 3])
           .translateExtent(extent)
           .extent(extent)
-          .on('zoom', zoomed)
+          .on('zoom', zoomed) // zoom listener
       )
 
+      // zoom event original
       function zoomed() {
         x.range(
           [MARGIN.LEFT, WIDTH - MARGIN.RIGHT].map(d =>
