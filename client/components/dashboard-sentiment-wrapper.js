@@ -10,50 +10,82 @@ class DashboardSentimentWrapper extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      chart: new D3SentimentChart(this.refs.dashSentiment, this.aveSentiment)
-    })
+    if (this.filterSentimentSpeeches) {
+      this.setState({
+        chart: new D3SentimentChart(
+          this.refs.dashSentiment,
+          this.filterSentimentSpeeches
+        )
+      })
+    }
   }
+
   shouldComponentUpdate() {
     return false
   }
 
   render() {
     // need each speech sentiment to be a JSON instead of string
-
     this.speeches.forEach(speech => {
       speech.sentiment = JSON.parse(speech.sentiment)
+      console.log(speech.sentiment)
     })
 
-    const positiveCount = this.speeches.reduce(
-      (accum, speech) => accum + speech.sentiment.positive.length,
-      0
-    )
-    const negativeCount = this.speeches.reduce(
-      (accum, speech) => accum + speech.sentiment.negative.length,
-      0
-    )
-    const totalTokens = this.speeches.reduce(
-      (accum, speech) => accum + speech.sentiment.tokens.length,
-      0
-    )
+    const positiveCount = this.speeches.reduce((accum, speech) => {
+      if (speech.sentiment.comparative > 0.01) {
+        accum += 1
+      }
+      return accum
+    }, 0)
+
+    const negativeCount = this.speeches.reduce((accum, speech) => {
+      if (speech.sentiment.comparative < -0.01) {
+        accum += 1
+      }
+      return accum
+    }, 0)
+
+    const neutralCount = this.speeches.length - positiveCount - negativeCount
 
     this.aveSentiment = [
-      {name: 'Positive', count: positiveCount},
-      {name: 'Negative', count: negativeCount},
-      {name: 'Neutral', count: totalTokens - positiveCount - negativeCount}
+      {name: 'Positive', count: positiveCount, color: '#52BE80'},
+      {name: 'Negative', count: negativeCount, color: '#E67E22'},
+      {name: 'Neutral', count: neutralCount, color: 'D6EAF8'}
     ]
+
+    this.filterSentimentSpeeches = this.aveSentiment.filter(
+      data => data.count > 0
+    )
 
     return (
       <Paper className="dashboard-item" elevation={4}>
         <div ref="dashSentiment" />
         <Paper elevation={2}>
-          <Typography variant="h5">Sentiment Ratios</Typography>
+          <Typography variant="h5">Sentiment Speeches Rate</Typography>
           <hr />
           <Typography variant="body1" component="div">
-            <li>{`Positive: ${this.aveSentiment[0].count} words`}</li>
-            <li>{`Negative: ${this.aveSentiment[1].count} words`}</li>
-            <li>{`Neutral: ${this.aveSentiment[2].count} words`}</li>
+            The breakdown of your last {this.speeches.length} speeches:
+            {this.aveSentiment.map(category => {
+              if (category.count > 0) {
+                return (
+                  <li className="sentiment-rate-details">
+                    <div
+                      className="sentiment-color-detail"
+                      style={{
+                        height: '18px',
+                        width: '18px',
+                        backgroundColor: `${category.color}`
+                      }}
+                    >
+                      {' '}
+                    </div>
+                    <span>
+                      {category.name}: {category.count}{' '}
+                    </span>
+                  </li>
+                )
+              }
+            })}
           </Typography>
         </Paper>
       </Paper>

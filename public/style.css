@@ -368,3 +368,18 @@ Error Page
   margin-left: 4em;
   padding: 3.3em;
 }
+
+/* ------------------------
+   Sentiment
+------------------------ */
+.sentiment-rate-details {
+  display: flex;
+  padding: 8px;
+  justify-content: stretch;
+  align-items: center;
+}
+
+.sentiment-color-detail {
+  align-items: center;
+  margin-right: 10px;
+}
