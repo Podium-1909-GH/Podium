@@ -41,7 +41,9 @@ class SpeechOverview extends React.Component {
         <br />
         <div>
           <D3BubblesWrapper speech={this.props.speech} />
-          <SpeechSentimentWrapper sentiment={sentiment} />
+          {Object.entries(sentiment).length !== 0 && (
+            <SpeechSentimentWrapper sentiment={sentiment} />
+          )}
           <SpeechFillerWrapper
             fillerObj={fillerObj}
             speech={this.props.speech}
