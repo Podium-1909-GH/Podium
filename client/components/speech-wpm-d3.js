@@ -20,22 +20,22 @@ export default class D3Chart {
       // add 10 pixel margin on left and top
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
 
-    // // add x-axis label
-    // vis.xLabel = vis.svg
-    //   .append('text')
-    //   .attr('x', WIDTH / 2)
-    //   .attr('y', HEIGHT + 45)
-    //   .attr('text-anchor', 'middle')
-    //   .text(`Your last ${speeches.length} sessions`)
+    // add x-axis label
+    vis.xLabel = vis.svg
+      .append('text')
+      .attr('x', WIDTH / 2)
+      .attr('y', HEIGHT + 45)
+      .attr('text-anchor', 'middle')
+      .text('Words per Minute')
 
     // add y-axis label
-    vis.svg
-      .append('text')
-      .attr('x', -(HEIGHT / 2))
-      .attr('y', -50)
-      .attr('text-anchor', 'middle')
-      .text('Words Per Minute')
-      .attr('transform', 'rotate(-90)')
+    // vis.svg
+    //   .append('text')
+    //   .attr('x', -(HEIGHT / 2))
+    //   .attr('y', -50)
+    //   .attr('text-anchor', 'middle')
+    //   .text('Words Per Minute')
+    //   .attr('transform', 'rotate(-90)')
 
     // want to define x and y axis once originally
     vis.xAxisGroup = vis.svg
@@ -77,11 +77,11 @@ export default class D3Chart {
       .call(xAxisCall)
 
     // updates y axis
-    const yAxisCall = d3.axisLeft(y).ticks(0)
-    vis.yAxisGroup
-      .transition()
-      .duration(500)
-      .call(yAxisCall)
+    // const yAxisCall = d3.axisLeft(y).ticks(0)
+    // vis.yAxisGroup
+    //   .transition()
+    //   .duration(500)
+    //   .call(yAxisCall)
 
     vis.Tooltip = d3
       .select(element)
@@ -105,7 +105,7 @@ export default class D3Chart {
       vis.Tooltip.style('opacity', 1)
       d3
         .select(this)
-        .style('stroke', 'black')
+        .style('stroke', '#4652B1')
         .style('opacity', 1)
     }
     let mousemove = function(d) {
@@ -140,7 +140,7 @@ export default class D3Chart {
         return y(50)
       })
       .attr('r', 5)
-      .attr('fill', '##11C3D0')
+      .attr('fill', '#E445A8')
       .style('stroke-width', 3)
       .style('stroke', 'none')
       .on('mouseover', mouseover)
