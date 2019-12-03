@@ -279,8 +279,8 @@ Error Page
 }
 
 .error-img {
-  width: 50%;
-  height: 100%;
+  width: 30%;
+  height: auto;
   margin-left: 4em;
   padding: 3.3em;
 }
