@@ -48,12 +48,12 @@ class Routes extends Component {
             <Route path="/user/profile" component={UserProfile} />
             <Route path="/user/profile/edit" component={UserProfileEdit} />
             <Route path="/user/dashboard" component={UserDashboard} />
-            <Route component={Home} />
+            <Route component={ErrorPage} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Home} />
-        <Route path="*" component={ErrorPage} />
+
+        <Route component={ErrorPage} />
       </Switch>
     )
   }
