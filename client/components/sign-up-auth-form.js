@@ -9,7 +9,7 @@ const SignUp = props => {
   const {name, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="auth-form-container">
       <form className="auth-form" onSubmit={handleSubmit} name={name}>
         <div>
           <TextField
@@ -44,7 +44,8 @@ const SignUp = props => {
 
         <div>
           <TextField
-            id="standard-password-input"
+            required
+            id="standard-password-required"
             label="Password"
             name="password"
             type="password"
@@ -61,6 +62,19 @@ const SignUp = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
+
+      <Button
+        className="auth-form-google"
+        href="/auth/google"
+        color="primary"
+        variant="outlined"
+      >
+        <img
+          id="g-img"
+          src="https://image.flaticon.com/teams/slug/google.jpg"
+        />
+        Sign in with Google
+      </Button>
     </div>
   )
 }

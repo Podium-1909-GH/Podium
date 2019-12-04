@@ -17,7 +17,7 @@ class SpeechSentimentWrapper extends Component {
   render() {
     let {sentiment} = this.props
     let sentimentData = [
-      {name: 'Positive', count: sentiment.positive.length, color: '#52BE80'},
+      {name: 'Positive', count: sentiment.positive.length, color: '#2ECC71 '},
       {name: 'Negative', count: sentiment.negative.length, color: '#E67E22'},
       {
         name: 'Neutral',
