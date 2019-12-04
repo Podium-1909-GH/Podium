@@ -6,7 +6,7 @@ import {getSpeeches} from '../store/speeches'
 import DashboardWpmWrapper from './dashboard-wpm-wrapper'
 import DashboardFillerWrapper from './dashboard-filler-wrapper'
 import DashboardInfoBubblesWrapper from './dashboard-info-bubbles-wrapper'
-// import DashboardMainWrapper from './dashboard-main-wrapper'
+import DashboardMainWrapper from './dashboard-main-wrapper'
 import DashboardSentimentWrapper from './dashboard-sentiment-wrapper'
 import Typography from '@material-ui/core/Typography'
 
@@ -47,7 +47,7 @@ class UserDashboard extends React.Component {
         ) : (
           <React.Fragment>
             {/* <Typography variant="h5">All of your speechesby</Typography> */}
-            {/* <DashboardMainWrapper /> */}
+
             {/* <hr /> */}
             <Typography variant="h5">
               A summary of your last {this.state.mostRecentSpeeches.length}{' '}
@@ -61,6 +61,8 @@ class UserDashboard extends React.Component {
             />
             <DashboardWpmWrapper speeches={this.state.mostRecentSpeeches} />
             <DashboardFillerWrapper speeches={this.state.mostRecentSpeeches} />
+            <Typography variant="h5">Speech history</Typography>
+            <DashboardMainWrapper />
           </React.Fragment>
         )}
       </div>
