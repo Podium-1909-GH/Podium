@@ -13,49 +13,49 @@ async function seed() {
       max: 115,
       title: 'Slow',
       description:
-        'A slower delivery puts more weight behind each word you say. It lets your audience have the time to truly take in the words you are saying and comprehend your message. Martin Luther King Jr. delivered "I have a dream" at 92 wpm. Steve Jobs dropped his pace to 94 wpm when unveiling the original iPhone back in 2007.'
+        'A slower delivery places more weight on each word you say and can allow listeners more time to comprehend your speech. Martin Luther King Jr. delivered his "I have a dream" speech at about 92 words per minute. Steve Jobs spoke at about 94 words per minute when unveiling the original iPhone in 2007.'
     }),
     WPM.create({
       min: 115,
       max: 150,
       title: 'Conversational',
       description:
-        "The average pace for most English speakers. This is a comfortable range for most people to speak at. It's easy to maintain for the speaker and easy to understand for the listener!"
+        'This is the average pace for most English speakers. This speed is often comfortable for speakers to maintain without being too fast for listeners to follow.'
     }),
     WPM.create({
       min: 150,
       max: 161,
       title: 'Podcast Pace',
       description:
-        'Most podcasters try to speak between 150 and 160 wpm. The majority of audiobooks also fall in this range. It is a pace where your audience can pick up your words clearly, without feeling too slow.'
+        'Most podcasters aim to speak between about 150 and 160 words per minute. Many audiobook recordings also fall within this range. Speaking at this pace can allow your audience to hear your words clearly, without feeling too slow.'
     }),
     WPM.create({
       min: 161,
       max: 200,
       title: 'Fast Conversational',
       description:
-        'This range still falls inside the realm of everyday speech, but speaking faster than 160 words per minute can add a feeling of urgency to your words.'
+        'This pace still falls within the range of everyday speech. Speaking faster than about 160 words per minute can add a feeling of urgency to your words. Many people who are perceived as effective TED talk presenters speak at about 190 words per minute.'
     }),
     WPM.create({
       min: 200,
       max: 250,
       title: 'Fast',
       description:
-        "Sports Commentaters have to speak quickly to ensure their listeners know what is happening when it's happening."
+        'Sports commentators often speak this quickly to keep listeners informed of live or fast-moving events as they unfold.'
     }),
     WPM.create({
       min: 250,
       max: 400,
       title: 'Auctioneer',
       description:
-        'Auctioneers have to speak fast to keep bids moving. Speaking this fast while remaining articulate is a true skill!'
+        'Auctioneers usually speak at this pace to keep bids moving. Speaking this quickly while remaining articulate takes great skill!'
     }),
     WPM.create({
       min: 400,
       max: 10000,
       title: 'World Record Pace',
       description:
-        'Wow! You sure are a fast talker. The current Guinness World record for fastest talker is held by Sean Shannon at a rate of 655wpm.'
+        'Wow! You sure are a fast talker. Sean Shannon set the Guiness World record for fastest talker when he spoke at a rate of 655 words per minute.'
     })
   ])
 

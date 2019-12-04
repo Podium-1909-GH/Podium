@@ -41,7 +41,8 @@ class SpeechFillerWrapper extends Component {
           <hr />
           <Typography variant="body1" component="p">
             Your pace was {this.props.speech.wpm} words per minute! That's
-            considered a "{this.state.wpmInfo.title}" pace!
+            considered a "{this.state.wpmInfo.title}" pace!{' '}
+            {this.state.wpmInfo.description}
           </Typography>
         </Paper>
       </div>
