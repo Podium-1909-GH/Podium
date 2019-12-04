@@ -12,6 +12,15 @@ export default class D3SentimentChart {
     )
     filterSentimentData.forEach(data => {
       data.percentage = Math.round(data.count * 100 / totalWordsCount)
+
+      // set the color scale
+      if (data.name === 'Positive') {
+        data.color = '#2ECC71'
+      } else if (data.name === 'Negative') {
+        data.color = '#E67E22'
+      } else {
+        data.color = '#D6EAF8'
+      }
     })
 
     const vis = this

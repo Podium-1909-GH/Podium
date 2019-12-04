@@ -77,7 +77,7 @@ label {
   align-items: center;
 }
 
-#auth-form-google {
+.auth-form-google {
   margin: 20px;
 }
 
