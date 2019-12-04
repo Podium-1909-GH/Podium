@@ -31,9 +31,8 @@ class SpeechSentimentWrapper extends Component {
 
     this.filterSentimentData = sentimentData.filter(data => data.count > 0)
     return (
-      <Paper className="dashboard-item" elevation={4}>
-        <div ref="speechSentimentPieChart" />
-        <Paper elevation={2}>
+      <div className="dashboard-item">
+        <Paper elevation={4} className="dashboard-item-text">
           <Typography variant="h5">Speech Sentiment Ratios</Typography>
           <hr />
           <Typography variant="body1" component="div">
@@ -81,7 +80,10 @@ class SpeechSentimentWrapper extends Component {
             </a>!
           </Typography>
         </Paper>
-      </Paper>
+        <Paper className="dashboard-chart" elevation={4}>
+          <div ref="speechSentimentPieChart" />
+        </Paper>
+      </div>
     )
   }
 }

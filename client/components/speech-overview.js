@@ -23,19 +23,24 @@ class SpeechOverview extends React.Component {
     return (
       <div className="data-overview">
         <div>
-          <Typography variant="h3">Speech Summary</Typography>
+          <Typography
+            variant="h3"
+            style={{fontFamily: 'Merriweather', fontWeight: '600'}}
+          >
+            Speech Summary <hr />
+          </Typography>
           <SpeechTranscript transcript={this.props.speech.transcript} />
         </div>
         <br />
         <div>
           <D3BubblesWrapper speech={this.props.speech} />
-          {Object.entries(sentiment).length !== 0 && (
-            <SpeechSentimentWrapper sentiment={sentiment} />
-          )}
           <SpeechFillerWrapper
             fillerObj={fillerObj}
             speech={this.props.speech}
           />
+          {Object.entries(sentiment).length !== 0 && (
+            <SpeechSentimentWrapper sentiment={sentiment} />
+          )}
           <SpeechWPMWrapper speech={this.props.speech} />
         </div>
       </div>

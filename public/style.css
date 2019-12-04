@@ -214,12 +214,24 @@ body,
 /* ------------------------
    Dashboard Item
 ------------------------ */
+
 .dashboard-item {
-  width: 870px;
+  width: 900px;
   display: flex;
   margin: 15px;
+}
+
+.dashboard-chart {
+  margin: auto;
   padding: 10px;
 }
+
+.svg-item {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
 .dashboard-item ol,
 li {
   list-style-position: inside;

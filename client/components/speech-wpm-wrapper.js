@@ -32,9 +32,11 @@ class SpeechFillerWrapper extends Component {
 
   render() {
     return (
-      <Paper className="dashboard-item" elevation={4}>
-        <div ref="speechWPM" />
-        <Paper elevation={2}>
+      <div className="dashboard-item">
+        <Paper className="dashboard-chart" elevation={4}>
+          <div ref="speechWPM" />
+        </Paper>
+        <Paper elevation={4} className="dashboard-item-text">
           <Typography variant="h5">Words Per Minute</Typography>
           <hr />
           <Typography variant="body1" component="p">
@@ -42,7 +44,7 @@ class SpeechFillerWrapper extends Component {
             considered a "{this.state.wpmInfo.title}" pace!
           </Typography>
         </Paper>
-      </Paper>
+      </div>
     )
   }
 }
