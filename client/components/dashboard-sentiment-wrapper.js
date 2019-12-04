@@ -57,9 +57,8 @@ class DashboardSentimentWrapper extends Component {
     )
 
     return (
-      <Paper className="dashboard-item" elevation={4}>
-        <div ref="dashSentiment" />
-        <Paper elevation={2}>
+      <div className="dashboard-item">
+        <Paper elevation={4}>
           <Typography variant="h5">Sentiment Analysis</Typography>
           <hr />
           <Typography variant="body1" component="div">
@@ -108,7 +107,10 @@ class DashboardSentimentWrapper extends Component {
             </a>!
           </Typography>
         </Paper>
-      </Paper>
+        <Paper className="dashboard-chart" elevation={4}>
+          <div ref="dashSentiment" />
+        </Paper>
+      </div>
     )
   }
 }

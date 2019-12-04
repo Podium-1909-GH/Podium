@@ -57,6 +57,7 @@ export default class D3Bubbles {
       .text(`${speech.wpm}`)
       .attr('font-size', '50px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
     //add text label
     vis.svg
       .append('text')
@@ -66,6 +67,7 @@ export default class D3Bubbles {
       .text(`words per minute`)
       .attr('font-size', '15px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
 
     //make the circle
     vis.svg
@@ -86,6 +88,7 @@ export default class D3Bubbles {
       .text(`${speech.numberFiller}`)
       .attr('font-size', '50px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
     //add text label
     vis.svg
       .append('text')
@@ -95,6 +98,7 @@ export default class D3Bubbles {
       .text(`filler words`)
       .attr('font-size', '15px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
 
     //make the circle
     vis.svg
@@ -114,6 +118,7 @@ export default class D3Bubbles {
       .text(`${sentiment}`)
       .attr('font-size', '40px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
     //add text label
     vis.svg
       .append('text')
@@ -123,5 +128,6 @@ export default class D3Bubbles {
       .text(`sentiment`)
       .attr('font-size', '15px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
   }
 }
