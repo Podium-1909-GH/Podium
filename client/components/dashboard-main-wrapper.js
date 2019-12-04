@@ -13,7 +13,6 @@ class DashboardMainWrapper extends Component {
   }
 
   render() {
-    console.log('* render in dashboard main wrapper *')
     // eslint-disable-next-line no-new
     return (
       <Paper className="dashboard-item" elevation={4}>

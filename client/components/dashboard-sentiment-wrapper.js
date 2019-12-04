@@ -28,7 +28,6 @@ class DashboardSentimentWrapper extends Component {
     // need each speech sentiment to be a JSON instead of string
     this.speeches.forEach(speech => {
       speech.sentiment = JSON.parse(speech.sentiment)
-      console.log(speech.sentiment)
     })
 
     const positiveCount = this.speeches.reduce((accum, speech) => {

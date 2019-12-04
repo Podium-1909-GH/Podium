@@ -29,7 +29,6 @@ export const postSpeech = (transcript, length, userId) => async dispatch => {
 export const getSpeeches = userId => async dispatch => {
   try {
     const res = await axios.get(`/api/users/${userId}/speeches`)
-    console.log('axios data in gotSpeeches thunk', res.data)
     dispatch(gotSpeeches(res.data))
   } catch (err) {
     console.error(err)

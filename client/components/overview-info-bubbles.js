@@ -8,7 +8,6 @@ const radius = 80
 export default class D3Bubbles {
   // put things that only need to be called once in constructor
   constructor(element, speech) {
-    console.log('speech: ', speech)
     const vis = this
     let sentiment = ''
     const sentimentParsed = JSON.parse(speech.sentiment)

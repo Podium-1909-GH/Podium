@@ -35,12 +35,9 @@ export const me = () => async dispatch => {
 }
 
 export const login = (email, password) => async dispatch => {
-  console.log('email in thunk', email)
-  console.log('password in thunk', password)
   let res
   try {
     res = await axios.post(`/auth/login`, {email, password})
-    console.log('RES DATA FROM AXIOS', res.data)
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
@@ -82,12 +79,9 @@ export const createdUser = newUser => {
 }
 
 export const updatedUser = (userId, user) => async dispatch => {
-  console.log('userId in thunk', userId)
-  console.log('user in thunk', user)
   let res
   try {
     res = await axios.put(`/api/users/${userId}`, user)
-    console.log('RES', res)
     dispatch(updateUser(res.data))
   } catch (error) {
     console.log('Profile update failed.')
