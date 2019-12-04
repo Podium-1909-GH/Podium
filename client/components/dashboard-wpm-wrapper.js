@@ -35,9 +35,11 @@ class DashboardWpmWrapper extends Component {
 
   render() {
     return (
-      <Paper className="dashboard-item" elevation={4}>
-        <div ref="dashWpm" />
-        <Paper elevation={2}>
+      <div className="dashboard-item">
+        <Paper className="dashboard-chart" elevation={4}>
+          <div ref="dashWpm" className="svg-item" />
+        </Paper>
+        <Paper elevation={4}>
           <Typography variant="h5">Words Per Minute</Typography>
           <hr />
           <Typography
@@ -51,7 +53,7 @@ class DashboardWpmWrapper extends Component {
             }" pace! {this.state.wpm.description}
           </Typography>
         </Paper>
-      </Paper>
+      </div>
     )
   }
 }

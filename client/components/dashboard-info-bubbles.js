@@ -64,7 +64,6 @@ export default class DashboardBubbles {
       .attr('fill', '#E445A8')
       .on('mouseover', mouseover)
       .on('mouseleave', mouseleave)
-
     //add text
     vis.svg
       .append('text')
@@ -74,6 +73,7 @@ export default class DashboardBubbles {
       .text(`${avgWpm}`)
       .attr('font-size', '50px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
     //add text label
     vis.svg
       .append('text')
@@ -83,6 +83,7 @@ export default class DashboardBubbles {
       .text(`words per minute`)
       .attr('font-size', '15px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
 
     //make the circle
     vis.svg
@@ -102,6 +103,7 @@ export default class DashboardBubbles {
       .text(`${avgFiller}%`)
       .attr('font-size', '50px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
     //add text label
     vis.svg
       .append('text')
@@ -111,6 +113,7 @@ export default class DashboardBubbles {
       .text(`filler words`)
       .attr('font-size', '15px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
 
     //make the circle
     vis.svg
@@ -130,6 +133,7 @@ export default class DashboardBubbles {
       .text(`${sentiment}`)
       .attr('font-size', '40px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
     //add text label
     vis.svg
       .append('text')
@@ -139,5 +143,6 @@ export default class DashboardBubbles {
       .text(`sentiment`)
       .attr('font-size', '15px')
       .attr('fill', 'white')
+      .style('pointer-events', 'none')
   }
 }

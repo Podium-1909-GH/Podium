@@ -5,43 +5,56 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
 class SpeechSentimentWrapper extends Component {
-  componentDidMount() {
-    if (this.filterSentimentData) {
+  constructor(props) {
+    super(props)
+    this.state = {
+      sentimentData: []
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.sentiment) {
+      let sentimentData = [
+        {
+          name: 'Positive',
+          count: nextProps.sentiment.positive.length,
+          color: '#11C3D0'
+        },
+        {
+          name: 'Negative',
+          count: nextProps.sentiment.negative.length,
+          color: '#E445A8'
+        },
+        {
+          name: 'Neutral',
+          count:
+            nextProps.sentiment.tokens.length -
+            nextProps.sentiment.positive.length -
+            nextProps.sentiment.negative.length,
+          color: '#4652B1'
+        }
+      ]
+
+      this.filterSentimentData = sentimentData.filter(data => data.count > 0)
       new D3SentimentChart(
         this.refs.speechSentimentPieChart,
         this.filterSentimentData
       )
+      this.setState({sentimentData})
     }
   }
 
   render() {
-    let {sentiment} = this.props
-    let sentimentData = [
-      {name: 'Positive', count: sentiment.positive.length, color: '#2ECC71 '},
-      {name: 'Negative', count: sentiment.negative.length, color: '#E67E22'},
-      {
-        name: 'Neutral',
-        count:
-          sentiment.tokens.length -
-          sentiment.positive.length -
-          sentiment.negative.length,
-        color: '#D6EAF8'
-      }
-    ]
-
-    this.filterSentimentData = sentimentData.filter(data => data.count > 0)
     return (
-      <Paper className="dashboard-item" elevation={4}>
-        <div ref="speechSentimentPieChart" />
-        <Paper elevation={2}>
+      <div className="dashboard-item">
+        <Paper elevation={4} className="dashboard-item-text">
           <Typography variant="h5">Speech Sentiment Ratios</Typography>
           <hr />
           <Typography variant="body1" component="div">
-            Overal of your speech, you use:
-            {sentimentData.map(category => {
+            In your speech, you used:
+            {this.state.sentimentData.map(category => {
               if (category.count > 0) {
                 return (
-                  <li className="sentiment-rate-details">
+                  <li className="sentiment-rate-details" key={category.name}>
                     <div
                       className="sentiment-color-detail"
                       style={{
@@ -60,8 +73,31 @@ class SpeechSentimentWrapper extends Component {
               }
             })}
           </Typography>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Typography
+            variant="caption"
+            component="p"
+            style={{marginBottom: '0px'}}
+          >
+            You can read more about sentiment analysis{' '}
+            <a
+              href="https://www.lexalytics.com/technology/sentiment-analysis"
+              target="_blank"
+            >
+              here
+            </a>!
+          </Typography>
         </Paper>
-      </Paper>
+        <Paper className="dashboard-chart" elevation={4}>
+          <div ref="speechSentimentPieChart" />
+        </Paper>
+      </div>
     )
   }
 }

@@ -19,16 +19,18 @@ class SpeechFillerWrapper extends Component {
     )
 
     return (
-      <Paper className="dashboard-item" elevation={4}>
-        <div ref="speechFiller" />
-        <Paper elevation={2}>
+      <div className="dashboard-item">
+        <Paper className="dashboard-chart" elevation={4}>
+          <div ref="speechFiller" />
+        </Paper>
+        <Paper elevation={4} className="dashboard-item-text">
           <Typography variant="h5">Filler Word Ratio</Typography>
           <hr />
           <Typography variant="body1" component="p">
             {percentFiller}% of your words were filler words
           </Typography>
         </Paper>
-      </Paper>
+      </div>
     )
   }
 }
