@@ -27,6 +27,19 @@ export default class D3Bubbles {
       .attr('width', svgWidth)
       .attr('height', svgHeight)
 
+    let mouseover = function(d) {
+      d3
+        .select(this)
+        .attr('r', radius * 1.1)
+        .style('opacity', 0.75)
+    }
+
+    let mouseleave = function(d) {
+      d3
+        .select(this)
+        .attr('r', radius)
+        .style('opacity', 1)
+    }
     //make the circle
     vis.svg
       .append('circle')
@@ -34,6 +47,8 @@ export default class D3Bubbles {
       .attr('cy', svgHeight / 2)
       .attr('r', radius)
       .attr('fill', '#E445A8')
+      .on('mouseover', mouseover)
+      .on('mouseleave', mouseleave)
     //add text
     vis.svg
       .append('text')
@@ -60,6 +75,8 @@ export default class D3Bubbles {
       .attr('cy', svgHeight / 2)
       .attr('r', 80)
       .attr('fill', '#11C3D0')
+      .on('mouseover', mouseover)
+      .on('mouseleave', mouseleave)
 
     //add text
     vis.svg
@@ -87,6 +104,8 @@ export default class D3Bubbles {
       .attr('cy', svgHeight / 2)
       .attr('r', 80)
       .attr('fill', '#F29831')
+      .on('mouseover', mouseover)
+      .on('mouseleave', mouseleave)
     //add text
     vis.svg
       .append('text')

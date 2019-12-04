@@ -22,7 +22,7 @@ class SpeechOverview extends React.Component {
     let sentiment = JSON.parse(this.props.speech.sentiment)
 
     return (
-      <div>
+      <div className="data-overview">
         <div>
           <Typography variant="h3">Summary</Typography>
         </div>

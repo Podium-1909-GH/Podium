@@ -2,6 +2,7 @@ body {
   font-family: Roboto, sans-serif;
   margin: 0px;
   background-color: #f6f9fe;
+  min-width: 900px;
 }
 
 a {
@@ -11,7 +12,14 @@ a {
 a:hover {
   text-decoration: underline;
 }
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
+  color: #4652b1;
+}
 label {
   display: block;
 }
@@ -69,7 +77,7 @@ label {
   align-items: center;
 }
 
-#auth-form-google {
+.auth-form-google {
   margin: 20px;
 }
 
@@ -205,6 +213,7 @@ body,
    Dashboard Item
 ------------------------ */
 .dashboard-item {
+  width: 870px;
   display: flex;
   margin: 15px;
   padding: 10px;
@@ -253,39 +262,40 @@ li {
   align-items: center;
   flex-direction: column;
   font-family: Roboto, sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   color: #4652b1;
 }
 
 .about-header {
   display: flex;
   flex-direction: row;
-  margin-left: 5%;
-  margin-right: 5%;
   margin-bottom: 2%;
 }
 
 .about-tagline {
-  font-weight: 600;
-  font-size: x-large;
+  font-weight: 700;
+  font-size: xx-large;
+  font-family: 'Merriweather';
   margin-bottom: 3%;
 }
 
-.about-text {
+.about-title {
   display: flex;
   font-size: large;
   flex-direction: column;
   justify-content: center;
+  margin-left: 6%;
 }
 
 .about-image {
-  height: 50%;
-  width: 50%;
+  height: 49%;
+  width: 49%;
 }
 
 .about-titles {
   font-size: x-large;
-  font-weight: 500;
+  font-weight: 600;
+  font-family: 'Merriweather';
   margin: 3%;
 }
 
@@ -294,6 +304,12 @@ li {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.about-text {
+  text-align: center;
+  font-weight: 300;
+  color: #4652b1;
 }
 
 .tile-icon {
@@ -310,7 +326,7 @@ li {
 }
 
 .about-paper {
-  height: 250px;
+  height: 225px;
   width: 200px;
   margin: 10px;
   padding: 10px;
@@ -320,12 +336,34 @@ li {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.team-avatar {
-  height: 100px;
-  width: 100px;
+.team-card {
+  width: 200px;
   margin: 10px;
+}
+
+.team-img {
+  height: 200px;
+  width: 200px;
+}
+
+.team-member {
+  font-size: large;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #4652b1;
+}
+
+.tech-card {
+  margin: 10px;
+}
+
+.tech-img {
+  height: 140px;
+  width: 140px;
+  border: solid white 5px;
 }
 
 /* ------------------------
@@ -347,4 +385,19 @@ Error Page
   height: auto;
   margin-left: 4em;
   padding: 3.3em;
+}
+
+/* ------------------------
+   Sentiment
+------------------------ */
+.sentiment-rate-details {
+  display: flex;
+  padding: 8px;
+  justify-content: stretch;
+  align-items: center;
+}
+
+.sentiment-color-detail {
+  align-items: center;
+  margin-right: 10px;
 }

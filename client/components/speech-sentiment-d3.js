@@ -15,7 +15,7 @@ export default class D3SentimentChart {
 
       // set the color scale
       if (data.name === 'Positive') {
-        data.color = '#52BE80'
+        data.color = '#2ECC71'
       } else if (data.name === 'Negative') {
         data.color = '#E67E22'
       } else {
@@ -53,12 +53,6 @@ export default class D3SentimentChart {
       .innerRadius(0)
       .outerRadius(RADIUS)
 
-    //labels positioning
-    const outerArc = d3
-      .arc()
-      .innerRadius(RADIUS * 0.8)
-      .outerRadius(RADIUS * 0.8)
-
     //connect Data
     const arcData = pieGenerator(filterSentimentData)
     console.log(arcData)
@@ -74,71 +68,6 @@ export default class D3SentimentChart {
       .attr('stroke', 'white')
       .style('stroke-width', '0.5px')
       .style('opacity', 0.7)
-
-    // Add the polylines between chart and labels:
-    vis.svg
-      .selectAll('allPolylines')
-      .data(arcData)
-      .enter()
-      .append('polyline')
-      .attr('stroke', 'black')
-      .style('fill', 'none')
-      .attr('stroke-width', 1.3)
-      .attr('points', function(d) {
-        var pos = outerArc.centroid(d)
-        // multiply by 1 or -1 to put it on the right or on the left
-        pos[0] =
-          RADIUS *
-          (d.data.name === 'Neutral' || d.data.name === 'Negative' ? 1 : -1)
-        //Create line insertion, line break and label position in the slice
-        return [arcGenerator.centroid(d), outerArc.centroid(d), pos]
-      })
-
-    // Labels
-    vis.svg
-      .selectAll('allLabels')
-      .data(arcData)
-      .enter()
-      .append('text')
-      .each(function(d) {
-        d3
-          .select(this)
-          .attr('dy', '0.33em')
-          .text(d.data.name)
-          .attr('font-size', '0.90em')
-          .transition()
-          .duration(1000)
-
-          .attrTween('transform', function(d) {
-            this._current = this._current || d
-            var interpolate = d3.interpolate(this._current, d)
-            this._current = interpolate(0)
-            return function(t) {
-              //set label outside of the pie chart - example: https://bl.ocks.org/laxmikanta415/dc33fe11344bf5568918ba690743e06f
-              const d2 = interpolate(t)
-              const pos = outerArc.centroid(d2)
-              pos[0] =
-                RADIUS *
-                (d.data.name === 'Neutral' || d.data.name === 'Negative'
-                  ? 1
-                  : -1)
-              return 'translate(' + pos + ')'
-            }
-          })
-
-          //set each label next to it polyline
-          .styleTween('text-anchor', function(d) {
-            this._current = this._current || d
-            const interpolate = d3.interpolate(this._current, d)
-            this._current = interpolate(0)
-            return function(t) {
-              const d2 = interpolate(t)
-              return d.data.name === 'Neutral' || d.data.name === 'Negative'
-                ? 'start'
-                : 'end'
-            }
-          })
-      })
 
     //Percentage outside Pie Chart- example from https://bl.ocks.org/farazshuja/e2cb52828c080ba85da5458e2304a61f?fbclid=IwAR1We_VcLDjFBre6Fv60rT3OtHIEVdmTttkh7KG0ZHRrfzLBIcHIgV1QUYQ
     vis.svg
@@ -164,6 +93,6 @@ export default class D3SentimentChart {
       .attr('x', WIDTH / 2)
       .attr('y', HEIGHT + 50)
       .attr('text-anchor', 'middle')
-      .text('Sentiment')
+      .text('Sentiment Ratios')
   }
 }
