@@ -47,9 +47,9 @@ class DashboardSentimentWrapper extends Component {
     const neutralCount = this.speeches.length - positiveCount - negativeCount
 
     this.aveSentiment = [
-      {name: 'Positive', count: positiveCount, color: '#2ECC71 '},
-      {name: 'Negative', count: negativeCount, color: '#E67E22'},
-      {name: 'Neutral', count: neutralCount, color: 'D6EAF8'}
+      {name: 'Positive', count: positiveCount, color: '#11C3D0'},
+      {name: 'Negative', count: negativeCount, color: '#E445A8'},
+      {name: 'Neutral', count: neutralCount, color: '#4652B1'}
     ]
 
     this.filterSentimentSpeeches = this.aveSentiment.filter(
@@ -60,14 +60,15 @@ class DashboardSentimentWrapper extends Component {
       <Paper className="dashboard-item" elevation={4}>
         <div ref="dashSentiment" />
         <Paper elevation={2}>
-          <Typography variant="h5">Sentiment Speeches Rate</Typography>
+          <Typography variant="h5">Sentiment Analysis</Typography>
           <hr />
           <Typography variant="body1" component="div">
-            The breakdown of your last {this.speeches.length} speeches:
+            A breakdown of how your last {this.speeches.length} speeches were
+            rated:
             {this.aveSentiment.map(category => {
               if (category.count > 0) {
                 return (
-                  <li className="sentiment-rate-details">
+                  <li className="sentiment-rate-details" key={category.name}>
                     <div
                       className="sentiment-color-detail"
                       style={{
@@ -85,6 +86,26 @@ class DashboardSentimentWrapper extends Component {
                 )
               }
             })}
+          </Typography>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Typography
+            variant="caption"
+            component="p"
+            style={{'margin-bottom': '0px'}}
+          >
+            You can read more about sentiment analysis{' '}
+            <a
+              href="https://www.lexalytics.com/technology/sentiment-analysis"
+              target="_blank"
+            >
+              here
+            </a>!
           </Typography>
         </Paper>
       </Paper>
