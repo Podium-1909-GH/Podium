@@ -48,7 +48,7 @@ class DashboardSentimentWrapper extends Component {
     const neutralCount = this.speeches.length - positiveCount - negativeCount
 
     this.aveSentiment = [
-      {name: 'Positive', count: positiveCount, color: '#52BE80'},
+      {name: 'Positive', count: positiveCount, color: '#2ECC71 '},
       {name: 'Negative', count: negativeCount, color: '#E67E22'},
       {name: 'Neutral', count: neutralCount, color: 'D6EAF8'}
     ]
