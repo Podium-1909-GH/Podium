@@ -59,11 +59,11 @@ class UserDashboard extends React.Component {
             <DashboardInfoBubblesWrapper
               speeches={this.state.mostRecentSpeeches}
             />
-            <DashboardWpmWrapper speeches={this.state.mostRecentSpeeches} />
+            <DashboardFillerWrapper speeches={this.state.mostRecentSpeeches} />
             <DashboardSentimentWrapper
               speeches={this.state.mostRecentSpeeches}
             />
-            <DashboardFillerWrapper speeches={this.state.mostRecentSpeeches} />
+            <DashboardWpmWrapper speeches={this.state.mostRecentSpeeches} />
             <br />
             <Typography variant="h5">Your speech history</Typography>
             <DashboardMainWrapper />
