@@ -9,7 +9,7 @@ export default class D3Chart {
   // put things that only need to be called once in constructor
   constructor(element, speech, wpmInfo) {
     const vis = this
-    console.log('d3 speech', speech)
+
     // the visualization instance, calling it vis to define what this is
     vis.svg = d3
       .select(element)
@@ -58,7 +58,6 @@ export default class D3Chart {
       // range takes arr of 2 elems, min and max outputs in pixels
       .range([HEIGHT, 0])
     // put height as min to get y axis to start at bottom left
-    // console.log(y(272)) pass in 272 cm, returns 500 pixels
 
     const x = d3
       .scaleLinear()
@@ -133,7 +132,6 @@ export default class D3Chart {
       .enter()
       .append('circle')
       .attr('cx', function(d) {
-        console.log('d', d)
         return x(d.wpm)
       })
       .attr('cy', function(d) {

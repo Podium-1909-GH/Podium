@@ -55,7 +55,6 @@ export default class D3SentimentChart {
 
     //connect Data
     const arcData = pieGenerator(filterSentimentData)
-    console.log(arcData)
 
     // Build the pie chart: Create a path element and set its d attribute
     vis.svg

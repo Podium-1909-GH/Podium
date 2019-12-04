@@ -2,7 +2,7 @@ import * as d3 from 'd3'
 import history from '../history'
 import {formatSeconds} from '../utils'
 
-const MARGIN = {TOP: 10, BOTTOM: 30, LEFT: 0, RIGHT: 35}
+const MARGIN = {TOP: 10, BOTTOM: 10, LEFT: 0, RIGHT: 20}
 const WIDTH = 800 - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = 300 - MARGIN.TOP - MARGIN.BOTTOM
 
