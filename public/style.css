@@ -99,6 +99,10 @@ label {
   align-items: center;
 }
 
+.user-profile-form h1 {
+  font-family: 'Merriweather';
+}
+
 .user-profile-form {
   display: flex;
   flex-direction: column;
@@ -119,6 +123,7 @@ label {
 h3 {
   margin-block-start: 0.4em;
   margin-block-end: 0.4em;
+  font-family: 'Merriweather';
 }
 
 .recording-buttons {
