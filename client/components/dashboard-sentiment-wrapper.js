@@ -97,7 +97,7 @@ class DashboardSentimentWrapper extends Component {
           <Typography
             variant="caption"
             component="p"
-            style={{'margin-bottom': '0px'}}
+            style={{marginBottom: '0px'}}
           >
             You can read more about sentiment analysis{' '}
             <a
