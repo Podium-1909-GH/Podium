@@ -35,11 +35,11 @@ class SpeechSentimentWrapper extends Component {
       ]
 
       this.filterSentimentData = sentimentData.filter(data => data.count > 0)
+      this.setState({sentimentData})
       new D3SentimentChart(
         this.refs.speechSentimentPieChart,
         this.filterSentimentData
       )
-      this.setState({sentimentData})
     }
   }
 

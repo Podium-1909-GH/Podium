@@ -38,9 +38,7 @@ class SpeechOverview extends React.Component {
             fillerObj={fillerObj}
             speech={this.props.speech}
           />
-          {Object.entries(sentiment).length !== 0 && (
-            <SpeechSentimentWrapper sentiment={sentiment} />
-          )}
+          <SpeechSentimentWrapper sentiment={sentiment} />
           <SpeechWPMWrapper speech={this.props.speech} />
         </div>
       </div>
