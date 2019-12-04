@@ -13,7 +13,7 @@ const LogIn = props => {
         <div>
           <TextField
             required
-            id="standard-required"
+            id="standard-password-required"
             label="Email"
             name="email"
             type="email"
@@ -23,7 +23,8 @@ const LogIn = props => {
 
         <div>
           <TextField
-            id="standard-password-input"
+            required
+            id="standard-password-required"
             label="Password"
             name="password"
             type="password"
@@ -42,7 +43,7 @@ const LogIn = props => {
       </form>
 
       <Button
-        id="auth-form-google"
+        className="auth-form-google"
         href="/auth/google"
         color="primary"
         variant="outlined"
