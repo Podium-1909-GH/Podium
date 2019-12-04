@@ -60,7 +60,9 @@ label {
 .nav-menu-links a {
   color: black;
 }
-
+#toolbar {
+  margin-bottom: 30px;
+}
 /* ------------------------
     AUTH FORM
 ------------------------ */

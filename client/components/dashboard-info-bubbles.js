@@ -8,7 +8,6 @@ const radius = 80
 export default class DashboardBubbles {
   // put things that only need to be called once in constructor
   constructor(element, speeches) {
-    console.log('speeches: ', speeches)
     const vis = this
 
     //calculate averages

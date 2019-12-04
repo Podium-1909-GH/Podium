@@ -31,12 +31,6 @@ class SpeechFillerWrapper extends Component {
   }
 
   render() {
-    console.log(
-      'wrapper render',
-      this.speech,
-      'speech info',
-      this.state.wpmInfo
-    )
     return (
       <Paper className="dashboard-item" elevation={4}>
         <div ref="speechWPM" />

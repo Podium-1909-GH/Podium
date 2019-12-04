@@ -19,7 +19,7 @@ const Navbar = ({handleClick, isLoggedIn, firstName}) => {
     setAnchorEl(null)
   }
   return (
-    <AppBar position="static" id="nav-outer-container">
+    <AppBar position="fixed" id="nav-outer-container">
       <ToolBar id="navbar">
         <h1 id="navWelcome">
           <Link to="/">Podium</Link>
