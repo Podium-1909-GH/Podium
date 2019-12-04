@@ -39,7 +39,7 @@ export default class D3Chart {
     vis.xLabel = vis.svg
       .append('text')
       .attr('x', WIDTH / 2)
-      .attr('y', HEIGHT + 35)
+      .attr('y', HEIGHT + 45)
       .attr('text-anchor', 'middle')
       .text('Filler Words')
 

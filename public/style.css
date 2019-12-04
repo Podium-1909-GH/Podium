@@ -237,10 +237,14 @@ li {
   padding: 10px;
 }
 .dashboard-item-text {
-  text-align: justify;
+  text-align: left;
 }
 #transcript-button {
   margin-top: 10px;
+}
+
+ol {
+  text-align: left;
 }
 /* ------------------------
    About Podium / Home Page

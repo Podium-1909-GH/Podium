@@ -48,7 +48,7 @@ class DashboardWpmWrapper extends Component {
             Your Average Speed is {this.aveWpm} words per minute for your last{' '}
             {this.speeches.length} speeches! That's considered "{
               this.state.wpm.title
-            }" pace!{this.state.wpm.description}
+            }" pace! {this.state.wpm.description}
           </Typography>
         </Paper>
       </Paper>

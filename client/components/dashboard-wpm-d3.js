@@ -2,7 +2,7 @@ import * as d3 from 'd3'
 import history from '../history'
 import {formatSeconds} from '../utils'
 
-const MARGIN = {TOP: 10, BOTTOM: 45, LEFT: 45, RIGHT: 10}
+const MARGIN = {TOP: 10, BOTTOM: 45, LEFT: 55, RIGHT: 10}
 const WIDTH = 620 - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
 
@@ -24,7 +24,7 @@ export default class D3Chart {
     vis.xLabel = vis.svg
       .append('text')
       .attr('x', WIDTH / 2)
-      .attr('y', HEIGHT + 35)
+      .attr('y', HEIGHT + 45)
       .attr('text-anchor', 'middle')
       .text(`Your last ${speeches.length} sessions`)
 
@@ -32,7 +32,7 @@ export default class D3Chart {
     vis.svg
       .append('text')
       .attr('x', -(HEIGHT / 2))
-      .attr('y', -30)
+      .attr('y', -40)
       .attr('text-anchor', 'middle')
       .text('Words Per Minute')
       .attr('transform', 'rotate(-90)')
