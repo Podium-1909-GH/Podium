@@ -56,7 +56,7 @@ class DashboardFillerWrapper extends Component {
 
   render() {
     return (
-      <Paper className="dashboard-item" elevation={4}>
+      <div className="dashboard-item">
         <Paper elevation={2}>
           <Typography variant="h5">Filler Word Ratios</Typography>
           <hr />
@@ -75,8 +75,10 @@ class DashboardFillerWrapper extends Component {
             </ol>
           </Typography>
         </Paper>
-        <div ref="dashFiller" />
-      </Paper>
+        <Paper className="dashboard-chart" elevation={4}>
+          <div ref="dashFiller" />
+        </Paper>
+      </div>
     )
   }
 }

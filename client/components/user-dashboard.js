@@ -36,7 +36,10 @@ class UserDashboard extends React.Component {
   render() {
     return (
       <div className="data-overview">
-        <Typography variant="h3">
+        <Typography
+          variant="h3"
+          style={{fontFamily: 'Merriweather', fontWeight: '600'}}
+        >
           {this.props.userName}'s Dashboard <hr />
         </Typography>
         {this.state.mostRecentSpeeches.length === 0 ? (

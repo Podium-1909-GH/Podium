@@ -23,7 +23,12 @@ class SpeechOverview extends React.Component {
     return (
       <div className="data-overview">
         <div>
-          <Typography variant="h3">Speech Summary</Typography>
+          <Typography
+            variant="h3"
+            style={{fontFamily: 'Merriweather', fontWeight: '600'}}
+          >
+            Speech Summary
+          </Typography>
           <SpeechTranscript transcript={this.props.speech.transcript} />
         </div>
         <br />
