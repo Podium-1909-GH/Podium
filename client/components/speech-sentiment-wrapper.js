@@ -5,31 +5,45 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
 class SpeechSentimentWrapper extends Component {
-  componentDidMount() {
-    if (this.filterSentimentData) {
+  constructor(props) {
+    super(props)
+    this.state = {
+      sentimentData: []
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.sentiment) {
+      let sentimentData = [
+        {
+          name: 'Positive',
+          count: nextProps.sentiment.positive.length,
+          color: '#11C3D0'
+        },
+        {
+          name: 'Negative',
+          count: nextProps.sentiment.negative.length,
+          color: '#E445A8'
+        },
+        {
+          name: 'Neutral',
+          count:
+            nextProps.sentiment.tokens.length -
+            nextProps.sentiment.positive.length -
+            nextProps.sentiment.negative.length,
+          color: '#4652B1'
+        }
+      ]
+
+      this.filterSentimentData = sentimentData.filter(data => data.count > 0)
       new D3SentimentChart(
         this.refs.speechSentimentPieChart,
         this.filterSentimentData
       )
+      this.setState({sentimentData})
     }
   }
 
   render() {
-    let {sentiment} = this.props
-    let sentimentData = [
-      {name: 'Positive', count: sentiment.positive.length, color: '#11C3D0'},
-      {name: 'Negative', count: sentiment.negative.length, color: '#E445A8'},
-      {
-        name: 'Neutral',
-        count:
-          sentiment.tokens.length -
-          sentiment.positive.length -
-          sentiment.negative.length,
-        color: '#4652B1'
-      }
-    ]
-
-    this.filterSentimentData = sentimentData.filter(data => data.count > 0)
     return (
       <div className="dashboard-item">
         <Paper elevation={4} className="dashboard-item-text">
@@ -37,7 +51,7 @@ class SpeechSentimentWrapper extends Component {
           <hr />
           <Typography variant="body1" component="div">
             In your speech, you used:
-            {sentimentData.map(category => {
+            {this.state.sentimentData.map(category => {
               if (category.count > 0) {
                 return (
                   <li className="sentiment-rate-details" key={category.name}>
@@ -69,7 +83,7 @@ class SpeechSentimentWrapper extends Component {
           <Typography
             variant="caption"
             component="p"
-            style={{'margin-bottom': '0px'}}
+            style={{marginBottom: '0px'}}
           >
             You can read more about sentiment analysis{' '}
             <a
