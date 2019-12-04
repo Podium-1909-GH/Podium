@@ -54,7 +54,10 @@ class SpeechSentimentWrapper extends Component {
             {this.state.sentimentData.map(category => {
               if (category.count > 0) {
                 return (
-                  <li className="sentiment-rate-details" key={category.name}>
+                  <li
+                    className="sentiment-rate-details-speech"
+                    key={category.name}
+                  >
                     <div
                       className="sentiment-color-detail"
                       style={{
@@ -83,7 +86,8 @@ class SpeechSentimentWrapper extends Component {
           <Typography
             variant="caption"
             component="p"
-            style={{marginBottom: '0px'}}
+            style={{marginBottom: '0px', textAlign: 'center'}}
+            // className="sentiment-color-detail"
           >
             You can read more about sentiment analysis{' '}
             <a
