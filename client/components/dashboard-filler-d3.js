@@ -2,7 +2,7 @@ import * as d3 from 'd3'
 import history from '../history'
 import {formatSeconds} from '../utils'
 
-const MARGIN = {TOP: 10, BOTTOM: 45, LEFT: 55, RIGHT: 10}
+const MARGIN = {TOP: 10, BOTTOM: 55, LEFT: 60, RIGHT: 10}
 const WIDTH = 620 - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
 
@@ -32,7 +32,7 @@ export default class D3Chart {
     vis.svg
       .append('text')
       .attr('x', -(HEIGHT / 2))
-      .attr('y', -40)
+      .attr('y', -35)
       .attr('text-anchor', 'middle')
       .text('% Filler Words')
       .attr('transform', 'rotate(-90)')
