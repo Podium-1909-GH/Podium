@@ -60,7 +60,9 @@ label {
 .nav-menu-links a {
   color: black;
 }
-
+#toolbar {
+  margin-bottom: 30px;
+}
 /* ------------------------
     AUTH FORM
 ------------------------ */
@@ -237,22 +239,9 @@ li {
 .dashboard-item-text {
   text-align: justify;
 }
-
-/* @media(min-width:) */
-
-/* ------------------------
-   Speech Overview
------------------------- */
-
-.speech-transcript {
-  margin: 15px;
-  padding: 20px;
+#transcript-button {
+  margin-top: 10px;
 }
-
-.speech-title {
-  text-align: center;
-}
-
 /* ------------------------
    About Podium / Home Page
 ------------------------ */
