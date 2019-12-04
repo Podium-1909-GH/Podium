@@ -70,7 +70,7 @@ class DashboardFillerWrapper extends Component {
           >
             On average {this.percentFiller}% of your words for your last{' '}
             {this.speeches.length} speeches were filler words!
-            <ol>
+            <ol className="dashboard-item-bullets">
               <span>Top fillers</span>
               {this.totalFillerCount.map((entry, index) => (
                 <li key={index}>{entry[0]}</li>

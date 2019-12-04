@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 
-const MARGIN = {TOP: 10, BOTTOM: 45, LEFT: 45, RIGHT: 10}
+const MARGIN = {TOP: 10, BOTTOM: 55, LEFT: 55, RIGHT: 10}
 const WIDTH = 620 - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = 350 - MARGIN.TOP - MARGIN.BOTTOM
 
@@ -39,7 +39,7 @@ export default class D3Chart {
     vis.xLabel = vis.svg
       .append('text')
       .attr('x', WIDTH / 2)
-      .attr('y', HEIGHT + 35)
+      .attr('y', HEIGHT + 45)
       .attr('text-anchor', 'middle')
       .text('Filler Words')
 

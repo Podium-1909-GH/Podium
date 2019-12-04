@@ -249,11 +249,21 @@ li {
   padding: 10px;
 }
 .dashboard-item-text {
-  text-align: justify;
+  text-align: left;
 }
+
+.dashboard-item-bullets {
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 30%;
+}
+
 #transcript-button {
   margin-top: 10px;
 }
+
 /* ------------------------
    About Podium / Home Page
 ------------------------ */
@@ -393,9 +403,20 @@ Error Page
 ------------------------ */
 .sentiment-rate-details {
   display: flex;
-  padding: 8px;
+  text-align: left;
+  padding-left: 30%;
   justify-content: stretch;
   align-items: center;
+  padding-top: 5%;
+}
+
+.sentiment-rate-details-speech {
+  display: flex;
+  text-align: left;
+  padding-left: 15%;
+  justify-content: stretch;
+  align-items: center;
+  padding-top: 5%;
 }
 
 .sentiment-color-detail {

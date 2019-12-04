@@ -27,7 +27,7 @@ class SpeechFillerWrapper extends Component {
           <Typography variant="h5">Filler Word Ratio</Typography>
           <hr />
           <Typography variant="body1" component="p">
-            {percentFiller}% of your words were filler words
+            {percentFiller}% of your words were filler words.
           </Typography>
         </Paper>
       </div>
