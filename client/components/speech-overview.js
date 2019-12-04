@@ -27,13 +27,14 @@ class SpeechOverview extends React.Component {
             variant="h3"
             style={{fontFamily: 'Merriweather', fontWeight: '600'}}
           >
-            Speech Summary
+            Speech Summary <hr />
           </Typography>
           <SpeechTranscript transcript={this.props.speech.transcript} />
         </div>
         <br />
         <div>
           <D3BubblesWrapper speech={this.props.speech} />
+          <SpeechWPMWrapper speech={this.props.speech} />
           {Object.entries(sentiment).length !== 0 && (
             <SpeechSentimentWrapper sentiment={sentiment} />
           )}
@@ -41,7 +42,6 @@ class SpeechOverview extends React.Component {
             fillerObj={fillerObj}
             speech={this.props.speech}
           />
-          <SpeechWPMWrapper speech={this.props.speech} />
         </div>
       </div>
     )

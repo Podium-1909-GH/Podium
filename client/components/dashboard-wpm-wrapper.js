@@ -39,7 +39,7 @@ class DashboardWpmWrapper extends Component {
         <Paper className="dashboard-chart" elevation={4}>
           <div ref="dashWpm" className="svg-item" />
         </Paper>
-        <Paper elevation={2}>
+        <Paper elevation={4}>
           <Typography variant="h5">Words Per Minute</Typography>
           <hr />
           <Typography
