@@ -16,17 +16,19 @@ const Home = () => {
           <div className="about-tagline">Leave an impression.</div>
           <div>
             Podium is a personalized solution designed to polish speaking
-            ability and grow confidence.
+            ability and elevate confidence.
           </div>
         </div>
         <img className="about-image" src="podium-graphic-v2.png" />
       </div>
-      <div className="about-titles">let Podium be your coach</div>
+      <div className="about-titles">Let Podium be your coach.</div>
       <div className="about-tiles">
         <Paper className="about-paper" elevation={4}>
           <div className="about-tile">
             <img className="tile-icon" src="chart.png" />
-            <div className="about-text">Set goals and track your progress</div>
+            <div className="about-text">
+              Log in to record new sessions and track your progress over time
+            </div>
           </div>
         </Paper>
         <Paper className="about-paper" elevation={4}>
@@ -42,18 +44,21 @@ const Home = () => {
           <div className="about-tile">
             <img className="tile-icon" src="pace3.png" />
             <div className="about-text">
-              Learn about your habits and compare to well known speakers
+              Learn about your habits and understand your strengths and
+              weaknesses
             </div>
           </div>
         </Paper>
         <Paper className="about-paper" elevation={4}>
           <div className="about-tile">
             <img className="tile-icon" src="speech.png" />
-            <div className="about-text">Pace, filler words, and sentiment</div>
+            <div className="about-text">
+              Gain insight into how your words will be received
+            </div>
           </div>
         </Paper>
       </div>
-      <div className="about-titles">meet the team</div>
+      <div className="about-titles">Meet the team.</div>
       <div className="team">
         <Card className="team-card" elevation={4}>
           <CardActionArea
@@ -142,11 +147,12 @@ const Home = () => {
         <Avatar alt="Lina" src="Lina.jpg" className="team-avatar" />
         <Avatar alt="Mallory" src="Mallory.jpeg" className="team-avatar" /> */}
       </div>
-      <div className="about-titles">check out the tech</div>
+      <div className="about-titles">Check out the tech.</div>
       <div className="about-tiles">
         <Card className="tech-card" elevation={4}>
           <CardActionArea
             href="https://reactjs.org/docs/getting-started.html"
+            title="React"
             target="_blank"
           >
             <CardMedia className="tech-img" image="react.png" />
@@ -155,40 +161,55 @@ const Home = () => {
         <Card className="tech-card" elevation={4}>
           <CardActionArea
             href="https://redux.js.org/introduction/getting-started"
+            title="Redux"
             target="_blank"
           >
-            <CardMedia className="tech-img" image="redux.png" />
+            <CardMedia className="tech-img" image="cropped-redux.png" />
           </CardActionArea>
         </Card>
         <Card className="tech-card" elevation={4}>
-          <CardActionArea href="https://github.com/d3/d3/wiki" target="_blank">
+          <CardActionArea
+            href="https://github.com/d3/d3/wiki"
+            title="D3"
+            target="_blank"
+          >
             <CardMedia className="tech-img" image="d3.png" />
           </CardActionArea>
         </Card>
         <Card className="tech-card" elevation={4}>
-          <CardActionArea href="https://www.postgresql.org/" target="_blank">
-            <CardMedia className="tech-img" image="postgresql.png" />
+          <CardActionArea
+            href="https://www.postgresql.org/"
+            title="PostgreSQL"
+            target="_blank"
+          >
+            <CardMedia className="tech-img" image="cropped-postgresql.png" />
           </CardActionArea>
         </Card>
         <Card className="tech-card" elevation={4}>
           <CardActionArea
             href="https://sequelize.org/master/manual/getting-started.html"
+            title="Sequelize"
             target="_blank"
           >
             <CardMedia className="tech-img" image="sequelize.png" />
           </CardActionArea>
         </Card>
         <Card className="tech-card" elevation={4}>
-          <CardActionArea href="https://nodejs.org/en/about/" target="_blank">
-            <CardMedia className="tech-img" image="node.svg" />
+          <CardActionArea
+            href="https://nodejs.org/en/about/"
+            title="Node.js"
+            target="_blank"
+          >
+            <CardMedia className="tech-img" image="node.png" />
           </CardActionArea>
         </Card>
         <Card className="tech-card" elevation={4}>
           <CardActionArea
             href="https://material-ui.com/getting-started/installation/"
+            title="Material-UI"
             target="_blank"
           >
-            <CardMedia className="tech-img" image="material-ui.png" />
+            <CardMedia className="tech-img" image="cropped-material-ui.png" />
           </CardActionArea>
         </Card>
       </div>

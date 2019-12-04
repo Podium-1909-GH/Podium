@@ -247,21 +247,19 @@ li {
   align-items: center;
   flex-direction: column;
   font-family: Roboto, sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   color: #4652b1;
 }
 
 .about-header {
   display: flex;
   flex-direction: row;
-  margin-left: 5%;
-  margin-right: 5%;
   margin-bottom: 2%;
 }
 
 .about-tagline {
   font-weight: 700;
-  font-size: x-large;
+  font-size: xx-large;
   font-family: 'Merriweather';
   margin-bottom: 3%;
 }
@@ -271,11 +269,12 @@ li {
   font-size: large;
   flex-direction: column;
   justify-content: center;
+  margin-left: 6%;
 }
 
 .about-image {
-  height: 50%;
-  width: 50%;
+  height: 49%;
+  width: 49%;
 }
 
 .about-titles {
@@ -294,6 +293,8 @@ li {
 
 .about-text {
   text-align: center;
+  font-weight: 300;
+  color: #4652b1;
 }
 
 .tile-icon {
@@ -310,7 +311,7 @@ li {
 }
 
 .about-paper {
-  height: 250px;
+  height: 225px;
   width: 200px;
   margin: 10px;
   padding: 10px;
@@ -335,8 +336,9 @@ li {
 
 .team-member {
   font-size: large;
-  font-weight: 400;
-  margin-bottom: 5px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: #4652b1;
 }
 
 .tech-card {
@@ -344,8 +346,9 @@ li {
 }
 
 .tech-img {
-  height: 150px;
-  width: 150px;
+  height: 140px;
+  width: 140px;
+  border: solid white 5px;
 }
 
 /* ------------------------
