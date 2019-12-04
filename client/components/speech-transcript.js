@@ -31,7 +31,9 @@ const TranscriptDialog = props => {
   const transcript = props.transcript
   return (
     <div>
-      <Button onClick={handleClickOpen()}>View Speech Transcript</Button>
+      <Button id="transcript-button" onClick={handleClickOpen()}>
+        View Speech Transcript
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}

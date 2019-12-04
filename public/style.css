@@ -237,7 +237,9 @@ li {
 .dashboard-item-text {
   text-align: justify;
 }
-
+#transcript-button {
+  margin-top: 10px;
+}
 /* ------------------------
    About Podium / Home Page
 ------------------------ */

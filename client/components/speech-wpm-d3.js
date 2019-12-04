@@ -24,7 +24,7 @@ export default class D3Chart {
     vis.xLabel = vis.svg
       .append('text')
       .attr('x', WIDTH / 2)
-      .attr('y', HEIGHT + 30)
+      .attr('y', HEIGHT + 35)
       .attr('text-anchor', 'middle')
       .text('Words per Minute')
 
