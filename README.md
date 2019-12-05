@@ -7,9 +7,13 @@ Podium is a personalized solution designed to polish speaking ability and elevat
 ## As a user you can...
 
 Log in to record new sessions and track your progress over time
+
 Practice a speech, talk, or presentation and receive immediate feedback
+
 Learn about your habits and understand your strengths and weaknesses
+
 Gain insight into how your words will be received
+
 
 ## How does Podium work?
 
