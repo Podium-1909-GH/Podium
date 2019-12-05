@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as d3 from 'd3'
 
 const MARGIN = {TOP: 50, BOTTOM: 50, LEFT: 150, RIGHT: 100}

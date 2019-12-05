@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unused-state */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-string-refs */
 import React, {Component} from 'react'
 import DashBoardWpmD3 from './dashboard-filler-d3'
@@ -58,7 +60,9 @@ class DashboardFillerWrapper extends Component {
     return (
       <div className="dashboard-item">
         <Paper className="dashboard-chart" elevation={4}>
-          <div ref="dashFiller" />
+          <a name="filler">
+            <div ref="dashFiller" />
+          </a>
         </Paper>
         <Paper elevation={4}>
           <Typography variant="h5">Filler Word Ratios</Typography>

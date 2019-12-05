@@ -1,7 +1,8 @@
+/* eslint-disable react/no-string-refs */
+/* eslint-disable react/no-unused-state */
 import React, {Component} from 'react'
 import DashboardBubbles from './dashboard-info-bubbles'
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
 
 class DashboardInfoBubblesWrapper extends Component {
   // important to put in component did mount because we're changing something that already loaded to screen

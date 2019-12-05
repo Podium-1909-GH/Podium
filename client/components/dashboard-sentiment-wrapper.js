@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable react/no-string-refs */
+/* eslint-disable react/no-unused-state */
 import React, {Component} from 'react'
 import D3SentimentChart from './speech-sentiment-d3'
 import Paper from '@material-ui/core/Paper'
@@ -57,60 +60,66 @@ class DashboardSentimentWrapper extends Component {
     )
 
     return (
-      <div className="dashboard-item">
-        <Paper elevation={4}>
-          <Typography variant="h5">Sentiment Analysis</Typography>
-          <hr />
-          <Typography variant="body1" component="div">
-            A breakdown of how your last {this.speeches.length} speeches were
-            rated:
-            {this.aveSentiment.map(category => {
-              if (category.count > 0) {
-                return (
-                  <li className="sentiment-rate-details" key={category.name}>
-                    <div
-                      className="sentiment-color-detail"
-                      style={{
-                        height: '18px',
-                        width: '18px',
-                        backgroundColor: `${category.color}`
-                      }}
-                    >
-                      {' '}
-                    </div>
-                    <span>
-                      {category.name}: {category.count}{' '}
-                    </span>
-                  </li>
-                )
-              }
-            })}
-          </Typography>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <Typography
-            variant="caption"
-            component="p"
-            style={{marginBottom: '0px', textAlign: 'center'}}
-          >
-            You can read more about sentiment analysis{' '}
-            <a
-              href="https://www.lexalytics.com/technology/sentiment-analysis"
-              target="_blank"
+      <React.Fragment>
+        <div className="dashboard-item">
+          <Paper elevation={4}>
+            <Typography variant="h5" id="">
+              Sentiment Analysis
+            </Typography>
+            <hr />
+            <Typography variant="body1" component="div">
+              A breakdown of how your last {this.speeches.length} speeches were
+              rated:
+              {this.aveSentiment.map(category => {
+                if (category.count > 0) {
+                  return (
+                    <li className="sentiment-rate-details" key={category.name}>
+                      <div
+                        className="sentiment-color-detail"
+                        style={{
+                          height: '18px',
+                          width: '18px',
+                          backgroundColor: `${category.color}`
+                        }}
+                      >
+                        {' '}
+                      </div>
+                      <span>
+                        {category.name}: {category.count}{' '}
+                      </span>
+                    </li>
+                  )
+                }
+              })}
+            </Typography>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Typography
+              variant="caption"
+              component="p"
+              style={{marginBottom: '0px', textAlign: 'center'}}
             >
-              here
-            </a>!
-          </Typography>
-        </Paper>
-        <Paper className="dashboard-chart" elevation={4}>
-          <div ref="dashSentiment" />
-        </Paper>
-      </div>
+              You can read more about sentiment analysis{' '}
+              <a
+                href="https://www.lexalytics.com/technology/sentiment-analysis"
+                target="_blank"
+              >
+                here
+              </a>!
+            </Typography>
+          </Paper>
+          <Paper className="dashboard-chart" elevation={4}>
+            <a name="sentiment">
+              <div ref="dashSentiment" />
+            </a>
+          </Paper>
+        </div>
+      </React.Fragment>
     )
   }
 }

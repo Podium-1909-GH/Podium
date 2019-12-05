@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable react/no-string-refs */
+/* eslint-disable react/no-deprecated */
 /* eslint-disable no-new */
 import React, {Component} from 'react'
 import D3SentimentChart from './speech-sentiment-d3'
@@ -10,7 +13,9 @@ class SpeechSentimentWrapper extends Component {
     this.state = {
       sentimentData: []
     }
+    this.chart = null
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.sentiment) {
       let sentimentData = [
@@ -36,10 +41,12 @@ class SpeechSentimentWrapper extends Component {
 
       this.filterSentimentData = sentimentData.filter(data => data.count > 0)
       this.setState({sentimentData})
-      new D3SentimentChart(
-        this.refs.speechSentimentPieChart,
-        this.filterSentimentData
-      )
+      if (this.chart === null) {
+        this.chart = new D3SentimentChart(
+          this.refs.speechSentimentPieChart,
+          this.filterSentimentData
+        )
+      }
     }
   }
 
@@ -99,7 +106,9 @@ class SpeechSentimentWrapper extends Component {
           </Typography>
         </Paper>
         <Paper className="dashboard-chart" elevation={4}>
-          <div ref="speechSentimentPieChart" />
+          <a name="sentiment">
+            <div ref="speechSentimentPieChart" />
+          </a>
         </Paper>
       </div>
     )
