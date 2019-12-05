@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable react/no-string-refs */
+/* eslint-disable react/no-deprecated */
 /* eslint-disable no-new */
 import React, {Component} from 'react'
 import D3SentimentChart from './speech-sentiment-d3'

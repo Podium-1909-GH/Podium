@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unused-state */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-string-refs */
 import React, {Component} from 'react'
 import DashBoardWpmD3 from './dashboard-filler-d3'
@@ -56,29 +58,31 @@ class DashboardFillerWrapper extends Component {
 
   render() {
     return (
-      <div className="dashboard-item">
-        <Paper className="dashboard-chart" elevation={4}>
-          <div ref="dashFiller" />
-        </Paper>
-        <Paper elevation={4}>
-          <Typography variant="h5">Filler Word Ratios</Typography>
-          <hr />
-          <Typography
-            variant="body1"
-            component="div"
-            className="dashboard-item-text"
-          >
-            On average {this.percentFiller}% of your words for your last{' '}
-            {this.speeches.length} speeches were filler words!
-            <ol className="dashboard-item-bullets">
-              <span>Top fillers</span>
-              {this.totalFillerCount.map((entry, index) => (
-                <li key={index}>{entry[0]}</li>
-              ))}
-            </ol>
-          </Typography>
-        </Paper>
-      </div>
+      <a name="filler">
+        <div className="dashboard-item">
+          <Paper className="dashboard-chart" elevation={4}>
+            <div ref="dashFiller" />
+          </Paper>
+          <Paper elevation={4}>
+            <Typography variant="h5">Filler Word Ratios</Typography>
+            <hr />
+            <Typography
+              variant="body1"
+              component="div"
+              className="dashboard-item-text"
+            >
+              On average {this.percentFiller}% of your words for your last{' '}
+              {this.speeches.length} speeches were filler words!
+              <ol className="dashboard-item-bullets">
+                <span>Top fillers</span>
+                {this.totalFillerCount.map((entry, index) => (
+                  <li key={index}>{entry[0]}</li>
+                ))}
+              </ol>
+            </Typography>
+          </Paper>
+        </div>
+      </a>
     )
   }
 }

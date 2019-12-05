@@ -1,3 +1,4 @@
+/* eslint-disable react/no-string-refs */
 import React, {Component} from 'react'
 import DashBoardWpmD3 from './dashboard-wpm-d3'
 import Paper from '@material-ui/core/Paper'
@@ -24,6 +25,7 @@ class DashboardWpmWrapper extends Component {
     const {data} = await axios.get(`/api/wpm/${this.aveWpm}`)
     await this.setState({
       wpm: data,
+      // eslint-disable-next-line react/no-unused-state
       chart: new DashBoardWpmD3(this.refs.dashWpm, this.speeches)
     })
   }
@@ -37,7 +39,9 @@ class DashboardWpmWrapper extends Component {
     return (
       <div className="dashboard-item">
         <Paper className="dashboard-chart" elevation={4}>
-          <div ref="dashWpm" className="svg-item" />
+          <a name="wpm">
+            <div ref="dashWpm" className="svg-item" />
+          </a>
         </Paper>
         <Paper elevation={4}>
           <Typography variant="h5">Words Per Minute</Typography>
