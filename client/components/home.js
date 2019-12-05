@@ -169,11 +169,11 @@ const Home = () => {
         </Card>
         <Card className="tech-card" elevation={4}>
           <CardActionArea
-            href="https://github.com/d3/d3/wiki"
-            title="D3"
+            href="https://nodejs.org/en/about/"
+            title="Node.js"
             target="_blank"
           >
-            <CardMedia className="tech-img" image="d3.png" />
+            <CardMedia className="tech-img" image="node.png" />
           </CardActionArea>
         </Card>
         <Card className="tech-card" elevation={4}>
@@ -196,11 +196,11 @@ const Home = () => {
         </Card>
         <Card className="tech-card" elevation={4}>
           <CardActionArea
-            href="https://nodejs.org/en/about/"
-            title="Node.js"
+            href="https://github.com/d3/d3/wiki"
+            title="D3"
             target="_blank"
           >
-            <CardMedia className="tech-img" image="node.png" />
+            <CardMedia className="tech-img" image="d3.png" />
           </CardActionArea>
         </Card>
         <Card className="tech-card" elevation={4}>
@@ -210,6 +210,24 @@ const Home = () => {
             target="_blank"
           >
             <CardMedia className="tech-img" image="cropped-material-ui.png" />
+          </CardActionArea>
+        </Card>
+        <Card className="tech-card" elevation={4}>
+          <CardActionArea
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API"
+            title="Web Speech API"
+            target="_blank"
+          >
+            <CardMedia className="tech-img" image="mic.png" />
+          </CardActionArea>
+        </Card>
+        <Card className="tech-card" elevation={4}>
+          <CardActionArea
+            href="https://www.npmjs.com/search?q=sentiment%20analysis&page=2"
+            title="npm sentiment"
+            target="_blank"
+          >
+            <CardMedia className="tech-img" image="sentiment.png" />
           </CardActionArea>
         </Card>
       </div>
