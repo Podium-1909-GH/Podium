@@ -32,7 +32,6 @@ const Navbar = ({handleClick, isLoggedIn, firstName}) => {
               <Link to="/user/dashboard">Dashboard</Link>
               <div>
                 <a
-                  href="#"
                   aria-controls="nav-menu"
                   aria-haspopup="true"
                   onClick={handleDropdown}
