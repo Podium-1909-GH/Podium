@@ -33,7 +33,8 @@ Gain insight into how your words will be received
 
 ## How does Podium work?
 
-When you start recording the Web Speech API transcribes your speech. That transcription is processed on our server using a custom algorithm to find all the filler words in your speech. Sentiment analysis is also run on the transcription using the npm sentiment package. Once all the processing is complete the speech and its associated data are sent back to your browser and so you can see the speech's stats.
+Podium is a robust full stack application. We used React and Redux to create an interactive single page application. Building off of that, we used D3 to make all the visually stunning graphs. Both D3 and React have the power to alter the DOM, so a major challenge we faced was getting the two to mesh together seamlessly. With the user experience as our main priority, we utlized Material-UI to create a clean, and easy to use interface. To get the speech transcriptions we chose to use the Web Speech API. It directly converts your speech into text, without the need for storing any audio files.
+We needed a place to store the speech information, our users, filler words, and wpm descriptions, as well as define relationships between these models, so we set up a postgreSQL data base with Sequelize ORM. Before creation of a speech instance we run a custom built algorithm to locate all the filler words, and in addition we run the sentiment package on the speech transcript. We communicate with the database through our API, built with Express and Node.
 
 
 ## Try it Out
