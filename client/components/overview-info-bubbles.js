@@ -41,6 +41,8 @@ export default class D3Bubbles {
     }
     //make the circle
     vis.svg
+      .append('a')
+      .attr('href', '#wpm')
       .append('circle')
       .attr('cx', svgWidth / 6)
       .attr('cy', svgHeight / 2)
@@ -71,6 +73,8 @@ export default class D3Bubbles {
 
     //make the circle
     vis.svg
+      .append('a')
+      .attr('href', '#filler')
       .append('circle')
       .attr('cx', svgWidth / 2)
       .attr('cy', svgHeight / 2)
@@ -102,6 +106,8 @@ export default class D3Bubbles {
 
     //make the circle
     vis.svg
+      .append('a')
+      .attr('href', '#sentiment')
       .append('circle')
       .attr('cx', svgWidth * 5 / 6)
       .attr('cy', svgHeight / 2)

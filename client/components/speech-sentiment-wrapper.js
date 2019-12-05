@@ -102,7 +102,9 @@ class SpeechSentimentWrapper extends Component {
           </Typography>
         </Paper>
         <Paper className="dashboard-chart" elevation={4}>
-          <div ref="speechSentimentPieChart" />
+          <a name="sentiment">
+            <div ref="speechSentimentPieChart" />
+          </a>
         </Paper>
       </div>
     )

@@ -21,7 +21,9 @@ class SpeechFillerWrapper extends Component {
     return (
       <div className="dashboard-item">
         <Paper className="dashboard-chart" elevation={4}>
-          <div ref="speechFiller" />
+          <a name="filler">
+            <div ref="speechFiller" />
+          </a>
         </Paper>
         <Paper elevation={4} className="dashboard-item-text">
           <Typography variant="h5">Filler Word Ratio</Typography>

@@ -34,7 +34,9 @@ class SpeechFillerWrapper extends Component {
     return (
       <div className="dashboard-item">
         <Paper className="dashboard-chart" elevation={4}>
-          <div ref="speechWPM" />
+          <a name="wpm">
+            <div ref="speechWPM" />
+          </a>
         </Paper>
         <Paper elevation={4} className="dashboard-item-text">
           <Typography variant="h5">Words Per Minute</Typography>

@@ -114,9 +114,9 @@ class DashboardSentimentWrapper extends Component {
             </Typography>
           </Paper>
           <Paper className="dashboard-chart" elevation={4}>
-            {/* <a name="sentiment"> */}
-            <div ref="dashSentiment" />
-            {/* </a> */}
+            <a name="sentiment">
+              <div ref="dashSentiment" />
+            </a>
           </Paper>
         </div>
       </React.Fragment>
