@@ -12,6 +12,7 @@ import SpeechTranscript from './speech-transcript'
 class SpeechOverview extends React.Component {
   //speech model: id, length, transcript, fillerObj, wpm, numberFiller, sentiment
   componentDidMount() {
+    window.scrollTo(0, 0)
     const userId = this.props.userId
     const speechId = this.props.match.params.speechId
     this.props.getSpeech(userId, speechId)
