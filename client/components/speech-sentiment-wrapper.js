@@ -13,7 +13,9 @@ class SpeechSentimentWrapper extends Component {
     this.state = {
       sentimentData: []
     }
+    this.chart = null
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.sentiment) {
       let sentimentData = [
@@ -39,10 +41,12 @@ class SpeechSentimentWrapper extends Component {
 
       this.filterSentimentData = sentimentData.filter(data => data.count > 0)
       this.setState({sentimentData})
-      new D3SentimentChart(
-        this.refs.speechSentimentPieChart,
-        this.filterSentimentData
-      )
+      if (this.chart === null) {
+        this.chart = new D3SentimentChart(
+          this.refs.speechSentimentPieChart,
+          this.filterSentimentData
+        )
+      }
     }
   }
 

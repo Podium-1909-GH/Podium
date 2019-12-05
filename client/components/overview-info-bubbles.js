@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 import * as d3 from 'd3'
-import history from '../history'
 
 const svgWidth = 800
 const svgHeight = 300

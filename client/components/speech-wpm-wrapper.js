@@ -1,3 +1,4 @@
+/* eslint-disable react/no-deprecated */
 /* eslint-disable no-new */
 /* eslint-disable react/no-string-refs */
 import React, {Component} from 'react'
@@ -15,6 +16,7 @@ class SpeechFillerWrapper extends Component {
         description: ''
       }
     }
+    this.chart = null
     this.speech = this.props.speech
   }
   async refresh(speech) {
@@ -26,7 +28,13 @@ class SpeechFillerWrapper extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.speech) {
       this.refresh(nextProps.speech)
-      new D3Chart(this.refs.speechWPM, nextProps.speech, this.state.wpmInfo)
+      if (this.chart === null) {
+        this.chart = new D3Chart(
+          this.refs.speechWPM,
+          nextProps.speech,
+          this.state.wpmInfo
+        )
+      }
     }
   }
 
