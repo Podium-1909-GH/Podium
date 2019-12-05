@@ -1,6 +1,6 @@
 # Podium
 
-## Leave an impression.
+*Leave an impression.*
 
 Podium is a personalized solution designed to polish speaking ability and elevate confidence.
 
@@ -24,14 +24,19 @@ When you start recording the Web Speech API transcribes your speech. That transc
 ## Our Tech Stack
 - Frontend
   - Javascript
-  - React
-  - Redux
+  - React-Redux
   - D3
+  - Web Speech API
   - Material-UI
 - Backend
   - Node
   - Express
   - Sequelize
   - postgreSQL
+  - sentiment(npm)
 
-Check out Podium at <https://podium--app.herokuapp.com/>
+## Try it Out
+
+*Let Podium be your coach*
+
+Try it for yourself at <https://podium--app.herokuapp.com/>
