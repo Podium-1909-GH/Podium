@@ -25,7 +25,7 @@ async function seed() {
     WPM.create({
       min: 150,
       max: 161,
-      title: 'Podcast Pace',
+      title: 'Podcaster',
       description:
         'Most podcasters aim to speak between about 150 and 160 words per minute. Many audiobook recordings also fall within this range. Speaking at this pace can allow your audience to hear your words clearly, without feeling too slow.'
     }),
