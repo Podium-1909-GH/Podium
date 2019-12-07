@@ -58,7 +58,6 @@ class SpeechOverview extends React.Component {
 
 const mapStateToProps = state => ({
   speech: state.speech,
-  speeches: state.speeches,
   userId: state.user.id
 })
 
