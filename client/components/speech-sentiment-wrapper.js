@@ -8,8 +8,8 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
 class SpeechSentimentWrapper extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       sentimentData: []
     }

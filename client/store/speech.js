@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history'
 
 //action types
 const GOT_SPEECH = 'GOT_SPEECH'
@@ -20,7 +21,11 @@ const gotSpeech = speech => ({type: GOT_SPEECH, speech})
 export const getSpeech = (userId, speechId) => async dispatch => {
   try {
     const res = await axios.get(`/api/users/${userId}/speeches/${speechId}`)
-    dispatch(gotSpeech(res.data))
+    if (res.data.id === 0) {
+      history.push('/notFound')
+    } else {
+      dispatch(gotSpeech(res.data))
+    }
   } catch (err) {
     console.error(err)
   }
