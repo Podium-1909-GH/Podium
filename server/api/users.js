@@ -36,7 +36,14 @@ router.get('/:userId/speeches', isMe, async (req, res, next) => {
 
 router.get('/:userId/speeches/:speechId', isMe, async (req, res, next) => {
   try {
-    const speech = await Speech.findByPk(req.params.speechId)
+    let speech = await Speech.findOne({
+      where: {id: req.params.speechId, userId: req.params.userId}
+    })
+    if (speech === null) {
+      speech = {
+        id: 0
+      }
+    }
     res.status(200).json(speech)
   } catch (err) {
     console.error(err)
