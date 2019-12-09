@@ -26,7 +26,10 @@ router.post('/:userId/speeches', isMe, async (req, res, next) => {
 
 router.get('/:userId/speeches', isMe, async (req, res, next) => {
   try {
-    const speeches = await Speech.findAll({where: {userId: req.params.userId}})
+    const speeches = await Speech.findAll({
+      where: {userId: req.params.userId},
+      order: [['createdAt', 'ASC']]
+    })
     res.status(200).json(speeches)
   } catch (err) {
     console.error(err)
