@@ -3,18 +3,61 @@
 *Leave an impression.*
 
 Podium is a personalized solution designed to polish speaking ability and elevate confidence.
+<p align="left" >
+<img src="screenshots/podiumHome.png"
+     alt="Podium Home Page"
+     width="500px" height="auto" />
+</p>
 
 ## As a user you can...
 
 Log in to record new sessions and track your progress over time.
 
+<p align="left">
+<img src="screenshots/podiumRecord.png"
+     alt="Podium Recording Page"
+     width="400px" height="auto" />
+</p>
+
+<br></br>
+
+
 Practice a speech, talk, or presentation and receive immediate feedback.
+
+<p align="left">
+<img src="screenshots/podiumSpeech1.png"
+     alt="Podium Home Page"
+     width="400px" height="auto" />
+</p>
+
+<br></br>
+
 
 Learn about your habits and understand your strengths and weaknesses.
 
+<p align="left">
+<img src="screenshots/podiumDashBubbles.png"
+     alt="Podium Dashboard"
+     width="400px" height="auto"  />
+</p>
+
+<br></br>
+
+
 Gain insight into how your words will be received.
 
+<p align="left">
+<img src="screenshots/podiumDash1.png"
+     alt="Podium Dashboard"
+     width="400px" height="auto"  />
+</p>
+
+
+
+
+
 ## Our Team
+
 - Kiara Anderson
 - Lina Dinh
 - Mallory LeeWong
