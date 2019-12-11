@@ -2,14 +2,18 @@ import * as d3 from 'd3'
 import history from '../history'
 import {formatSeconds} from '../utils'
 
+// Utilize D3 margin convention to set margin, width and height of canvas
 const MARGIN = {TOP: 10, BOTTOM: 10, LEFT: 0, RIGHT: 20}
 const WIDTH = 800 - MARGIN.LEFT - MARGIN.RIGHT
 const HEIGHT = 300 - MARGIN.TOP - MARGIN.BOTTOM
 
+// Create D3 chart class
 export default class DashBoardMainD3 {
   constructor(element, speeches) {
+    // Set this context to equal a variable for the visualization
     const vis = this
 
+    // Get relevant speech data passed to chart instance in React component
     const data = speeches
 
     const lengths = []
@@ -17,12 +21,14 @@ export default class DashBoardMainD3 {
       lengths.push(speeches[i].length)
     }
 
+    // Populate and scale x axis with numbering for each speech in user history
     const x = d3
       .scaleBand()
       .domain(data.map(d => d.index))
       .range([MARGIN.LEFT, WIDTH - MARGIN.RIGHT])
       .padding(0.4)
 
+    // Populate and scale y axis
     const y = d3
       .scaleLinear()
       .domain([0, d3.max(data, d => d.length / 60)])
@@ -41,6 +47,7 @@ export default class DashBoardMainD3 {
         // eslint-disable-next-line no-shadow
         .call(g => g.select('.domain').remove())
 
+    // Create and style tool tips that user sees when interact with each bar
     vis.Tooltip = d3
       .select(element)
       .append('div')
@@ -70,6 +77,7 @@ export default class DashBoardMainD3 {
         .style('stroke-opacity', 1)
     }
     let mousemove = function(d) {
+      // user formatSeconds helper function to turn minutes to seconds
       vis.Tooltip.html(
         `
           ${format(d3.isoParse(d.createdAt))}<br>${formatSeconds(
@@ -88,6 +96,8 @@ export default class DashBoardMainD3 {
         .style('fill-opacity', 1)
     }
 
+    // Define D3 canvas and specific size attributes
+    // Call zoom function to enable zoom or scroll functionality
     vis.svg = d3
       .select(element)
       .append('svg')
@@ -96,8 +106,8 @@ export default class DashBoardMainD3 {
       .append('g')
       .attr('transform', `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
       .call(zoom)
-    // .attr('transform', `translate(10, 10) scale(1)`)
 
+    // Set attributes for tool tips user can interact with for each bar
     vis.svg
       .append('svg')
       .attr('class', 'bars')
@@ -125,12 +135,15 @@ export default class DashBoardMainD3 {
       .attr('y', HEIGHT + 20)
       .attr('text-anchor', 'middle')
 
+    // Create zoom functionality for user to zoom and scroll in bar chart
     function zoom(svg) {
+      // Set maximum amount or range that the user can zoom
       const extent = [
         [MARGIN.LEFT, MARGIN.TOP],
         [WIDTH - MARGIN.RIGHT, HEIGHT - MARGIN.TOP]
       ]
 
+      // Invoke helper zoomed function with extent scale when user zooms
       svg.call(
         d3
           .zoom()
@@ -140,7 +153,7 @@ export default class DashBoardMainD3 {
           .on('zoom', zoomed) // zoom listener
       )
 
-      // zoom event original
+      // Create zoom transformation on each data point or bar in x axis
       function zoomed() {
         x.range(
           [MARGIN.LEFT, WIDTH - MARGIN.RIGHT].map(d =>
@@ -154,28 +167,5 @@ export default class DashBoardMainD3 {
         svg.selectAll('.x-axis').call(xAxis)
       }
     }
-
-    // to add axis titles:
-
-    // vis.svg
-    //   .append('text')
-    //   .attr('x', WIDTH / 2)
-    //   .attr('y', HEIGHT + 50)
-    //   .attr('text-anchor', 'middle')
-    // .text('Your sessions')
-
-    // vis.svg
-    //   .append('text')
-    //   .attr('x', -(HEIGHT / 2))
-    //   .attr('y', -50)
-    //   .attr('text-anchor', 'middle')
-    //   .text('Total Minutes')
-    //   .attr('transform', 'rotate(-90)')
-
-    // vis.xAxisGroup = vis.svg
-    //   .append('g')
-    //   .attr('transform', `translate(0, ${HEIGHT})`)
-
-    // vis.yAxisGroup = vis.svg.append('g')
   }
 }
