@@ -39,15 +39,19 @@ router.get('/:userId/speeches', isMe, async (req, res, next) => {
 
 router.get('/:userId/speeches/:speechId', isMe, async (req, res, next) => {
   try {
-    let speech = await Speech.findOne({
-      where: {id: req.params.speechId, userId: req.params.userId}
-    })
-    if (speech === null) {
-      speech = {
-        id: 0
+    if (isNaN(Number(req.params.speechId))) {
+      res.status(200).json({id: 0})
+    } else {
+      let speech = await Speech.findOne({
+        where: {id: req.params.speechId, userId: req.params.userId}
+      })
+      if (speech === null) {
+        speech = {
+          id: 0
+        }
       }
+      res.status(200).json(speech)
     }
-    res.status(200).json(speech)
   } catch (err) {
     console.error(err)
     next(err)
