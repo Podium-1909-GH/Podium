@@ -8,8 +8,8 @@ import Typography from '@material-ui/core/Typography'
 import axios from 'axios'
 
 class SpeechFillerWrapper extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       wpmInfo: {
         title: '',
@@ -17,7 +17,6 @@ class SpeechFillerWrapper extends Component {
       }
     }
     this.chart = null
-    this.speech = this.props.speech
   }
   async refresh(speech) {
     const {data} = await axios.get(`/api/wpm/${speech.wpm}`)

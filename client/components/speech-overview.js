@@ -18,30 +18,39 @@ class SpeechOverview extends React.Component {
     this.props.getSpeech(userId, speechId)
   }
   render() {
-    let fillerObj = JSON.parse(this.props.speech.fillerObj)
-    let sentiment = JSON.parse(this.props.speech.sentiment)
-
+    let fillerObj
+    let sentiment
+    if (this.props.speech.id !== 0) {
+      fillerObj = JSON.parse(this.props.speech.fillerObj)
+      sentiment = JSON.parse(this.props.speech.sentiment)
+    }
     return (
       <div className="data-overview">
-        <div>
-          <Typography
-            variant="h3"
-            style={{fontFamily: 'Merriweather', fontWeight: '600'}}
-          >
-            Speech Summary <hr />
-          </Typography>
-          <SpeechTranscript transcript={this.props.speech.transcript} />
-        </div>
-        <br />
-        <div>
-          <D3BubblesWrapper speech={this.props.speech} />
-          <SpeechFillerWrapper
-            fillerObj={fillerObj}
-            speech={this.props.speech}
-          />
-          <SpeechSentimentWrapper sentiment={sentiment} />
-          <SpeechWPMWrapper speech={this.props.speech} />
-        </div>
+        {this.props.speech.id === 0 ? (
+          <Typography>Speech Not Found</Typography>
+        ) : (
+          <React.Fragment>
+            <div>
+              <Typography
+                variant="h3"
+                style={{fontFamily: 'Merriweather', fontWeight: '600'}}
+              >
+                Speech Summary <hr />
+              </Typography>
+              <SpeechTranscript transcript={this.props.speech.transcript} />
+            </div>
+            <br />
+            <div>
+              <D3BubblesWrapper speech={this.props.speech} />
+              <SpeechFillerWrapper
+                fillerObj={fillerObj}
+                speech={this.props.speech}
+              />
+              <SpeechSentimentWrapper sentiment={sentiment} />
+              <SpeechWPMWrapper speech={this.props.speech} />
+            </div>
+          </React.Fragment>
+        )}
       </div>
     )
   }
