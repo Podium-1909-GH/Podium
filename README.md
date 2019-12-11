@@ -3,40 +3,57 @@
 *Leave an impression.*
 
 Podium is a personalized solution designed to polish speaking ability and elevate confidence.
-<p align="center" >
+<p align="left" >
 <img src="screenshots/podiumHome.png"
      alt="Podium Home Page"
-     width="400px" height="auto" />
+     width="500px" height="auto" />
 </p>
 
 ## As a user you can...
 
-<p>Log in to record new sessions and track your progress over time.</p>
-<p>
+Log in to record new sessions and track your progress over time.
+
+<p align="left">
 <img src="screenshots/podiumRecord.png"
      alt="Podium Recording Page"
-     width="400px" height="auto" align="left"/>
+     width="400px" height="auto" />
 </p>
-<p>Practice a speech, talk, or presentation and receive immediate feedback.</p>
-<p>
+
+<br></br>
+
+
+Practice a speech, talk, or presentation and receive immediate feedback.
+
+<p align="left">
 <img src="screenshots/podiumSpeech1.png"
      alt="Podium Home Page"
-     width="400px" height="auto" align="left" />
+     width="400px" height="auto" />
 </p>
 
-<p>Learn about your habits and understand your strengths and weaknesses.</p>
-<p>
+<br></br>
+
+
+Learn about your habits and understand your strengths and weaknesses.
+
+<p align="left">
 <img src="screenshots/podiumDashBubbles.png"
      alt="Podium Dashboard"
-     width="400px" height="auto"  align="left"/>
+     width="400px" height="auto"  />
 </p>
 
-Gain insight into how your words will be received.<br/>
-<p>
+<br></br>
+
+
+Gain insight into how your words will be received.
+
+<p align="left">
 <img src="screenshots/podiumDash1.png"
      alt="Podium Dashboard"
-     width="400px" height="auto" align="left" />
+     width="400px" height="auto"  />
 </p>
+
+
+
 
 
 ## Our Team
