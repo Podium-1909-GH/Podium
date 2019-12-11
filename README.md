@@ -6,7 +6,7 @@ Podium is a personalized solution designed to polish speaking ability and elevat
 <p align="center" >
 <img src="screenshots/podiumHome.png"
      alt="Podium Home Page"
-     style="width: 500px; height : auto;" />
+     width="400px" height="auto" />
 </p>
 
 ## As a user you can...
@@ -15,27 +15,27 @@ Podium is a personalized solution designed to polish speaking ability and elevat
 <p>
 <img src="screenshots/podiumRecord.png"
      alt="Podium Recording Page"
-     style="width: 400px; height : auto;" align="left"/>
+     width="400px" height="auto" align="left"/>
 </p>
 <p>Practice a speech, talk, or presentation and receive immediate feedback.</p>
 <p>
 <img src="screenshots/podiumSpeech1.png"
      alt="Podium Home Page"
-     style="width: 400px; height : auto; text-align: center;" align="left" />
+     width="400px" height="auto" align="left" />
 </p>
 
 <p>Learn about your habits and understand your strengths and weaknesses.</p>
 <p>
 <img src="screenshots/podiumDashBubbles.png"
      alt="Podium Dashboard"
-     style="width: 400px; height : auto; " />
+     width="400px" height="auto"  align="left"/>
 </p>
 
 Gain insight into how your words will be received.<br/>
 <p>
 <img src="screenshots/podiumDash1.png"
      alt="Podium Dashboard"
-     style="width: 400px; height : auto; text-align: center;" align="left" />
+     width="400px" height="auto" align="left" />
 </p>
 
 
