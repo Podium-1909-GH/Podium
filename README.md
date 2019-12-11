@@ -6,17 +6,33 @@ Podium is a personalized solution designed to polish speaking ability and elevat
 
 <img src="screenshots/podiumHome.png"
      alt="Podium Home Page"
-     style="width: 80%; height : auto;" />
+     style="width: 70%; height : auto;" />
 
 ## As a user you can...
 
 Log in to record new sessions and track your progress over time.
 
+<img src="screenshots/podiumRecording.png"
+     alt="Podium Recording Page"
+     style="width: 50%; height : auto;" />
+
 Practice a speech, talk, or presentation and receive immediate feedback.
+
+<img src="screenshots/podiumSpeech1.png"
+     alt="Podium Home Page"
+     style="width: 50%; height : auto;" />
 
 Learn about your habits and understand your strengths and weaknesses.
 
+<img src="screenshots/podiumDashBubbles.png"
+     alt="Podium Dashboard"
+     style="width: 50%; height : auto;" />
+
 Gain insight into how your words will be received.
+
+<img src="screenshots/podiumDash1.png"
+     alt="Podium Dashboard"
+     style="width: 50%; height : auto;" />
 
 ## Our Team
 - Kiara Anderson
