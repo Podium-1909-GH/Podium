@@ -4,6 +4,10 @@
 
 Podium is a personalized solution designed to polish speaking ability and elevate confidence.
 
+<img src="screenshots/podiumHome.png"
+     alt="Podium Home Page"
+     style="width: 80%; height : auto;" />
+
 ## As a user you can...
 
 Log in to record new sessions and track your progress over time.
