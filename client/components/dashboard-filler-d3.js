@@ -45,6 +45,8 @@ export default class D3Chart {
     // use transform attr and translate attr to put x axis on bottom instead of top
 
     vis.yAxisGroup = vis.svg.append('g')
+
+    // Reformat speech data to have number of filler words as a percent of overall transcript length
     speeches = speeches.map(speech => {
       speech.percentFiller = Math.round(
         100 * (speech.numberFiller / speech.transcript.split(' ').length)
@@ -52,12 +54,10 @@ export default class D3Chart {
       return speech
     })
 
-    // load two different data sets at once
     vis.data = speeches
 
     // d3.max loops through data array and finds max height
     const maxY = d3.max(vis.data, d => d.percentFiller)
-    const minY = d3.min(vis.data, d => d.percentFiller)
     const y = d3
       .scaleLinear()
       // domain takes an array with 2 elems, min and max input units
@@ -65,7 +65,7 @@ export default class D3Chart {
       // range takes arr of 2 elems, min and max outputs in pixels
       .range([HEIGHT, 0]) // put height as min to get y axis to start at bottom left
 
-    const maxX = d3.max(vis.data, d => d.index)
+    const maxX = d3.max(vis.data, d => d.index) // d.index is index of a user's personal speeches instead of speech id from database
     const minX = d3.min(vis.data, d => d.index)
     let ticks = speeches.map(speech => speech.index)
     const x = d3
@@ -76,7 +76,7 @@ export default class D3Chart {
       .range([0, WIDTH])
 
     // updates x axis, passing in x scale
-    let tickFormat = d3.format('d')
+    let tickFormat = d3.format('d') // display ticks as integer
     const xAxisCall = d3
       .axisBottom(x)
       .tickValues(ticks)
@@ -93,6 +93,8 @@ export default class D3Chart {
       .transition()
       .duration(500)
       .call(yAxisCall)
+
+    // Defining tooltip
     vis.Tooltip = d3
       .select(element)
       .append('div')
@@ -110,6 +112,7 @@ export default class D3Chart {
       .style('font-size', '80%')
       .style('position', 'absolute')
 
+    // Adding line to graph
     vis.svg
       .append('path')
       .datum(vis.data)
@@ -121,36 +124,40 @@ export default class D3Chart {
         d3
           .line()
           .x(function(d) {
-            return x(d.index)
+            return x(d.index) // x-coord
           })
           .y(function(d) {
-            return y(d.percentFiller)
+            return y(d.percentFiller) // y-coord
           })
       )
 
-    let format = d3.timeFormat('%b %e')
+    let format = d3.timeFormat('%b %e') // format Month Day
+
+    // Makes tooltip appear
     let mouseover = function(d) {
       vis.Tooltip.style('opacity', 1)
       d3
-        .select(this)
-        .attr('r', 7)
-        .style('stroke', '#4652B1')
+        .select(this) // Selects data point being hovered over
+        .attr('r', 7) //Increases size of data point
+        .style('stroke', '#4652B1') // Adds border
         .style('opacity', 1)
     }
     let mousemove = function(d) {
       vis.Tooltip.html(
+        // Defines text to appear in tooltip
         `
         ${format(d3.isoParse(d.createdAt))}<br>${formatSeconds(d.length)}<br>${
           d.transcript.split(' ').length
         } words`
       )
-        .style('left', event.pageX + 10 + 'px')
-        .style('top', event.pageY + 'px')
+        .style('left', event.pageX + 10 + 'px') // Define position of tooltip x-coord
+        .style('top', event.pageY + 'px') // Define position of tooltip y-coord
     }
 
+    // Tooltip disappears when move mouse away
     let mouseleave = function(d) {
       vis.Tooltip.style('opacity', 0)
-      d3
+      d3 // Revert styling to mouseover properties
         .select(this)
         .attr('r', 5)
         .style('stroke', 'none')
@@ -163,7 +170,7 @@ export default class D3Chart {
       .selectAll('dot')
       .data(vis.data)
       .enter()
-      .append('circle')
+      .append('circle') // For each data point in speeches create a circle and add it to the graph
       .attr('cx', function(d) {
         return x(d.index)
       })
@@ -174,15 +181,9 @@ export default class D3Chart {
       .attr('fill', '#11C3D0')
       .style('stroke-width', 3)
       .style('stroke', 'none')
-      .on('mouseover', mouseover)
+      .on('mouseover', mouseover) // Add event listeners to each data point
       .on('mousemove', mousemove)
       .on('mouseleave', mouseleave)
-      .on('click', d => history.push(`/user/speeches/${d.id}/overview`))
-
-    // once load data, our graph gets updated by update method every 1000 ms
+      .on('click', d => history.push(`/user/speeches/${d.id}/overview`)) // When you click on a data point, get routed to specific speech overview
   }
-
-  // update method gets called every time we update our data
-
-  // for updating chart based on dropdown menu
 }

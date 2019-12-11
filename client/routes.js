@@ -11,7 +11,6 @@ import {
   UserProfileEdit,
   UserDashboard,
   Home,
-  AboutUs,
   ErrorPage
 } from './components'
 import {me} from './store'
@@ -31,7 +30,6 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
-        <Route path="/aboutus" component={AboutUs} />
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/signup" component={SignUp} />
         {isLoggedIn && (
@@ -53,7 +51,7 @@ class Routes extends Component {
             <Route component={ErrorPage} />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
+        {/* Displays our 404 Page as a fallback */}
 
         <Route component={ErrorPage} />
       </Switch>

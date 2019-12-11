@@ -20,13 +20,15 @@ class UserDashboard extends React.Component {
     }
   }
   async componentDidMount() {
-    await this.props.getSpeeches(this.props.userId)
+    await this.props.getSpeeches(this.props.userId) // Speeches sorted by date ASC in back-end
     let speechMap = this.props.speeches.map((speech, index) => {
+      // Add index to keep track of nth speech for a given user
       speech.index = index + 1
       return speech
     })
+
     if (speechMap.length > 10) {
-      let mostRecent10 = speechMap.slice(speechMap.length - 10)
+      let mostRecent10 = speechMap.slice(speechMap.length - 10) // Only get most recent 10 speeches
       this.setState({mostRecentSpeeches: mostRecent10})
       this.setState({speeches: speechMap})
     } else {
