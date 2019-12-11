@@ -17,12 +17,13 @@ class DashboardWpmWrapper extends Component {
       }
     }
     this.aveWpm = Math.round(
+      // Calculate average words per minute from most recent speeches
       this.speeches.reduce((accum, speech) => accum + speech.wpm, 0) /
         this.speeches.length
     )
   }
   async componentDidMount() {
-    const {data} = await axios.get(`/api/wpm/${this.aveWpm}`)
+    const {data} = await axios.get(`/api/wpm/${this.aveWpm}`) // Retrieve wpm description and title for wpm
     await this.setState({
       wpm: data,
       // eslint-disable-next-line react/no-unused-state

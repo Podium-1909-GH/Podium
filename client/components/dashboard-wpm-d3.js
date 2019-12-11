@@ -47,7 +47,6 @@ export default class D3Chart {
 
     vis.yAxisGroup = vis.svg.append('g')
 
-    // load two different data sets at once
     vis.data = speeches
 
     // d3.max loops through data array and finds max height
@@ -62,7 +61,7 @@ export default class D3Chart {
 
     const maxX = d3.max(vis.data, d => d.index)
     const minX = d3.min(vis.data, d => d.index)
-    let ticks = speeches.map(speech => speech.index)
+    let ticks = speeches.map(speech => speech.index) // Define explicitly ticks to be indices of speeches
     const x = d3
       .scaleLinear()
       // domain takes an array with 2 elems, min and max input units
@@ -71,7 +70,7 @@ export default class D3Chart {
       .range([0, WIDTH])
 
     // updates x axis, passing in x scale
-    let tickFormat = d3.format('d')
+    let tickFormat = d3.format('d') // format ticks as integer
     const xAxisCall = d3
       .axisBottom(x)
       .tickValues(ticks)
@@ -88,6 +87,8 @@ export default class D3Chart {
       .transition()
       .duration(500)
       .call(yAxisCall)
+
+    // Define tooltip element
     vis.Tooltip = d3
       .select(element)
       .append('div')
@@ -105,6 +106,7 @@ export default class D3Chart {
       .style('font-size', '80%')
       .style('position', 'absolute')
 
+    // Add line
     vis.svg
       .append('path')
       .datum(vis.data)
@@ -123,28 +125,30 @@ export default class D3Chart {
           })
       )
 
-    let format = d3.timeFormat('%b %e')
+    let format = d3.timeFormat('%b %e') // Format Month Day
+
     let mouseover = function(d) {
-      vis.Tooltip.style('opacity', 1)
+      vis.Tooltip.style('opacity', 1) // Makes tooltip visible
       d3
         .select(this)
-        .attr('r', 7)
+        .attr('r', 7) // Alter data point Aesthetic. Bigger. Bolder. Outlined.
         .style('stroke', '#4652B1')
         .style('opacity', 1)
     }
     let mousemove = function(d) {
+      // Defines text to show in tooltip
       vis.Tooltip.html(
         `
         ${format(d3.isoParse(d.createdAt))}<br>${formatSeconds(d.length)}`
       )
-        .style('left', event.pageX + 10 + 'px')
+        .style('left', event.pageX + 10 + 'px') // Tooltip positioning
         .style('top', event.pageY + 'px')
     }
 
     let mouseleave = function(d) {
       vis.Tooltip.style('opacity', 0)
       d3
-        .select(this)
+        .select(this) // Revert data point to orginal styling
         .attr('r', 5)
         .style('stroke', 'none')
         .style('opacity', 0.8)
@@ -155,7 +159,7 @@ export default class D3Chart {
       .append('g')
       .selectAll('dot')
       .data(vis.data)
-      .enter()
+      .enter() // Add data points
       .append('circle')
       .attr('cx', function(d) {
         return x(d.index)
@@ -163,7 +167,7 @@ export default class D3Chart {
       .attr('cy', function(d) {
         return y(d.wpm)
       })
-      .attr('r', 5)
+      .attr('r', 5) // Style data points
       .attr('fill', '#E445A8')
       .style('stroke-width', 3)
       .style('stroke', 'none')

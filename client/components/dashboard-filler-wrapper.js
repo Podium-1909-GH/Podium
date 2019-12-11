@@ -12,36 +12,42 @@ class DashboardFillerWrapper extends Component {
     super(props)
     this.speeches = this.props.speeches
     this.percentFiller = Math.round(
+      // Calculate overall percent filler for most recent speeches. Total filler words/ Total words in all transcripts
       100 *
         (this.speeches.reduce(
-          (accum, speech) => accum + speech.numberFiller,
+          (accum, speech) => accum + speech.numberFiller, // sum number of filler words
           0
         ) /
           this.speeches.reduce(
-            (accum, speech) => accum + speech.transcript.split(' ').length,
+            (accum, speech) => accum + speech.transcript.split(' ').length, // sum total number of words
             0
           ))
     )
     this.totalFillerCount = this.speeches.reduce((accum, speech) => {
-      let fillerParsed = JSON.parse(speech.fillerObj)
+      // Array of all filler words used in most recent speeches, and how many times each was used
+      let fillerParsed = JSON.parse(speech.fillerObj) // Convert to regular object
       let speechKeys = Object.keys(fillerParsed)
       speechKeys.forEach(key => {
         if (fillerParsed[key].length > 0) {
+          // If any incidences of specific filler word in a given speech
           if (accum[key]) {
-            accum[key] += fillerParsed[key].length
+            // If already tracking that filler word
+            accum[key] += fillerParsed[key].length // Add count of filler word for speech to overall count of filler word for all speeches
           } else {
-            accum[key] = fillerParsed[key].length
+            accum[key] = fillerParsed[key].length // Add that filler word to the object with its count
           }
         }
       })
       return accum
     }, {})
     let sortByCount = (a, b) => {
-      return b[1] - a[1]
+      // Sort array of filler words in descending order by count/value
+      return b[1] - a[1] // [key,value]
     }
     this.totalFillerCount = Object.entries(this.totalFillerCount)
     this.totalFillerCount.sort(sortByCount)
     if (this.totalFillerCount.length > 5) {
+      // Get top 5 filler words
       this.totalFillerCount = this.totalFillerCount.slice(0, 5)
     }
   }

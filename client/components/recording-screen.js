@@ -4,7 +4,6 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import {connect} from 'react-redux'
 import {postSpeech} from '../store/speeches'
-import SpeechOverview from './speech-overview'
 import Timer from 'react-compound-timer'
 
 class RecordingScreen extends React.Component {
@@ -20,16 +19,16 @@ class RecordingScreen extends React.Component {
     this.handleStart = this.handleStart.bind(this)
     this.handleEnd = this.handleEnd.bind(this)
     this.finalTranscript = ''
-    this.recognition = null
+    this.recognition = null // Defining variable in constructor
   }
 
   componentDidMount() {
     window.SpeechRecognition =
       window.webkitSpeechRecognition || window.SpeechRecognition
     if ('SpeechRecognition' in window) {
-      this.recognition = new window.SpeechRecognition()
-      this.recognition.continuous = true
-      this.recognition.interimResults = true
+      this.recognition = new window.SpeechRecognition() // Create new speech recognition instance
+      this.recognition.continuous = true // Will listen until explicitly told to stop
+      this.recognition.interimResults = true // Adds results while recording
       this.recognition.onresult = async event => {
         let interimTranscript = ''
         for (
@@ -39,16 +38,20 @@ class RecordingScreen extends React.Component {
         ) {
           let transcript = event.results[i][0].transcript
           if (event.results[i].isFinal) {
+            // If transcript has been solidified
             this.finalTranscript += await transcript
             if (!this.state.isTranscribing) {
+              // Only evaluate once done recording
               this.setState({
                 ...this.state,
                 transcript: this.finalTranscript.toLowerCase()
               })
               const length = Math.round(
+                // Transcript length in seconds
                 (this.state.endTime - this.state.startTime) / 1000
               )
               this.props.postSpeech(
+                // Use thunk to create new speech recording
                 this.state.transcript,
                 length,
                 this.props.userId
@@ -71,7 +74,7 @@ class RecordingScreen extends React.Component {
 
   async handleStart() {
     if (this.state.supported) {
-      let now = new Date()
+      let now = new Date() // get start time
       let toggle = !this.state.isTranscribing
       await this.setState({
         ...this.state,
@@ -89,9 +92,9 @@ class RecordingScreen extends React.Component {
   async handleEnd() {
     if (this.state.supported) {
       let toggle = !this.state.isTranscribing
-      let now = new Date()
+      let now = new Date() // get end time
       await this.setState({...this.state, isTranscribing: toggle, endTime: now})
-      this.recognition.stop()
+      this.recognition.stop() // Tell speechRecognition to stop recording
     } else {
       alert(
         'This browser does not support speech recognition. Please use Chrome or FireFox'
